@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="../css/login.css">
+	<link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet" />
+</head>
+<body>
+	<a href="home.html" class="exit"><img src="../Images/Logo/onez.svg" alt="Logo" class="logo"></a>
+    <div class="container">
+        <div class="left-panel">
+            <div class="login-box">
+                <h2>Welcome Back</h2>
+                <p>Please enter your details</p>
+                <form>
+                    
+                    <div class="form">
+                        <label class="username" for="email">Email/Username</label>
+                        <div class="input">
+							<i class="lni lni-user"></i>
+							<input type="text" id="email" name="email" required/>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <label class="password" for="password">Password</label>
+                        <div class="input">
+							<i class="lni lni-lock"></i>
+                            <input type="password" id="password" name="password" required />
+                        </div>
+                    </div>
+
+                    <div class="forgot-pw">
+                        <a href="#">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="button">Login</button>
+
+                    <div class="register">
+                        Don't have an account? <a href="register.html">Sign up</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="right-panel">
+            <img src="../images/login.png" alt="login_image">
+        </div>
+    </div>
+</body>
+</html>
