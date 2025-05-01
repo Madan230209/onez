@@ -17,9 +17,6 @@
         <dependent-module archiveName="jakarta.servlet.jsp.jstl-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/jar/jakarta.servlet.jsp.jstl-2.0.0.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="mysql-connector-j-9.2.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/jar/mysql-connector-j-9.2.0.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="jakarta.xml.bind-api-3.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/jar/jakarta.xml.bind-api-3.0.0.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -30,6 +27,9 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="jakarta.servlet-api-5.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/jar/jakarta.servlet-api-5.0.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mysql-connector-j-9.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/jar/mysql-connector-j-9.0.0.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
                                 
