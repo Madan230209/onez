@@ -92,7 +92,6 @@ pageContext.setAttribute("currentUser", currentUser);
 							<th>Address</th>
 							<th>Email</th>
 							<th>Number</th>
-							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -104,20 +103,6 @@ pageContext.setAttribute("currentUser", currentUser);
 								<td>${user.address.name}</td>
 								<td>${user.email}</td>
 								<td>${user.number}</td>
-								<td>
-									<form action="${contextPath}/modifyUsers" method="post"
-										style="display: inline;">
-										<input type="hidden" name="userId" value="${user.id}">
-										<input type="hidden" name="action" value="updateForm">
-										<button class="action-btn" type="submit">Edit</button>
-									</form>
-									<form action="${contextPath}/users" method="post"
-										style="display: inline;">
-										<input type="hidden" name="userId" value="${user.id}">
-										<input type="hidden" name="action" value="delete">
-										<button class="action-btn" type="submit">Delete</button>
-									</form>
-								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
