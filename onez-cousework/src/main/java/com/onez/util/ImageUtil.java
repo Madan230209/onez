@@ -96,6 +96,6 @@ public class ImageUtil {
 	}
 	
 	public String getSavePath(String saveFolder) {
-		return "C:/Users/IP3/eclipse-workspace/onez-coursework/src/main/webapp/resources/"+saveFolder+"/";
+		return "C:/Users/Acer/git/onez1/onez-coursework/src/main/webapp/resources/"+saveFolder+"/";
 	}
 }
