@@ -54,7 +54,7 @@
                 <div><i class="fa-solid fa-globe"></i></div>
             </a>
             <a href="#">
-                <div><i class="fa-solid fa-gamepad"></i></div>
+                <div><i class="fa-solid fa-gamepad xl-large"></i></div>
             </a>
             <a href="#">
                 <div><i class="fa-solid fa-keyboard"></i></div>
