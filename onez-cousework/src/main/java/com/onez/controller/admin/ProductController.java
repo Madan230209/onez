@@ -185,8 +185,9 @@ public class ProductController extends HttpServlet {
     }
 
     private boolean uploadImage(HttpServletRequest req) throws IOException, ServletException {
-		Part image = req.getPart("productImage");
-		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "product");
+	    Part image = req.getPart("productImage");
+	    String rootPath = req.getServletContext().getRealPath("/");
+	    return imageUtil.uploadImage(image, rootPath, "product");
 	}
     
     private void handleSuccess(HttpServletRequest req, HttpServletResponse resp, 

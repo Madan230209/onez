@@ -20,10 +20,14 @@
     <div class="top-section">
       <h3>Manage My Account</h3>
     </div>
-	<div class="alert alert-success">${successMessage}</div>
-    <div class="alert alert-danger">${errorMessage}</div>
     
-    
+	<c:if test="${not empty successMessage}">
+	    <div class="alert alert-success">${successMessage}</div>
+	</c:if>
+	<c:if test="${not empty errorMessage}">
+	    <div class="alert alert-danger">${errorMessage}</div>
+	</c:if>
+
     <div class="account-details">
       <div class="profile-icon">
       <img src="${contextPath}/resources/user/${user.imageUrl}" width="30" height="30" style="border-radius: 10px;"

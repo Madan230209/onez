@@ -136,7 +136,7 @@
         
         .cart-table img {
             border-radius: 4px;
-            object-fit: cover;
+            object-fit: contain;
         }
         
         /* Action Buttons */

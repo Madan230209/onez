@@ -72,30 +72,26 @@ public class ImageUtil {
 	 *         otherwise.
 	 */
 	public boolean uploadImage(Part part, String rootPath, String saveFolder) {
-		String savePath = getSavePath(saveFolder);
-		File fileSaveDir = new File(savePath);
-
-		// Ensure the directory exists
-		if (!fileSaveDir.exists()) {
-			if (!fileSaveDir.mkdir()) {
-				return false; // Failed to create the directory
-			}
-		}
-		try {
-			// Get the image name
-			String imageName = getImageNameFromPart(part);
-			// Create the file path
-			String filePath = savePath + "/" + imageName;
-			// Write the file to the server
-			part.write(filePath);
-			return true; // Upload successful
-		} catch (IOException e) {
-			e.printStackTrace(); // Log the exception
-			return false; // Upload failed
-		}
+	    // 1. Save to deployment directory (for web access)
+	    String deployPath = rootPath + File.separator + "resources" + File.separator + saveFolder;
+	    saveToLocation(part, deployPath);
+	    
+	    // 2. Save to project directory (for easy access in Eclipse)
+	    String projectPath = "C:/Users/IP3/git/onez/onez-cousework/src/main/webapp/resources/" + saveFolder;
+	    saveToLocation(part, projectPath);
+	    
+	    return true;
 	}
-	
-	public String getSavePath(String saveFolder) {
-		return "C:/Users/IP3/eclipse-workspace/onez-coursework/src/main/webapp/resources/"+saveFolder+"/";
+
+	private void saveToLocation(Part part, String basePath) {
+	    File dir = new File(basePath);
+	    if (!dir.exists()) dir.mkdirs();
+	    
+	    try {
+	        String filename = getImageNameFromPart(part);
+	        part.write(basePath + File.separator + filename);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
 	}
 }
