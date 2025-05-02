@@ -164,6 +164,7 @@ header img {
   display: flex;
   align-items: center;
   gap: 10px;
+  
 }
 
 .admin-header i {
@@ -251,6 +252,9 @@ header img {
   top: 40px;
 }
 
+
+    
+
 .product h2 {
   font-size: 32px;
   margin: 10px;
@@ -264,8 +268,7 @@ header img {
 }
 
 h1 {
-  margin: 50px;
-  text-align: left;
+ margin-bottom:50px;
 }
 
 /* Recent orders */
