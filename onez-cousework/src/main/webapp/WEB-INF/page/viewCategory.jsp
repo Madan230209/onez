@@ -111,9 +111,7 @@
 			                    <h4>${product.productName}</h4>
 			                    <p>Category: ${product.category}</p>
 			                    <h5>Rs.${product.price}</h5>
-			                    <a href="${contextPath}/viewProduct?productId=${product.productId}">
-			                        <button type="button"><i class="fa-solid fa-eye"></i></button>
-			                    </a>
+			                 
 			                </div>
 			            </div>
 			        </c:forEach>

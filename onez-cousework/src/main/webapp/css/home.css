@@ -215,19 +215,21 @@ body {
   padding-bottom: 2rem;
 }
 .product-container {
-  width: 24rem;
+  width: 20rem;
   height: auto;
   overflow: hidden;
   border-radius: 1rem;
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
-  transition: transform 0.25s;
+  /* box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25); */
+  /* border: 1px solid black; */
+  /* transition: box-shadow 0.25s; */
 }
 .product-container:hover {
-  transform: translateY(-5px);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
 }
 .product-image img {
   width: 100%;
   height: 100%;
+  padding: 0px 15px;
   object-fit: contain;
   mix-blend-mode: color-burn;
 }
@@ -240,9 +242,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
+  padding-left: 20px;
   gap: 0.75rem;
   overflow: hidden;
+  padding-bottom: 10px;
 }
 .product-info h4 {
   font-size: x-large;
@@ -253,8 +257,8 @@ body {
   font-weight: bold;
 }
 .product-info h5 {
-  color: black;
-  font-size: x-large;
+  color: red;
+  font-size: large;
 }
 .product-info a {
   width: 100%;
@@ -274,77 +278,8 @@ body {
 .product-box {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 2rem;
-}
-.checked {
-  color: orange;
-}
-/* for making responsive */
-@media (max-width: 668px) {
-  .slider {
-    height: 12rem;
-  }
-  .slider div:nth-child(2) h2:nth-child(1) {
-    font-size: 2.5rem;
-    transform: translate(-50%, -30%);
-  }
-  .slider div:nth-child(2) h2:nth-child(2) {
-    font-size: 2.5rem;
-    transform: translate(-50%, 40%);
-  }
-
-  .browse_by_category h3 {
-    font-size: 2rem;
-  }
-  .category {
-    gap: 2rem;
-    padding: 0rem 2rem 1rem 2rem;
-  }
-  .category div {
-    min-width: 4rem;
-    height: 4rem;
-  }
-  .category div i {
-    font-size: 2rem;
-  }
-  .category::-webkit-scrollbar-track {
-    margin: 7rem;
-  }
-  .new_arrival {
-    width: 100%;
-    height: 8rem;
-    margin-top: 0.8rem;
-    margin-bottom: 0.8rem;
-  }
-  .new_arrival .wrapper div:nth-child(1) button {
-    font-size: 1rem;
-    padding: 0.25rem 1.5rem;
-    border-radius: 2rem;
-  }
-  .trnd {
-    padding-bottom: 0.8rem;
-    font-size: 2rem;
-  }
-  .product-container {
-    margin: 0px 10px;
-  }
-  .product-container {
-    width: 20rem;
-  }
-  .product-image {
-    height: 14rem;
-  }
-  .product-info h4 {
-    font-size: large;
-  }
-  .product-info p {
-    font-size: large;
-  }
-  .product-info h5 {
-    font-size: large;
-  }
-  .product-box {
-    gap: 2rem;
-  }
+  justify-content: center;
+  /* margin: 10px; */
+  /* padding: 10px; */
+  gap: 1.5rem;
 }
