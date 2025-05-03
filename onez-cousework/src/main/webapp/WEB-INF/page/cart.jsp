@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page import="jakarta.servlet.http.HttpSession"%>
-<%@ page import="jakarta.servlet.http.HttpServletRequest"%>
 
 <%
 HttpSession userSession = request.getSession(false);
@@ -38,7 +36,7 @@ pageContext.setAttribute("currentUser", currentUser);
                     <i class="fas fa-check-circle"></i> ${success}
                 </div>
             </c:if>
-			<h1>${user.firstName}</h1>
+
             <c:if test="${empty cart.items}">
                 <div class="empty-cart">
                     <i class="fas fa-shopping-basket"></i>
@@ -74,20 +72,20 @@ pageContext.setAttribute("currentUser", currentUser);
                                         <fmt:formatNumber value="${item.product.price}" type="currency" />
                                     </td>
                                     <td class="product-quantity">
-                                        <form action="cart/update" method="post" class="quantity-form">
+                                        <form action="${contextPath}/cart/update" method="post" class="quantity-form">
                                             <input type="hidden" name="productId" value="${item.product.productId}" />
                                             <button type="button" class="quantity-btn minus" onclick="changeQuantity(this, -1)">-</button>
-                                            <input type="number" name="newQuantity" value="${item.quantity}" 
+                                            <input type="number" name="quantity" value="${item.productQuantity}" 
                                                    min="1" max="${item.product.quantity}" 
                                                    class="quantity-input" onchange="validateQuantity(this)">
                                             <button type="button" class="quantity-btn plus" onclick="changeQuantity(this, 1)">+</button>
                                         </form>
                                     </td>
                                     <td class="product-subtotal">
-                                        <fmt:formatNumber value="${item.quantity * item.product.price}" type="currency" />
+                                        <fmt:formatNumber value="${item.productQuantity * item.product.price}" type="currency" />
                                     </td>
                                     <td class="product-actions">
-                                        <form action="cart/remove" method="post">
+                                        <form action="${contextPath}/cart/remove" method="post">
                                             <input type="hidden" name="productId" value="${item.product.productId}" />
                                             <button type="submit" class="remove-btn">
                                                 <i class="fas fa-trash-alt"></i> Remove
@@ -111,7 +109,7 @@ pageContext.setAttribute("currentUser", currentUser);
                             <span>Total Price:</span>
                             <span><fmt:formatNumber value="${cart.totalPrice}" type="currency" /></span>
                         </div>
-                        <form action="checkout" method="get">
+                        <form action="${contextPath}/order" method="get">
                             <button type="submit" class="checkout-btn">
                                 <i class="fas fa-credit-card"></i> Proceed to Checkout
                             </button>

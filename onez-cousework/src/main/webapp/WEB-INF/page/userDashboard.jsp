@@ -65,7 +65,7 @@
         </div>
 
         <div class="form-actions">
-          <a href="${contextPath}/home"><button type="submit" class="btn btn-primary">Update Profile</button></a>
+          <button type="submit" class="btn btn-primary">Update Profile</button>
         </div>
         </form>
     </div>

@@ -243,7 +243,9 @@
 		    border-radius: 4px;
 		    padding: 5px;
 		}
-        
+        .description-cell{
+        	width: 250px;
+        }
         /* Responsive Adjustments */
         @media (max-width: 768px) {
             .cart-table {

@@ -27,8 +27,9 @@ public class RedirectionUtil {
 	public static final String warrantyUrl = baseUrl + "warranty.jsp";
 	public static final String wishlistUrl = baseUrl + "wishlist.jsp";
 	public static final String aboutUsUrl = baseUrl + "aboutus.jsp";
-
-
+	public static final String feedbackUrl = baseUrl + "feedback.jsp";
+	public static final String orderUrl = baseUrl + "order.jsp";
+	public static final String orderHistoryUrl = baseUrl + "orderHistory.jsp";
 	
 
 	public void setMsgAttribute(HttpServletRequest req, String msgType, String msg) {

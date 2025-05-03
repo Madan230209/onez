@@ -10,7 +10,6 @@
 // Initialize necessary objects and variables
 HttpSession userSession = request.getSession(false);
 String currentUser = (String) (userSession != null ? userSession.getAttribute("username") : null);
-// need to add data in attribute to select it in JSP code using JSTL core tag
 pageContext.setAttribute("currentUser", currentUser);
 %>
 <!DOCTYPE html>
@@ -20,9 +19,7 @@ pageContext.setAttribute("currentUser", currentUser);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
     <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/adminDashboard.css" />
-    <script src="https://kit.fontawesome.com/91fb88d05c.js" crossorigin="anonymous"
-    ></script>
+    href="${pageContext.request.contextPath}/css/adminDashboard.css" />
   </head>
 
   <body>
@@ -38,15 +35,11 @@ pageContext.setAttribute("currentUser", currentUser);
             <img src="${contextPath}/resources/logo/onez.svg" alt="ONEZ Logo" />
           </div>
           <div class="add-product">
-
-
-          <div class="admin-header">
-            <img src="${contextPath}/resources/user/${user.imageUrl}" width="30" height="30" style="border-radius: 10px;"
-     								onerror="this.src='${contextPath}/resources/logo/onez.svg'">
-            <p>Admin</p>
-
-          </div>
-
+            <div class="admin-header">
+              <img src="${contextPath}/resources/user/${user.imageUrl}" width="30" height="30" style="border-radius: 10px;"
+                    onerror="this.src='${contextPath}/resources/logo/onez.svg'">
+              <p>Admin</p>
+            </div>
           </div>
         </header>
 
@@ -91,15 +84,20 @@ pageContext.setAttribute("currentUser", currentUser);
                 </tr>
               </thead>
               <tbody>
-                <!-- Using JSTL forEach loop to display user data -->
-						<c:forEach var="user" items="${userList}">
-							<tr>
-								<td>${user.id}</td>
-								<td>${user.firstName}${user.lastName}</td>
-								<td>${user.email}</td>
-								<td>${user.address.name}</td>
-							</tr>
-						</c:forEach>
+                <!-- Corrected JSTL forEach loop -->
+                <c:forEach var="order" items="${orderList}">
+                  <tr>
+                    <td>${order.user.firstName} ${order.user.lastName}</td>
+                    <td>${order.orderId}</td>
+                    <td>${order.orderStatus}</td>
+                    <td>${order.user.address.name}</td>
+                  </tr>
+                </c:forEach>
+                <c:if test="${empty orderList}">
+                  <tr>
+                    <td colspan="4">No recent orders found</td>
+                  </tr>
+                </c:if>
               </tbody>
             </table>
           </div>
