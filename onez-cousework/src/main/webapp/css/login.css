@@ -102,7 +102,7 @@ body {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #170202;
-  padding: 6px 0;
+  padding: 6px 0px;
 }
 
 .input i {
