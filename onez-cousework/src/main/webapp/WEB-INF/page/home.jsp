@@ -90,7 +90,7 @@
                 <h3>Shop New Arrival</h3>
                 <a href="#"><button type="button">Shop</button></a>
             </div>
-            <div><img src="${contextPath}/resources/products/iqunix 68 he.jpg" alt="Keybaords"></div>
+            <div><img src="${contextPath}/resources/product/iqunix 68 he.jpg" alt="Keybaords"></div>
         </div>
     </section>
     <!-- new_arrival_section ends -->
@@ -104,7 +104,7 @@
             <div class="product-container">
                 <div class="product-image">
                     <a href="${contextPath}/viewProduct?productId=${product.productId}">
-                        <img src="${contextPath}/resources/products/${product.productImage}" alt="${product.productName}">
+                        <img src="${contextPath}/resources/product/${product.productImage}" alt="${product.productName}">
                     </a>
                 </div>
                 <div class="product-info">

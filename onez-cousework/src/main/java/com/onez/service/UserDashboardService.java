@@ -40,7 +40,7 @@ public class UserDashboardService {
             return null;
         }
 
-        String query = "SELECT user_id, first_name, last_name, email, number, dob " +
+        String query = "SELECT user_id, first_name, last_name, email, number, dob, profilePic " +
                       "FROM user WHERE user_id = ?";
         
         try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
@@ -59,7 +59,7 @@ public class UserDashboardService {
                 if (dob != null) {
                     user.setDob(dob.toLocalDate());
                 }
-                
+                user.setImageUrl(result.getString("profilePic"));
                 return user;
             }
             return null;
@@ -83,7 +83,7 @@ public class UserDashboardService {
 
 
         String updateQuery = "UPDATE user SET first_name = ?, last_name = ?, " +
-                            "email = ?, number = ?, dob = ? WHERE user_id = ?";
+                            "email = ?, number = ?, dob = ?, profilePic = ? WHERE user_id = ?";
         
         try (PreparedStatement stmt = dbConn.prepareStatement(updateQuery)) {
             stmt.setString(1, user.getFirstName());
@@ -96,8 +96,8 @@ public class UserDashboardService {
             } else {
                 stmt.setNull(5, java.sql.Types.DATE);
             }
-            
-            stmt.setInt(6, user.getId());
+            stmt.setString(6, user.getImageUrl());
+            stmt.setInt(7, user.getId());
 
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;

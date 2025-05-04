@@ -60,6 +60,7 @@ public class UserDashboardController extends HttpServlet {
             String email = request.getParameter("email");
             String number = request.getParameter("number");
             String dob = request.getParameter("dob");
+            String imageUrl = request.getParameter("image");
 
             UserModel updatedUser = new UserModel();
             updatedUser.setId(userId);
@@ -72,6 +73,7 @@ public class UserDashboardController extends HttpServlet {
                 updatedUser.setDob(java.time.LocalDate.parse(dob));
             }
 
+            updatedUser.setImageUrl(imageUrl);
             boolean success = dashboardService.updateUserInfo(updatedUser);
 
             if (success) {
