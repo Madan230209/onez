@@ -1,4 +1,4 @@
-@charset "UTF-8";
++@charset "UTF-8";
 
 * {
   margin: 0;
@@ -324,7 +324,7 @@ td button:hover {
   background-color: #5c5f64;
 }
 
-/* Custom CSS */
+
 .action-btn {
   background-color: #007bff;
   color: white;
