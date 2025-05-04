@@ -11,7 +11,8 @@ String currentUser = (String) (userSession != null ? userSession.getAttribute("u
 // need to add data in attribute to select it in JSP code using JSTL core tag
 pageContext.setAttribute("currentUser", currentUser);
 %>
-
+<script src="https://kit.fontawesome.com/91fb88d05c.js" crossorigin="anonymous"
+    ></script>
 <!-- Sidebar Navigation -->
       <nav class="sidebar">
       	<div>	
@@ -22,7 +23,7 @@ pageContext.setAttribute("currentUser", currentUser);
           <div><p>Dashboard</p></div>
           <i class="fa-solid fa-table-columns"></i>
         </div> </a>
-        <a href="#" class="no-style">
+        <a href="${contextPath}/admin/orders" class="no-style">
         <div>
           <div><p>Orders</p></div>
           <i class="fa-solid fa-boxes-stacked"></i>

@@ -6,8 +6,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import com.onez.service.AdminDashboardService;
+import com.onez.service.OrderService;
 import com.onez.util.RedirectionUtil;
 
 /**
@@ -24,12 +26,21 @@ public class AdminDashboardController extends HttpServlet {
 
 	// Instance of DashboardService for handling business logic
 	private AdminDashboardService dashboardService;
-
+	private OrderService orderService;
+	
 	/**
-	 * Default constructor initializes the DashboardService instance.
+	 * Default constructor initializes the DashboardService and orderService instance.
 	 */
 	public AdminDashboardController() {
-		this.dashboardService = new AdminDashboardService();
+		
+		try {
+            this.orderService = new OrderService();
+            this.dashboardService = new AdminDashboardService();
+        } catch (SQLException e) {
+            // Log the error and handle it appropriately
+            e.printStackTrace();
+            throw new RuntimeException("Failed to initialize OrderService", e);
+        }
 	}
 
 	/**
@@ -45,12 +56,9 @@ public class AdminDashboardController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// Retrieve all student information from the DashboardService
-		request.setAttribute("userList", dashboardService.getRecentUsers());
+		request.setAttribute("orderList", orderService.getRecentOrders());
 		request.setAttribute("totalProduct", dashboardService.getTotalProducts());
 		request.setAttribute("total", dashboardService.getTotalUsers());
-		request.setAttribute("Kathmandu", dashboardService.getKathmanduUsers());
-		request.setAttribute("Lalitpur", dashboardService.getLalitpurUsers());
-		request.setAttribute("Bhaktapur", dashboardService.getBhaktapurUsers());
 
 		// Forward the request to the dashboard JSP for rendering
 		request.getRequestDispatcher(RedirectionUtil.adminDashboardUrl).forward(request, response);

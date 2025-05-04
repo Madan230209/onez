@@ -1,7 +1,9 @@
 package com.onez.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.sql.SQLException;
 
 import com.onez.model.AddressModel;
 import com.onez.model.UserModel;
@@ -116,8 +118,14 @@ public class RegisterController extends HttpServlet {
 		}
 
 		// Validate fields
+		if (!ValidationUtil.isAlphabetic(firstName))
+			return "FirstName must contain letters only.";
+		if (!ValidationUtil.isAlphabetic(lastName))
+			return "LastName must contain letters only.";
+		
 		if (!ValidationUtil.isAlphanumericStartingWithLetter(username))
 			return "Username must start with a letter and contain only letters and numbers.";
+		
 		if (!ValidationUtil.isValidGender(gender))
 			return "Gender must be 'male' or 'female'.";
 		if (!ValidationUtil.isValidEmail(email))
@@ -141,7 +149,24 @@ public class RegisterController extends HttpServlet {
 			return "Error handling image file. Please ensure the file is valid.";
 		}
 
-		return null; // All validations passed
+		// Add duplicate checks
+	    try {
+	        String phoneNumber = req.getParameter("phoneNumber");
+
+	        if (registerService.isUsernameExists(username)) {
+	            return "Username already exists. Please choose a different username.";
+	        }
+	        if (registerService.isEmailExists(email)) {
+	            return "Email already exists. Please use a different email address.";
+	        }
+	        if (registerService.isPhoneNumberExists(phoneNumber)) {
+	            return "Phone number already exists. Please use a different phone number.";
+	        }
+	    } catch (SQLException e) {
+	        return "Error checking user details. Please try again later.";
+	    }
+
+	    return null; // All validations passed
 	}
 
 	private UserModel extractUserModel(HttpServletRequest req) throws Exception {
@@ -153,7 +178,6 @@ public class RegisterController extends HttpServlet {
 		String email = req.getParameter("email");
 		String number = req.getParameter("phoneNumber");
 		String address = req.getParameter("address");
-
 		String password = req.getParameter("password");
 
 		// Assuming password validation is already done in validateRegistrationForm
@@ -168,10 +192,11 @@ public class RegisterController extends HttpServlet {
 	}
 
 	private boolean uploadImage(HttpServletRequest req) throws IOException, ServletException {
-		Part image = req.getPart("image");
-		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "user");
+	    Part image = req.getPart("image");
+	    String rootPath = req.getServletContext().getRealPath("/");
+	    return imageUtil.uploadImage(image, rootPath, "user");
 	}
-
+	
 	private void handleSuccess(HttpServletRequest req, HttpServletResponse resp, String message, String redirectPage)
 			throws ServletException, IOException {
 		req.setAttribute("success", message);

@@ -66,4 +66,60 @@ public class ValidationUtil {
         LocalDate today = LocalDate.now();
         return Period.between(dob, today).getYears() >= 16;
     }
+ // 11. Validate if a string represents a valid ID (positive integer)
+    public static boolean isValidId(String idStr) {
+        if (isNullOrEmpty(idStr)) {
+            return false;
+        }
+        try {
+            int id = Integer.parseInt(idStr);
+            return id > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    
+ // 12. Validate if a string represents a valid quantity (positive integer)
+    public static boolean isValidQuantity(String quantityStr) {
+        if (isNullOrEmpty(quantityStr)) {
+            return false;
+        }
+        try {
+            int quantity = Integer.parseInt(quantityStr);
+            return quantity > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    // 13. Validate if a string represents a valid price (positive number)
+    public static boolean isValidPrice(String priceStr) {
+        if (isNullOrEmpty(priceStr)) {
+            return false;
+        }
+        try {
+            double price = Double.parseDouble(priceStr);
+            return price > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    // 14. Validate if a quantity is available in stock
+    public static boolean isQuantityAvailable(int requestedQuantity, int availableQuantity) {
+        return requestedQuantity > 0 && requestedQuantity <= availableQuantity;
+    }
+
+    // 15. Validate if a string is a valid date in yyyy-MM-dd format
+    public static boolean isValidDate(String dateStr) {
+        if (isNullOrEmpty(dateStr)) {
+            return false;
+        }
+        try {
+            LocalDate.parse(dateStr);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
