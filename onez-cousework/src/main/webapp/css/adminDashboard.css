@@ -314,11 +314,19 @@ td button {
   color: white;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 td button:hover {
-  background-color: #5c5f64;
+  background-color: rgb(128, 128, 128);
+}
+
+.nav-button{
+	 padding: 8px 16px;
+  border-radius: 20px;
+  background-color: #060606;
+  color: white;
+  border: none;
+	
 }
 
 
