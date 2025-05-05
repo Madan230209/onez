@@ -186,7 +186,7 @@ public class AdminDashboardService {
 			return null;
 		}
 
-		String countQuery = "SELECT COUNT(*) AS total FROM user WHERE address_id = 1;";
+		String countQuery = "SELECT COUNT(*) AS total FROM user WHERE address_id = 1 and userRole = 'customer';";
 		try (PreparedStatement stmt = dbConn.prepareStatement(countQuery)) {
 			ResultSet result = stmt.executeQuery();
 			if (result.next()) {
@@ -205,7 +205,7 @@ public class AdminDashboardService {
 			return null;
 		}
 
-		String countQuery = "SELECT COUNT(*) AS total FROM user WHERE address_id = 2;";
+		String countQuery = "SELECT COUNT(*) AS total FROM user WHERE address_id = 2 and userRole = 'customer';";
 		try (PreparedStatement stmt = dbConn.prepareStatement(countQuery)) {
 			ResultSet result = stmt.executeQuery();
 			if (result.next()) {
@@ -224,7 +224,7 @@ public class AdminDashboardService {
 			return null;
 		}
 
-		String countQuery = "SELECT COUNT(*) AS total FROM user WHERE address_id = 3;";
+		String countQuery = "SELECT COUNT(*) AS total FROM user WHERE address_id = 3 and userRole = 'customer';";
 		try (PreparedStatement stmt = dbConn.prepareStatement(countQuery)) {
 			ResultSet result = stmt.executeQuery();
 			if (result.next()) {
