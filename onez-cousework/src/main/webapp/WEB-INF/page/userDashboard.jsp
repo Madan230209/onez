@@ -19,10 +19,10 @@
 <!-- Sidebar Navigation -->
 <nav class="sidebar">
   <div>
-    <div><img src="${contextPath}/resources/logo/logoWhite.png" alt="ONEZ Logo" class="logo"/></div>
+    <a href="${contextPath}/home"><div><img src="${contextPath}/resources/logo/logoWhite.png" alt="ONEZ Logo" class="logo"/></div></a>
   </div>
-  <a href="${contextPath}/adminDashboard" class="no-style"><div><p>Account details</p></div></a>
-  <a href="#" class="no-style"><div><p>Orders</p></div></a>
+  <a href="${contextPath}/userDashboard" class="no-style"><div><p>Account details</p></div></a>
+  <a href="${contextPath}/orderHistory" class="no-style"><div><p>Orders</p></div></a>
   <a href="${contextPath}/wishlist" class="no-style"><div><p>Wishlist</p></div></a>
   <a href="${contextPath}/cart" class="no-style"><div><p>Cart</p></div></a>
 
