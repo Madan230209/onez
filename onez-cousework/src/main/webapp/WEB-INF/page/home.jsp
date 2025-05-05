@@ -110,7 +110,7 @@
                 <div class="product-info">
                     <h4>${product.productName}</h4>
                     <p>Category: ${product.category}</p>
-                    <h5>Rs. ${product.price}</h5>
+                    <h5>$ ${product.price}</h5>
                 </div>
             </div>
         </c:forEach>
