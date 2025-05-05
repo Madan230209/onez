@@ -24,7 +24,16 @@ pageContext.setAttribute("currentUser", currentUser);
         <jsp:include page="sideBar.jsp"/>
         
         <!-- Main Content -->
-        <main class="dashboard" style="padding-left: 50px;">
+        <main class="dashboard" >
+        <header>
+          <div class="add-product">
+            <div class="admin-header">
+              <img src="${contextPath}/resources/user/${user.imageUrl}" width="30" height="30" style="border-radius: 10px;"
+                    onerror="this.src='${contextPath}/resources/logo/onez.svg'">
+              <p>${username}</p>
+            </div>
+          </div>
+        </header>
             <h1>Product Management</h1>
             <c:if test="${not empty error}">
                 <div class="error">${error}</div>

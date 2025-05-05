@@ -11,13 +11,9 @@
   <body>
   <jsp:include page="header.jsp" />
   <div class="main">
-    <div>
-      <h1>Terms &amp; Conditions</h1>
-      <div class="sidebar">
-        <h3>TERMS &amp; CONDITIONS OF ONEZ</h3>
-      </div>
-    </div>
-
+     <div class="sidebar">
+       <h3>TERMS &amp; CONDITIONS OF ONEZ</h3>
+     </div>
     <div class="container">
       <div class="section">
         <h2>1. Acceptance of Terms</h2>

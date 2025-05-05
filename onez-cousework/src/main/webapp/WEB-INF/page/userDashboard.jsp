@@ -32,7 +32,7 @@
       <form action="${pageContext.request.contextPath}/userDashboard" method="post">
       <div class="form-group">
       	<div class="profile-icon" >
-      	<img src="${contextPath}/resources/user/${user.imageUrl}"  width ="70" height="70"  style="border-radius: 10px;"
+      	<img src="${contextPath}/resources/user/${user.imageUrl}"  width ="100" height="100"  style="border-radius: 50%;"
      								onerror="this.src='${contextPath}/resources/logo/onez.svg'">
      	</div>
       </div>

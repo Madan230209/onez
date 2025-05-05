@@ -13,12 +13,9 @@
   <jsp:include page="header.jsp" />
   
   <div class="main">
-    <div>
-      <h1>Contact Us</h1>
-      <div class="contact-sidebar">
-        <h3>CONTACT ONEZ</h3>
-      </div>
-    </div>
+     <div class="contact-sidebar">
+       <h3>CONTACT ONEZ</h3>
+     </div>
     <div class="contact-container">
       <div class="contact-section">
         <h2>How to Reach Us</h2>

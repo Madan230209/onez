@@ -20,7 +20,7 @@
 
 		<form action="${contextPath}/login" method="post">
 		      <div class="form">
-		        <label class="username" for="username">Email/Username</label>
+		        <label class="username" for="username">Username</label>
 		        <div class="input">
 		          <i class="lni lni-user"></i>
 		          <input type="text" id="username" name="username" required />

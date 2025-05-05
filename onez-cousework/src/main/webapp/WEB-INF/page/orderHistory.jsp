@@ -67,15 +67,22 @@ pageContext.setAttribute("formattedDate", date);
 						                    ${order.orderStatus}
 						                </span>
 						            </div>
+						            <form action="${contextPath}/orderHistory/delete" method="post" class="delete-form">
+								        <input type="hidden" name="orderId" value="${order.orderId}">
+								        <button type="submit" class="delete-btn" 
+								                onclick="return confirm('Are you sure you want to delete this order? This action cannot be undone.');">
+								            <i class="fas fa-trash-alt"></i> Delete
+								        </button>
+								    </form>
 						        </div>
 						        
 						        <div class="order-details">
 						            <div class="order-items">
 						                <c:forEach var="item" items="${order.items}">
 						                    <div class="order-item">
-						                        <img src="${contextPath}/resources/product/${item.product.productImage}" 
+						                        <a href="${contextPath}/viewProduct?productId=${item.product.productId}"><img src="${contextPath}/resources/product/${item.product.productImage}" 
 						                             alt="${item.product.productName}" 
-						                             class="item-image">
+						                             class="item-image"></a>
 						                        <div class="item-info">
 						                            <h4>${item.product.productName}</h4>
 						                            <p>Quantity: ${item.quantity}</p>

@@ -43,6 +43,6 @@ pageContext.setAttribute("currentUser", currentUser);
 					<input type="submit" class="nav-button" value="Logout" />
 				</form>
 				</p></div>
-          <i class="fa-solid fa-right-from-bracket"></i>
+          
         </div>
       </nav>

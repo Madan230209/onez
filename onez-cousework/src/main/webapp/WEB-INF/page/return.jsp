@@ -11,12 +11,9 @@
   <body>
   <jsp:include page="header.jsp" />
   <div class="main">
-    <div>
-      <h1>Return Policy</h1>
       <div class="return-sidebar">
         <h3>RETURN POLICY OF ONEZ</h3>
       </div>
-    </div>
     <div class="return-container">
       <div class="return-section">
         <h2>Eligibility for Returns</h2>

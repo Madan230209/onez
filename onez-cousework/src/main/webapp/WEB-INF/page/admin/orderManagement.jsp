@@ -2,6 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="jakarta.servlet.http.HttpSession"%>
+<%@ page import="jakarta.servlet.http.HttpServletRequest"%>
+
+<%
+// Initialize necessary objects and variables
+HttpSession userSession = request.getSession(false);
+String currentUser = (String) (userSession != null ? userSession.getAttribute("username") : null);
+pageContext.setAttribute("currentUser", currentUser);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +19,7 @@
     <title>Order Management</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminDashboard.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ordermgmt.css" />
-    ></script>
+    
 </head>
 <body>
 <div class="mainparent">
@@ -19,6 +28,7 @@
     
     <!-- Main Content -->
     <main class="dashboard">
+    
         <h1>Recent Orders</h1>
         
         <!-- Display messages -->

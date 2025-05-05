@@ -27,22 +27,16 @@ pageContext.setAttribute("currentUser", currentUser);
 		<!-- Sidebar jsp file connection -->
         <jsp:include page="sideBar.jsp"/>
          <!-- Main Content -->
-        <main class="dashboard">
-			
-			 <header>
-	          <div class="add-product">
-	
-	
-	          <div class="admin-header">
-	            <img src="${contextPath}/resources/user/${user.imageUrl}" width="30" height="30" style="border-radius: 10px;"
-	     								onerror="this.src='${contextPath}/resources/logo/onez.svg'">
-	            <p>${username}</p>
-	
-	          </div>
-	
-	          </div>
-	        </header>
-			
+        <main class="dashboard" >
+			<header>
+          <div class="add-product">
+            <div class="admin-header">
+              <img src="${contextPath}/resources/user/${user.imageUrl}" width="30" height="30" style="border-radius: 10px;"
+                    onerror="this.src='${contextPath}/resources/logo/onez.svg'">
+              <p>${username}</p>
+            </div>
+          </div>
+        </header>
 			<div class="maindash">
 	          
 	          <div class="section2">

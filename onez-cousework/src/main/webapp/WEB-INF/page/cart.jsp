@@ -111,7 +111,7 @@ pageContext.setAttribute("currentUser", currentUser);
                         </div>
                         <form action="${contextPath}/order" method="get">
                             <button type="submit" class="checkout-btn">
-                                <i class="fas fa-credit-card"></i> Proceed to Checkout
+                                <i class="fas fa-credit-card"></i> Order
                             </button>
                         </form>
                         <a href="${contextPath}/home" class="continue-shopping">
