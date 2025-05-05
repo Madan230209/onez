@@ -77,7 +77,11 @@ public class ImageUtil {
 	    saveToLocation(part, deployPath);
 	    
 	    // 2. Save to project directory (for easy access in Eclipse)
+<<<<<<< HEAD
 	    String projectPath = "C:/Users/Acer/git/onez/onez-cousework/src/main/webapp/resources/" + saveFolder;
+=======
+	    String projectPath = "C:/Users/diksh/git/onez/onez-coursework/src/main/webapp/resources/" + saveFolder;
+>>>>>>> branch 'main' of https://github.com/Madan230209/onez.git
 	    saveToLocation(part, projectPath);
 	    
 	    return true;
