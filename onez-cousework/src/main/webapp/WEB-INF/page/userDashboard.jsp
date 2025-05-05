@@ -77,7 +77,7 @@
         </div>
 
         <div class="form-group">
-          <label for="number">Phone</label>
+          <label for="number">Phone Number</label>
           <input type="tel" id="number" name="number" value="${user.number}" />
         </div>
 
