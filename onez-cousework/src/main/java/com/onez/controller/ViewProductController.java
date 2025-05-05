@@ -23,15 +23,18 @@ public class ViewProductController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	
-    	// ✅ Get all products from service
         List<ProductModel> productList = productService.getAllProducts();
 
-        // ✅ Set in request scope for JSP
         request.setAttribute("products", productList);
+        
+        List<ProductModel> recentProductList = productService.getRecentProducts();
+
+        // ✅ Set in request scope for JSP
+        request.setAttribute("recentProducts", recentProductList);
         
         int productId = Integer.parseInt(request.getParameter("productId"));
         ProductModel product = productService.getProductById(productId);
-
+        
         if (product != null) {
             request.setAttribute("product", product);
             request.getRequestDispatcher("/WEB-INF/page/viewProduct.jsp").forward(request, response);

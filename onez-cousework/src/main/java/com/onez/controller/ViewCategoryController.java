@@ -12,34 +12,26 @@ import com.onez.model.ProductModel;
 import com.onez.service.ProductService;
 import com.onez.util.RedirectionUtil;
 
-/**
- * Servlet implementation class ViewCategory
- */
 @WebServlet(asyncSupported = true, urlPatterns = { "/viewCategory" })
 public class ViewCategoryController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	 // ✅ Declare and initialize ProductService
+    private static final long serialVersionUID = 1L;
     private ProductService productService = new ProductService();
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 // ✅ Get all products from service
-        List<ProductModel> productList = productService.getAllProducts();
-
-        // ✅ Set in request scope for JSP
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String category = request.getParameter("category");
+        List<ProductModel> productList;
+        
+        if (category != null && !category.isEmpty() && !category.equals("All")) {
+            productList = productService.getProductsByCategory(category);
+        } else {
+            productList = productService.getAllProducts();
+        }
+        
         request.setAttribute("products", productList);
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher(RedirectionUtil.viewCategoryUrl).forward(request, response);
-	}
+        request.getRequestDispatcher(RedirectionUtil.viewCategoryUrl).forward(request, response);
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 }

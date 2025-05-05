@@ -122,4 +122,60 @@ public class ProductService {
 
         return products;
     }
+    
+    public List<ProductModel> getRecentProducts() {
+        List<ProductModel> recentProducts = new ArrayList<>();
+        String sql = "SELECT * FROM product ORDER BY product_id DESC LIMIT 3";
+
+        try (Statement stmt = dbConn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                ProductModel product = new ProductModel(
+                    rs.getInt("product_id"),
+                    rs.getString("productName"),
+                    rs.getString("description"),
+                    rs.getInt("price"),
+                    rs.getInt("quantity"),
+                    rs.getString("category"),
+                    rs.getString("productImage")
+                );
+                recentProducts.add(product);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error retrieving products: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return recentProducts;
+    }
+    
+    public List<ProductModel> getProductsByCategory(String category) {
+        List<ProductModel> products = new ArrayList<>();
+        String sql = "SELECT * FROM product WHERE category = ?";
+
+        try (PreparedStatement stmt = dbConn.prepareStatement(sql)) {
+            stmt.setString(1, category);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                ProductModel product = new ProductModel(
+                    rs.getInt("product_id"),
+                    rs.getString("productName"),
+                    rs.getString("description"),
+                    rs.getInt("price"),
+                    rs.getInt("quantity"),
+                    rs.getString("category"),
+                    rs.getString("productImage")
+                );
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error retrieving products by category: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return products;
+    }
+    
 }
