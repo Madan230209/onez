@@ -10,7 +10,7 @@
     <title>Order Management</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminDashboard.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ordermgmt.css" />
-    ></script>
+    
 </head>
 <body>
 <div class="mainparent">
