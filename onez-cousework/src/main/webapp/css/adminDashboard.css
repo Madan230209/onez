@@ -59,7 +59,6 @@ body {
     background: none;
     border: none;
     outline: none;
-    /* Remove any hover/focus effects */
     &:hover, &:focus, &:active {
       text-decoration: none;
       color: inherit;
@@ -151,13 +150,12 @@ header img {
   
 }
 
-.add-product{
+.admin-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  gap:80px
- 
+  gap:80px 
 }
 
 .admin-header {
@@ -167,14 +165,14 @@ header img {
 }
 
 .admin-header i {
-  font-size: 25px;  /* Changed from 1.2rem to 18px */
+  font-size: 25px;  
   color: #000000;
 }
 
 .admin-header p {
   margin: 0;
   
-  font-size: 25px;  /* Explicitly set in px if needed */
+  font-size: 25px;  
 }
 .product2 {
 
@@ -251,6 +249,9 @@ header img {
   top: 40px;
 }
 
+
+    
+
 .product h2 {
   font-size: 32px;
   margin: 10px;
@@ -264,8 +265,7 @@ header img {
 }
 
 h1 {
-  margin: 50px;
-  text-align: left;
+ margin-bottom:50px;
 }
 
 /* Recent orders */
@@ -314,14 +314,22 @@ td button {
   color: white;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 td button:hover {
-  background-color: #5c5f64;
+  background-color: rgb(128, 128, 128);
 }
 
-/* Custom CSS */
+.nav-button{
+	 padding: 8px 16px;
+  border-radius: 20px;
+  background-color: #060606;
+  color: white;
+  border: none;
+	
+}
+
+
 .action-btn {
   background-color: #007bff;
   color: white;

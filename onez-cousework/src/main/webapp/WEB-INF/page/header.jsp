@@ -16,7 +16,6 @@
         user = (UserModel) userSession.getAttribute("user"); // assuming user object is stored in session
         
     }
-
     pageContext.setAttribute("currentUser", currentUser);
     pageContext.setAttribute("user", user); // make it accessible to JSTL
 %>
@@ -42,6 +41,7 @@
             <li><a href="${contextPath}/contact"><i class="fa-solid fa-headset fa-xl"></i></a></li>
             <li><a href="${contextPath}/wishlist"><i class="fa-regular fa-heart fa-xl"></i></a></li>
             <li><a href="${contextPath}/cart"><i class="fa-solid fa-cart-shopping fa-xl"></i></a></li>
+            <li><a href="${contextPath}/orderHistory"><i class="fas fa-history"></i></a></li>
             <li>
                 <c:choose>
                     <c:when test="${not empty currentUser}">

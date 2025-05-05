@@ -30,16 +30,13 @@ pageContext.setAttribute("currentUser", currentUser);
         <main class="dashboard">
 			
 			 <header>
-	          <div>
-	            <img src="${contextPath}/resources/logo/onez.svg" alt="ONEZ Logo" />
-	          </div>
 	          <div class="add-product">
 	
 	
 	          <div class="admin-header">
 	            <img src="${contextPath}/resources/user/${user.imageUrl}" width="30" height="30" style="border-radius: 10px;"
 	     								onerror="this.src='${contextPath}/resources/logo/onez.svg'">
-	            <p>Admin</p>
+	            <p>${username}</p>
 	
 	          </div>
 	
@@ -50,7 +47,6 @@ pageContext.setAttribute("currentUser", currentUser);
 	          
 	          <div class="section2">
 	            <div class="product">
-	              <i class="fa-solid fa-money-bill-trend-up"></i>
 	              <h2>${empty Kathmandu ? 0 : Kathmandu}</h2>
 	              <p>Kathmandu</p>
 	            </div>
@@ -58,7 +54,6 @@ pageContext.setAttribute("currentUser", currentUser);
 	
 	          <div class="section3">
 	            <div class="product">
-	              <i class="fa-solid fa-user-plus"></i>
 	              <h2>${empty Lalitpur ? 0 : Lalitpur}</h2>
 	              <p>Lalitpur</p>
 	            </div>
@@ -66,7 +61,6 @@ pageContext.setAttribute("currentUser", currentUser);
 	          
 	          <div class="section4">
 	            <div class="product">
-	              <i class="fa-solid fa-user-plus"></i>
 	              <h2>${empty Bhaktapur ? 0 : Bhaktapur}</h2>
 	              <p>Bhaktapur</p>
 	            </div>

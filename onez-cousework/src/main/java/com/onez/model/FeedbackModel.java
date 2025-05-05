@@ -1,21 +1,26 @@
 package com.onez.model;
 
-public class FeedbackModel{
-	
-	private int feedbackId;
-	private String feedbackDetails;
-	private int rating;
-	
-	public FeedbackModel(){
-		
-	}
-	
-	public FeedbackModel(int feedbackId, String feedbackDetails, int rating) {
-		super();
-		this.feedbackId = feedbackId;
-		this.feedbackDetails = feedbackDetails;
-		this.rating = rating;
-	}
+import java.time.LocalDateTime;
+
+public class FeedbackModel {
+    private int feedbackId;
+    private String feedbackDetails;
+    private int rating;
+    private LocalDateTime createdAt;
+    private UserModel user;
+    private ProductModel product;
+
+    public FeedbackModel() {}
+
+    public FeedbackModel(int feedbackId, String feedbackDetails, int rating, 
+                        LocalDateTime createdAt, UserModel user, ProductModel product) {
+        this.feedbackId = feedbackId;
+        this.feedbackDetails = feedbackDetails;
+        this.rating = rating;
+        this.createdAt = createdAt;
+        this.user = user;
+        this.product = product;
+    }
 
 	public int getFeedbackId() {
 		return feedbackId;
@@ -41,5 +46,28 @@ public class FeedbackModel{
 		this.rating = rating;
 	}
 
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public UserModel getUser() {
+		return user;
+	}
+
+	public void setUser(UserModel user) {
+		this.user = user;
+	}
+
+	public ProductModel getProduct() {
+		return product;
+	}
+
+	public void setProduct(ProductModel product) {
+		this.product = product;
+	}
 	
 }

@@ -34,10 +34,11 @@ public class UserDashboardController extends HttpServlet {
 
         UserModel user = dashboardService.getUserInfo(userId);
         if (user != null) {
+            // Transfer session messages to request attributes
+            transferSessionMessagesToRequest(request);
             request.setAttribute("user", user);
             request.getRequestDispatcher(RedirectionUtil.userDashboardUrl).forward(request, response);
         } else {
-            // If user not found, set error message and stay on dashboard
             request.setAttribute("error", "User information not found");
             request.getRequestDispatcher(RedirectionUtil.userDashboardUrl).forward(request, response);
         }
@@ -59,6 +60,7 @@ public class UserDashboardController extends HttpServlet {
             String email = request.getParameter("email");
             String number = request.getParameter("number");
             String dob = request.getParameter("dob");
+            String imageUrl = request.getParameter("image");
 
             UserModel updatedUser = new UserModel();
             updatedUser.setId(userId);
@@ -71,6 +73,7 @@ public class UserDashboardController extends HttpServlet {
                 updatedUser.setDob(java.time.LocalDate.parse(dob));
             }
 
+            updatedUser.setImageUrl(imageUrl);
             boolean success = dashboardService.updateUserInfo(updatedUser);
 
             if (success) {
@@ -78,10 +81,30 @@ public class UserDashboardController extends HttpServlet {
             } else {
                 request.getSession().setAttribute("errorMessage", "Failed to update profile. Please try again.");
             }
+            
+            // Use proper redirect URL
+            String redirectUrl = request.getContextPath() + "/userDashboard";
+            response.sendRedirect(redirectUrl);
+            
         } catch (Exception e) {
             request.getSession().setAttribute("errorMessage", "Invalid data format. Please check your inputs.");
+            response.sendRedirect(request.getContextPath() + "/userDashboard");
+        }
+    }
+
+    private void transferSessionMessagesToRequest(HttpServletRequest request) {
+        // Transfer success message
+        String successMessage = (String) request.getSession().getAttribute("successMessage");
+        if (successMessage != null) {
+            request.setAttribute("successMessage", successMessage);
+            request.getSession().removeAttribute("successMessage");
         }
         
-        response.sendRedirect(request.getContextPath() + RedirectionUtil.userDashboardUrl);
+        // Transfer error message
+        String errorMessage = (String) request.getSession().getAttribute("errorMessage");
+        if (errorMessage != null) {
+            request.setAttribute("errorMessage", errorMessage);
+            request.getSession().removeAttribute("errorMessage");
+        }
     }
 }

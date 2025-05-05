@@ -20,16 +20,22 @@
     <div class="top-section">
       <h3>Manage My Account</h3>
     </div>
-	<div class="alert alert-success">${successMessage}</div>
-    <div class="alert alert-danger">${errorMessage}</div>
     
-    
+	<c:if test="${not empty successMessage}">
+	    <div class="alert alert-success">${successMessage}</div>
+	</c:if>
+	<c:if test="${not empty errorMessage}">
+	    <div class="alert alert-danger">${errorMessage}</div>
+	</c:if>
+
     <div class="account-details">
-      <div class="profile-icon">
-      <img src="${contextPath}/resources/user/${user.imageUrl}" width="30" height="30" style="border-radius: 10px;"
-     								onerror="this.src='${contextPath}/resources/logo/onez.svg'"></div>
-      <div class="vertical-line"></div>
       <form action="${pageContext.request.contextPath}/userDashboard" method="post">
+      <div class="form-group">
+      	<div class="profile-icon" >
+      	<img src="${contextPath}/resources/user/${user.imageUrl}"  width ="70" height="70"  style="border-radius: 10px;"
+     								onerror="this.src='${contextPath}/resources/logo/onez.svg'">
+     	</div>
+      </div>
         <div class="form-group">
           <label for="firstName">First Name</label>
             <input type="text" class="form-control" id="firstName" name="firstName" 
@@ -61,7 +67,7 @@
         </div>
 
         <div class="form-actions">
-          <a href="${contextPath}/home"><button type="submit" class="btn btn-primary">Update Profile</button></a>
+          <button type="submit" class="btn btn-primary">Update Profile</button>
         </div>
         </form>
     </div>

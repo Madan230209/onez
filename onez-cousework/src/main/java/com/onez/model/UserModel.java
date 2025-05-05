@@ -20,6 +20,10 @@ public class UserModel {
 	public UserModel() {
 	}
 
+	public UserModel(int id) {
+		this.id = id;
+	}
+	
 	public UserModel(String username, String pasword, String userRole) {
 		this.userName = username;
 		this.password = pasword;

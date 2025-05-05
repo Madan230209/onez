@@ -51,12 +51,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .vertical-line {
-    width: 1px;
-    background-color: #ccc;
-    height: 100%;
+ 	 overflow: hidden;
   }
   
   /* Edit Form */

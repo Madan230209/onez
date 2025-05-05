@@ -104,7 +104,7 @@
 			            <div class="product-container">
 			                <div class="product-image">
 			                    <a href="${contextPath}/viewProduct?productId=${product.productId}">
-			                        <img src="${contextPath}/resources/products/${product.productImage}" alt="${product.productName}">
+			                        <img src="${contextPath}/resources/product/${product.productImage}" alt="${product.productName}">
 			                    </a>
 			                </div>
 			                <div class="product-info">
