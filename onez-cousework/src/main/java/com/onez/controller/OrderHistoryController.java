@@ -15,7 +15,7 @@ import com.onez.model.UserModel;
 import com.onez.service.OrderService;
 import com.onez.util.RedirectionUtil;
 
-@WebServlet(asyncSupported = true, urlPatterns = { "/orderHistory" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/orderHistory", "/orderHistory/delete" })
 public class OrderHistoryController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
@@ -57,6 +57,41 @@ public class OrderHistoryController extends HttpServlet {
             System.err.println("Unexpected error in OrderHistoryController: " + e.getMessage());
             request.setAttribute("error", "An unexpected error occurred.");
             request.getRequestDispatcher("/WEB-INF/page/error.jsp").forward(request, response);
+        }
+    }
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        UserModel user = (UserModel) session.getAttribute("user");
+        
+        if (user == null) {
+            response.sendRedirect(request.getContextPath() + RedirectionUtil.loginUrl);
+            return;
+        }
+        
+        String path = request.getServletPath();
+        
+        if (path.equals("/orderHistory/delete")) {
+            try (OrderService orderService = new OrderService()) {
+                int orderId = Integer.parseInt(request.getParameter("orderId"));
+                
+                if (orderService.deleteOrder(orderId)) {
+                    session.setAttribute("orderSuccess", "Order #" + orderId + " has been successfully deleted.");
+                } else {
+                    session.setAttribute("error", "Failed to delete order #" + orderId);
+                }
+                
+                response.sendRedirect(request.getContextPath() + "/orderHistory");
+            } catch (NumberFormatException e) {
+                session.setAttribute("error", "Invalid order ID");
+                response.sendRedirect(request.getContextPath() + "/orderHistory");
+            } catch (SQLException e) {
+                System.err.println("Database error deleting order: " + e.getMessage());
+                session.setAttribute("error", "Failed to delete order due to a system error.");
+                response.sendRedirect(request.getContextPath() + "/orderHistory");
+            }
         }
     }
 }

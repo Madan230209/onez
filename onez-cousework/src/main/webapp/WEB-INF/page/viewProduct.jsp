@@ -48,6 +48,10 @@
 	                <button type="submit" class="buy-now" formaction="${contextPath}/order">Buy Now</button>
 	            </div>
 	        </form>
+	        <form action="${pageContext.request.contextPath}/wishlist/add" method="post">
+			  <input type="hidden" name="productId" value="${product.productId}">
+			  <button type="submit" class="wishlist-btn">Add to Wishlist</button>
+			</form>
 	    </div>
 	</div>
 

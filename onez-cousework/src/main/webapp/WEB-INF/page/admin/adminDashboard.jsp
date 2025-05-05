@@ -31,14 +31,11 @@ pageContext.setAttribute("currentUser", currentUser);
       <!-- Main Content -->
       <main class="dashboard">
         <header>
-          <div>
-            <img src="${contextPath}/resources/logo/onez.svg" alt="ONEZ Logo" />
-          </div>
           <div class="add-product">
             <div class="admin-header">
               <img src="${contextPath}/resources/user/${user.imageUrl}" width="30" height="30" style="border-radius: 10px;"
                     onerror="this.src='${contextPath}/resources/logo/onez.svg'">
-              <p>Admin</p>
+              <p>${username}</p>
             </div>
           </div>
         </header>

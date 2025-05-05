@@ -1,7 +1,6 @@
 package com.onez.service;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -51,7 +50,7 @@ public class AdminDashboardService {
 		}
 
 		// SQL query to fetch user details
-		String query = "SELECT user_id, first_name, last_name, address_id, email, number FROM user";
+		String query = "SELECT user_id, first_name, last_name, address_id, email, number FROM user WHERE userRole = 'customer'";
 		try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
 			ResultSet result = stmt.executeQuery();
 			List<UserModel> userList = new ArrayList<>();
@@ -142,143 +141,12 @@ public class AdminDashboardService {
 		}
 	}
 
-	public List<UserModel> getRecentUsers() {
-		if (isConnectionError) {
-			System.out.println("Connection Error!");
-			return null;
-		}
-
-		// SQL query to fetch user details
-		String query = "SELECT user_id, first_name, last_name, address_id, email, number "
-				+ "FROM user ORDER BY user_id DESC LIMIT 3";
-		try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
-			ResultSet result = stmt.executeQuery();
-			List<UserModel> userList = new ArrayList<>();
-
-			while (result.next()) {
-				// SQL query to fetch address name based on address_id
-				String addressQuery = "SELECT address_id, name FROM address WHERE address_id = ?";
-				try (PreparedStatement addressStmt = dbConn.prepareStatement(addressQuery)) {
-					addressStmt.setInt(1, result.getInt("address_id"));
-					ResultSet addressResult = addressStmt.executeQuery();
-
-					AddressModel addressModel = new AddressModel();
-					if (addressResult.next()) {
-						// Set address name in the AddressModel
-						addressModel.setName(addressResult.getString("name"));
-						addressModel.setAddressId(addressResult.getInt("address_id"));
-					}
-					
-					// Create and add UserModel to the list
-					userList.add(new UserModel(result.getInt("user_id"), // User ID
-							result.getString("first_name"), // First Name
-							result.getString("last_name"), // Last Name
-							addressModel,
-							result.getString("email"), // Email
-							result.getString("number") // Phone Number
-					));
-					addressResult.close(); // Close ResultSet to avoid resource leaks
-				} catch (SQLException e) {
-					// Log and handle exceptions related to address query execution
-					e.printStackTrace();
-					// Continue to process other users or handle this error appropriately
-				}
-			}
-			return userList;
-		} catch (SQLException e) {
-			// Log and handle exceptions related to user query execution
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	public boolean updateUser(UserModel user) {
-		if (isConnectionError)
-			return false;
-
-		String updateQuery = "UPDAuserent SET first_name = ?, last_name = ?, " + "username = ?, dob = ?, gender = ?,"
-				+ "email = ?, number = ?, address_id = ?, profilePic = ? WHERE user_id = ?";
-		try (PreparedStatement stmt = dbConn.prepareStatement(updateQuery)) {
-			stmt.setString(1, user.getFirstName());
-			stmt.setString(2, user.getLastName());
-			stmt.setString(3, user.getUserName());
-			stmt.setDate(4, Date.valueOf(user.getDob()));
-			stmt.setString(5, user.getGender());
-			stmt.setString(6, user.getEmail());
-			stmt.setString(7, user.getNumber());
-			stmt.setInt(8, getAddressId(user.getAddress().getName()));
-			stmt.setString(9, user.getLastName());
-
-			stmt.setInt(10, user.getId());
-
-			int rowsUpdated = stmt.executeUpdate();
-			return rowsUpdated > 0;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	public boolean deleteUser(int userId) {
-		if (isConnectionError)
-			return false;
-
-		String deleteQuery = "DELETE FROM user WHERE user_id = ?";
-		try (PreparedStatement stmt = dbConn.prepareStatement(deleteQuery)) {
-			stmt.setInt(1, userId);
-
-			int rowsDeleted = stmt.executeUpdate();
-			return rowsDeleted > 0;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	public String getAddressName(int id) {
-		if (isConnectionError)
-			return null;
-
-		String deleteQuery = "select name from address where address_id = ?";
-		try (PreparedStatement stmt = dbConn.prepareStatement(deleteQuery)) {
-			stmt.setInt(1, id);
-
-			ResultSet result = stmt.executeQuery();
-			if (result.next())
-				return result.getString("name");
-			else
-				return "";
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	public int getAddressId(String name) {
-		if (isConnectionError)
-			return -1;
-
-		String deleteQuery = "select address_id from address where name  = ?";
-		try (PreparedStatement stmt = dbConn.prepareStatement(deleteQuery)) {
-			stmt.setString(1, name);
-
-			ResultSet result = stmt.executeQuery();
-			if (result.next())
-				return result.getInt("address_id");
-			else
-				return 0;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return -1;
-		}
-	}
-
 	public String getTotalUsers() {
 		if (isConnectionError) {
 			return null;
 		}
 
-		String countQuery = "SELECT COUNT(*) AS total FROM user;";
+		String countQuery = "SELECT COUNT(*) AS total FROM user where userRole= 'customer';";
 		try (PreparedStatement stmt = dbConn.prepareStatement(countQuery)) {
 
 			ResultSet result = stmt.executeQuery();

@@ -46,7 +46,7 @@
                 <c:choose>
                     <c:when test="${not empty currentUser}">
                         <a href="${contextPath}/userDashboard">
-                            <img src="${contextPath}/resources/user/${user.imageUrl}" width="30" height="30" style="border-radius: 10px;"
+                            <img src="${contextPath}/resources/user/${user.imageUrl}" width="30px" height="30px" style="border-radius: 50%;"
      								onerror="this.src='${contextPath}/resources/logo/onez.svg'">
      								
                         </a>

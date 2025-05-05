@@ -430,4 +430,27 @@ public class OrderService implements AutoCloseable {
         }
     }
     
+    public boolean deleteOrder(int orderId) throws SQLException {
+        try {
+            // First delete order items
+            String deleteItemsSql = "DELETE FROM onez.order_items WHERE order_id = ?";
+            try (PreparedStatement itemsStmt = dbConn.prepareStatement(deleteItemsSql)) {
+                itemsStmt.setInt(1, orderId);
+                itemsStmt.executeUpdate();
+            }
+            
+            // Then delete the order
+            String deleteOrderSql = "DELETE FROM onez.order_table WHERE order_id = ?";
+            try (PreparedStatement orderStmt = dbConn.prepareStatement(deleteOrderSql)) {
+                orderStmt.setInt(1, orderId);
+                int affectedRows = orderStmt.executeUpdate();
+                dbConn.commit();
+                return affectedRows > 0;
+            }
+        } catch (SQLException e) {
+            dbConn.rollback();
+            throw e;
+        }
+    }
+    
 }

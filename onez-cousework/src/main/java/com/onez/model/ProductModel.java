@@ -13,7 +13,11 @@ public class ProductModel {
 	public ProductModel() {
 	}
 
+	public ProductModel(int productId) {
+		this.productId = productId;
+	}
 
+	
 	public ProductModel(int productId, String productName, String description, double price, int quantity, String category,
 			String productImage) {
 		super();
