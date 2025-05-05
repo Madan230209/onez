@@ -1,11 +1,6 @@
 package com.onez.controller.admin;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 import com.onez.model.ProductModel;
 import com.onez.service.ProductService;
@@ -27,7 +22,6 @@ import jakarta.servlet.http.Part;
         maxRequestSize = 1024 * 1024 * 50) // 50MB
 public class ProductController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final String UPLOAD_DIR = "resources/product";
 
     private final ImageUtil imageUtil = new ImageUtil();
     private final ProductService productService = new ProductService();
