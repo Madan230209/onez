@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 import com.onez.service.ProductService;
 
@@ -21,6 +22,13 @@ public class ViewProductController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+    	// ✅ Get all products from service
+        List<ProductModel> productList = productService.getAllProducts();
+
+        // ✅ Set in request scope for JSP
+        request.setAttribute("products", productList);
+        
         int productId = Integer.parseInt(request.getParameter("productId"));
         ProductModel product = productService.getProductById(productId);
 
