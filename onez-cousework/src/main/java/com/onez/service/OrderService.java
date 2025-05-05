@@ -12,7 +12,6 @@ public class OrderService implements AutoCloseable {
     // Constants
     private static final String ORDER_STATUS_PROCESSING = "Processing";
     private static final String ORDER_STATUS_PENDING = "Pending";
-    private static final String ORDER_STATUS_COMPLETED = "Completed";
     
     private final Connection dbConn;
     private boolean isConnectionError = false;

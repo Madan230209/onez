@@ -141,7 +141,9 @@
                 <h1 class="product-name">${product.productName}</h1>
                 <div class="price-container">
                     <p class="price">Rs.${product.price}</p>
-                    <div class="stock">In Stock</div> 
+                   <div class="stock ${product.quantity <= 0 ? 'out-of-stock' : 'in-stock'}">
+    ${product.quantity <= 0 ? 'Out of Stock' : 'In Stock'}
+</div>
                 </div>
 
                 <div class="colors">
@@ -151,20 +153,20 @@
                         <button class="btn-color black" aria-label="Black color"></button>
                     </div>
                 </div>
-		
-		
+
             <form action="${contextPath}/cart/add" method="post" class="product-actions">
 	            <input type="hidden" name="productId" value="${product.productId}" />
-	
+		<p><strong>Available Quantity:</strong> ${product.quantity}</p>
 	            <div class="quantity-control">
 	                <label for="quantity">Quantity:</label>
 	                <button type="button" onclick="decreaseQty()">-</button>
-	                <input type="number" id="quantity" name="quantity" value="1" min="1" max="${product.quantity}" />
+	                <input type="number" id="quantity" name="quantity" value="0" min="1" max="${product.quantity}" />
 	                <button type="button" onclick="increaseQty()">+</button>
 	            </div>
 	
 	            <div class="product-actions">
-	                <button type="submit" class="add-to-cart">Add to Cart</button>
+	                <button type="submit" class="add-to-cart" > Add to Cart
+    </button>
 	                <button type="submit" class="buy-now" formaction="${contextPath}/order">Buy Now</button>
 	            </div>
 	            
