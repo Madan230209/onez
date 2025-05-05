@@ -23,7 +23,7 @@
             <div class="category-title">
                 <h3>Category:</h3>
             </div>
-            <ul class="category-list">
+           <!--<ul class="category-list">
                 <li class="category-items">
                     <input type="checkbox" id="all" name="category" checked>
                     <label for="all">ALL</label>
@@ -31,7 +31,7 @@
                 <li class="category-items">
                     <input type="checkbox" id="consoles" name="category">
                     <label for="consoles">Consoles</label> <!--for="consoles" is used so when press on 
-                    text inside label it will activate checkbox with id="consoles" -->
+                    text inside label it will activate checkbox with id="consoles"
                 </li>
                 <li class="category-items">
                     <input type="checkbox" id="keyboards" name="category">
@@ -61,15 +61,62 @@
                     <input type="checkbox" id="accessories" name="category">
                     <label for="accessories">Accessories</label>
                 </li>
-            </ul>
+            </ul>  --> 
+            <ul class="category-list">
+			    <li class="category-items">
+			        <a href="${contextPath}/viewCategory?category=All" class="${empty param.category || param.category == 'All' ? 'active' : ''}">
+			            ALL
+			        </a>
+			    </li>
+			    <li class="category-items">
+			        <a href="${contextPath}/viewCategory?category=Consoles" class="${param.category == 'Consoles' ? 'active' : ''}">
+			            Consoles
+			        </a>
+			    </li>
+			    <li class="category-items">
+			        <a href="${contextPath}/viewCategory?category=Keyboard" class="${param.category == 'Keyboard' ? 'active' : ''}">
+			            Keyboard
+			        </a>
+			    </li>
+				<li class="category-items">
+			        <a href="${contextPath}/viewCategory?category=Mouse" class="${param.category == 'Mouse' ? 'active' : ''}">
+			            Mouse
+			        </a>
+			    </li>
+				<li class="category-items">
+			        <a href="${contextPath}/viewCategory?category=Headphone" class="${param.category == 'Headset' ? 'active' : ''}">
+			            Headset
+			        </a>
+			    </li>
+				<li class="category-items">
+			        <a href="${contextPath}/viewCategory?category=Monitor" class="${param.category == 'Monitor' ? 'active' : ''}">
+			            Monitor
+			        </a>
+			    </li>
+				<li class="category-items">
+			        <a href="${contextPath}/viewCategory?category=CPU" class="${param.category == 'CPU' ? 'active' : ''}">
+			            CPU/GPU
+			        </a>
+			    </li>
+				<li class="category-items">
+			        <a href="${contextPath}/viewCategory?category=Storage" class="${param.category == 'Storage' ? 'active' : ''}">
+			            Storage
+			        </a>
+			    </li>
+			    <li class="category-items">
+			        <a href="${contextPath}/viewCategory?category=Mousepad" class="${param.category == 'Mousepad' ? 'active' : ''}">
+			            Mousepad
+			        </a>
+			    </li>
+			</ul>
         </aside>
 
         <!-- right panel -->
         <section class="right-panel">
             <div class="select-price">
                 <div class="text">
-                    <h3>All</h3>
-                </div>
+				    <h3>${empty param.category || param.category == 'All' ? 'All' : param.category}</h3>
+				</div>
                 <div class="selection">
                     <label for="sort-by">Sort By:</label>
                     <select name="sort-by" id="sort-by">
@@ -79,21 +126,23 @@
                     </select>
                 </div>
                 <div class="category">
-                    <div class="category-selection">
-                        <label for="category">Category:</label>
-                        <select name="sort-by" id="category">
-                            <option value="All">All</option>
-                            <option value="Consoles">Consoles</option>
-                            <option value="Keyboards">Keyboards</option>
-                            <option value="Mouse">Mouse</option>
-                            <option value="Headset">Headset</option>
-                            <option value="Monitor">Monitor</option>
-                            <option value="CPU/GPU">CPU/GPU</option>
-                            <option value="Storages">Storages</option>
-                            <option value="Accessories">Accessories</option>
-                        </select>
-                    </div>
-                </div>
+				    <div class="category-selection">
+				        <form id="categoryForm" action="${contextPath}/viewCategory" method="get">
+				            <label for="category">Category:</label>
+				            <select name="category" id="category" onchange="this.form.submit()">
+				                <option value="All">All</option>
+				                <option value="Consoles" ${param.category == 'Consoles' ? 'selected' : ''}>Consoles</option>
+				                <option value="Keyboards" ${param.category == 'Keyboards' ? 'selected' : ''}>Keyboards</option>
+				                <option value="Mouse" ${param.category == 'Mouse' ? 'selected' : ''}>Mouse</option>
+				                <option value="Headset" ${param.category == 'Headset' ? 'selected' : ''}>Headset</option>
+				                <option value="Monitor" ${param.category == 'Monitor' ? 'selected' : ''}>Monitor</option>
+				                <option value="CPU/GPU" ${param.category == 'CPU/GPU' ? 'selected' : ''}>CPU/GPU</option>
+				                <option value="Storage" ${param.category == 'Storage' ? 'selected' : ''}>Storage</option>
+				                <option value="Accessories" ${param.category == 'Accessories' ? 'selected' : ''}>Accessories</option>
+				            </select>
+				        </form>
+				    </div>
+				</div>
             </div>
 
 

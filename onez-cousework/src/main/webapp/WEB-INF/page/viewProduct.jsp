@@ -203,8 +203,9 @@
     </section>
 
     <section class="products">
+    <h1 style="font-size:30; margin-left:40%">Other Products</h1>
     <div class="product-box">
-        <c:forEach var="product" items="${products}">
+        <c:forEach var="product" items="${recentProducts}">
             <div class="product-container">
                 <div class="product-image">
                     <a href="${contextPath}/viewProduct?productId=${product.productId}">
