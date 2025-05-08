@@ -167,7 +167,7 @@
 	            <div class="product-actions">
 	                <button type="submit" class="add-to-cart" > Add to Cart
     </button>
-	                <button type="submit" class="buy-now" formaction="${contextPath}/order">Buy Now</button>
+
 	            </div>
 	            
 	        </form>

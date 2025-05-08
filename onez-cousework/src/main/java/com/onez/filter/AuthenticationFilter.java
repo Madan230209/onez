@@ -26,8 +26,7 @@ public class AuthenticationFilter implements Filter {
     private static final String[] STATIC_RESOURCES = {
         "/css/", "/js/", "/images/", "/fonts/", 
         ".css", ".js", ".png", ".jpg", ".jpeg", 
-        ".gif", ".ico", ".svg", ".woff", ".woff2", 
-        ".ttf", ".eot", ".map"
+        ".gif", ".svg"
     };
 
     @Override

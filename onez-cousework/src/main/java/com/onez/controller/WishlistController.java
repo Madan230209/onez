@@ -76,8 +76,8 @@ public class WishlistController extends HttpServlet {
             }
             
             response.sendRedirect(path.equals("/wishlist/add") ? 
-                request.getHeader("referer") : // Stay on same page after add
-                RedirectionUtil.wishlistUrl);    // Go to wishlist after remove
+            	    request.getContextPath() + "/wishlist": // Stay on same page after add
+            	    request.getContextPath() + "/wishlist"); // Go to wishlist after remove
         } catch (NumberFormatException e) {
             response.sendRedirect(RedirectionUtil.homeUrl);
         }
