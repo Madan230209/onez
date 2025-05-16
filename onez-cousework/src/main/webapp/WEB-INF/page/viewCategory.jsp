@@ -84,7 +84,7 @@
 			        </a>
 			    </li>
 				<li class="category-items">
-			        <a href="${contextPath}/viewCategory?category=Headphone" class="${param.category == 'Headset' ? 'active' : ''}">
+			        <a href="${contextPath}/viewCategory?category=Headset" class="${param.category == 'Headset' ? 'active' : ''}">
 			            Headset
 			        </a>
 			    </li>
@@ -94,7 +94,7 @@
 			        </a>
 			    </li>
 				<li class="category-items">
-			        <a href="${contextPath}/viewCategory?category=CPU" class="${param.category == 'CPU' ? 'active' : ''}">
+			        <a href="${contextPath}/viewCategory?category=CPU/GPU" class="${param.category == 'CPU/GPU' ? 'active' : ''}">
 			            CPU/GPU
 			        </a>
 			    </li>
@@ -104,8 +104,8 @@
 			        </a>
 			    </li>
 			    <li class="category-items">
-			        <a href="${contextPath}/viewCategory?category=Mousepad" class="${param.category == 'Mousepad' ? 'active' : ''}">
-			            Mousepad
+			        <a href="${contextPath}/viewCategory?category=Accessories" class="${param.category == 'Accessories' ? 'active' : ''}">
+			            Accessories
 			        </a>
 			    </li>
 			</ul>
