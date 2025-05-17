@@ -26,9 +26,18 @@ public class AuthenticationFilter implements Filter {
     private static final String SEARCH = "/search";
     private static final String ROOT = "/";
     private static final String ORDER = "/order";
+    private static final String ADD_ORDER = "/order-history";
+    private static final String PROCESS_ORDER = "/processOrder";
     private static final String CART = "/cart";
+    private static final String CARTADD = "/cart/add";
+    private static final String CARTUPDATE = "/cart/update";
+    private static final String CARTREMOVE = "/cart/remove";
     private static final String WISHLIST = "/wishlist";
+    private static final String WISHLIST_ADD = "/wishlist/add";
+    private static final String WISHLIST_DELETE = "/wishlist/remove";
+    
     private static final String ORDER_HISTORY = "/orderHistory";
+    private static final String ORDER_DELETE = "/orderHistory/delete";
     private static final String USER_DASHBOARD = "/userDashboard";
     private static final String ADMIN_DASHBOARD = "/adminDashboard";
     private static final String PRODUCT = "/products";
@@ -91,9 +100,10 @@ public class AuthenticationFilter implements Filter {
 			// User is logged in
 			if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
 				res.sendRedirect(req.getContextPath() + HOME);
-			} else if (uri.endsWith(HOME) || uri.endsWith(ROOT) || uri.endsWith(ORDER) || uri.endsWith(CART)
-					|| uri.endsWith(USER_DASHBOARD) || uri.endsWith(ORDER_HISTORY) || uri.endsWith(WISHLIST)|| 
-					uri.endsWith(CATEGORY) || uri.endsWith(DESCRIPTION) || uri.endsWith(SEARCH)
+			} else if (uri.endsWith(HOME) || uri.endsWith(ROOT) || uri.endsWith(ORDER) || uri.endsWith(ADD_ORDER)|| uri.endsWith(PROCESS_ORDER)
+					|| uri.endsWith(CART) || uri.endsWith(CARTADD) || uri.endsWith(CARTREMOVE) || uri.endsWith(CARTUPDATE) | uri.endsWith(USER_DASHBOARD) 
+					|| uri.endsWith(ORDER_HISTORY) || uri.endsWith(WISHLIST)|| uri.endsWith(WISHLIST_ADD)|| uri.endsWith(WISHLIST_DELETE)||
+					uri.endsWith(CATEGORY) || uri.endsWith(DESCRIPTION) || uri.endsWith(SEARCH) || uri.endsWith(ORDER_DELETE)
 					|| uri.endsWith(ABOUTUS)|| uri.endsWith(CONTACT)|| uri.endsWith(PRIVACY)|| 
 					uri.endsWith(RETURN) || uri.endsWith(TERMS)|| uri.endsWith(WARRANTY)) {
 				chain.doFilter(request, response);
