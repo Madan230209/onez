@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Terms & Conditions</title>
+    <title>Terms &amp; Conditions</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/terms.css" />
   </head>
   <body>

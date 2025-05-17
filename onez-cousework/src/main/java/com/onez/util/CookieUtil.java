@@ -22,7 +22,7 @@ public class CookieUtil {
 	 */
 	public static void addCookie(HttpServletResponse response, String name, String value, int maxAge) {
 		Cookie cookie = new Cookie(name, value);
-		cookie.setMaxAge(60*60);
+		cookie.setMaxAge(maxAge);
 		cookie.setPath("/"); // Make cookie available to the entire application
 		response.addCookie(cookie);
 	}
@@ -35,12 +35,14 @@ public class CookieUtil {
 	 * @return the Cookie object if found, otherwise null
 	 */
 	public static Cookie getCookie(HttpServletRequest request, String name) {
-		if (request.getCookies() != null) {
-			return Arrays.stream(request.getCookies()).filter(cookie -> name.equals(cookie.getName())).findFirst()
-					.orElse(null);
-		}
-		return null;
-	}
+        if (request.getCookies() != null) {
+            return Arrays.stream(request.getCookies())
+                    .filter(cookie -> name.equals(cookie.getName()))
+                    .findFirst()
+                    .orElse(null);
+        }
+        return null;
+    }
 
 	/**
 	 * Deletes a cookie by setting its max age to 0.

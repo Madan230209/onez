@@ -1,6 +1,7 @@
 package com.onez.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.onez.model.ProductModel; 
@@ -27,7 +28,9 @@ public class HomeController extends HttpServlet {
 
         // ✅ Get all products from service
         List<ProductModel> productList = productService.getAllProducts();
-
+        if (productList == null) {
+        	productList = new ArrayList<>();
+        }
         // ✅ Set in request scope for JSP
         request.setAttribute("products", productList);
 
