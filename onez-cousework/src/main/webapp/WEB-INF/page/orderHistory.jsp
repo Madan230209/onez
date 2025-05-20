@@ -107,7 +107,7 @@ pageContext.setAttribute("formattedDate", date);
 						                <div class="summary-row total">
 						                    <span>Total:</span>
 						                    <span>
-						                        Rs.<fmt:formatNumber value="${order.items.stream().map(item -> item.priceAtOrder * item.quantity).sum()}" />
+						                        Rs. <fmt:formatNumber value="${order.items.stream().map(item -> item.priceAtOrder * item.quantity).sum()}" />
 						                    </span>
 						                </div>
 						                <div class="payment-method">
