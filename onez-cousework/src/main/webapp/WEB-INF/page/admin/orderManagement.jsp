@@ -44,7 +44,7 @@ pageContext.setAttribute("currentUser", currentUser);
         <table>
             <thead>
                 <tr>
-                	<th>Customer Image </th>
+                	<th>Product Image </th>
                     <th>Customer Name</th>
                     <th>Order ID</th>
                     <th>Status</th>
