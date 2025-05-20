@@ -43,7 +43,7 @@ pageContext.setAttribute("formattedDate", date);
                 <c:when test="${empty orders}">
                     <div class="empty-orders">
                         <i class="fas fa-box-open"></i>
-                        <p>You haven't placed any orders yet.</p>
+                        <p>You have not placed any orders yet.</p>
                         <a href="${contextPath}/home" class="btn-shop">Start Shopping</a>
                     </div>
                 </c:when>
