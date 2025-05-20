@@ -57,7 +57,7 @@ public class RegisterController extends HttpServlet {
 			} else if (isAdded) {
 				try {
 					if (uploadImage(req)) {
-						handleSuccess(req, resp, "Your account is successfully created!", "/WEB-INF/page/login.jsp");
+						handleSuccess(req, resp, "Your account is successfully created!", RedirectionUtil.loginUrl);
 					} else {
 						handleError(req, resp, "Could not upload the image. Please try again later!");
 					}

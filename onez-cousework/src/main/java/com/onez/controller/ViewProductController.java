@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.onez.service.ProductService;
+import com.onez.util.RedirectionUtil;
 
 /**
  * Servlet implementation class ViewProduct
@@ -37,7 +38,7 @@ public class ViewProductController extends HttpServlet {
         
         if (product != null) {
             request.setAttribute("product", product);
-            request.getRequestDispatcher("/WEB-INF/page/viewProduct.jsp").forward(request, response);
+            request.getRequestDispatcher(RedirectionUtil.viewProductUrl).forward(request, response);
         } else {
             response.sendRedirect(request.getContextPath() + "/home?error=ProductNotFound");
         }

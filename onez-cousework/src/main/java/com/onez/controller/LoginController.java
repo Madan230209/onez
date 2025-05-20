@@ -97,7 +97,7 @@ public class LoginController extends HttpServlet {
 			errorMessage = "User credential mismatch. Please try again!";
 		}
 		req.setAttribute("error", errorMessage);
-		req.getRequestDispatcher("/WEB-INF/page/login.jsp").forward(req, resp);
+		req.getRequestDispatcher(RedirectionUtil.loginUrl).forward(req, resp);
 	}
 
 }

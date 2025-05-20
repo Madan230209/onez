@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import com.onez.service.AdminDashboardService;
+import com.onez.util.RedirectionUtil;
 
 /**
  * Servlet implementation class userController
@@ -44,6 +45,6 @@ public class UserController extends HttpServlet {
 		request.setAttribute("Lalitpur", dashboardService.getLalitpurUsers());
 		request.setAttribute("Bhaktapur", dashboardService.getBhaktapurUsers());
 		// Forward the request to the Users JSP for rendering
-		request.getRequestDispatcher("/WEB-INF/page/admin/users.jsp").forward(request, response);
+		request.getRequestDispatcher(RedirectionUtil.userManagementUrl).forward(request, response);
 	}
 }

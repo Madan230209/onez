@@ -41,7 +41,7 @@ public class OrderHistoryController extends HttpServlet {
             request.setAttribute("user", user);
             
             // Forward to order history page
-            request.getRequestDispatcher("/WEB-INF/page/orderHistory.jsp").forward(request, response);
+            request.getRequestDispatcher(RedirectionUtil.orderHistoryUrl).forward(request, response);
             
         } catch (SQLException e) {
             // Log the error
@@ -49,14 +49,12 @@ public class OrderHistoryController extends HttpServlet {
             
             // Set error attributes
             request.setAttribute("error", "We couldn't load your order history due to a system error. Please try again later.");
-            
-            // Forward to error page or back to order history with error message
-            request.getRequestDispatcher("/WEB-INF/page/error.jsp").forward(request, response);
+            request.getRequestDispatcher(RedirectionUtil.orderHistoryUrl).forward(request, response);
         } catch (Exception e) {
             // Handle other unexpected errors
             System.err.println("Unexpected error in OrderHistoryController: " + e.getMessage());
             request.setAttribute("error", "An unexpected error occurred.");
-            request.getRequestDispatcher("/WEB-INF/page/error.jsp").forward(request, response);
+            request.getRequestDispatcher(RedirectionUtil.orderHistoryUrl).forward(request, response);
         }
     }
     

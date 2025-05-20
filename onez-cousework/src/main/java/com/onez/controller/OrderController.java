@@ -67,10 +67,10 @@ public class OrderController extends HttpServlet {
         try (OrderService orderService = new OrderService()) {
             List<OrderModel> orders = orderService.getUserOrders(userId);
             request.setAttribute("orders", orders);
-            request.getRequestDispatcher("/WEB-INF/page/orderHistory.jsp").forward(request, response);
+            request.getRequestDispatcher(RedirectionUtil.orderHistoryUrl).forward(request, response);
         } catch (SQLException e) {
             request.setAttribute("error", "Error loading order history: " + e.getMessage());
-            request.getRequestDispatcher("/WEB-INF/page/orderHistory.jsp").forward(request, response);
+            request.getRequestDispatcher(RedirectionUtil.orderHistoryUrl).forward(request, response);
         }
     }
 
@@ -89,10 +89,10 @@ public class OrderController extends HttpServlet {
                 request.setAttribute("error", "Your cart is empty");
             }
             request.setAttribute("cart", cart);
-            request.getRequestDispatcher("/WEB-INF/page/order.jsp").forward(request, response);
+            request.getRequestDispatcher(RedirectionUtil.orderUrl).forward(request, response);
         } catch (SQLException e) {
             request.setAttribute("error", "Error loading cart: " + e.getMessage());
-            request.getRequestDispatcher("/WEB-INF/page/order.jsp").forward(request, response);
+            request.getRequestDispatcher(RedirectionUtil.orderUrl).forward(request, response);
         }
     }
 

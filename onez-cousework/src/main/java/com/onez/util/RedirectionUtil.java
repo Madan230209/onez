@@ -17,8 +17,11 @@ public class RedirectionUtil {
 	public static final String homeUrl = baseUrl + "home.jsp";
 	public static final String userDashboardUrl = baseUrl + "userDashboard.jsp";
 	public static final String viewCategoryUrl = baseUrl + "viewCategory.jsp";
+	public static final String viewProductUrl = baseUrl + "viewProduct.jsp";
 	public static final String adminDashboardUrl = baseUrl + "admin/adminDashboard.jsp";
 	public static final String productsUrl = baseUrl + "admin/products.jsp";
+	public static final String orderManagementUrl = baseUrl + "admin/orderManagement.jsp";
+	public static final String userManagementUrl = baseUrl + "admin/users.jsp";
 	public static final String cartUrl = baseUrl + "cart.jsp";
 	public static final String privacyUrl = baseUrl + "privacy.jsp";
 	public static final String termsUrl = baseUrl + "terms.jsp";

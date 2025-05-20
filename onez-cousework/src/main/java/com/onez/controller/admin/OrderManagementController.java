@@ -11,8 +11,9 @@ import java.util.List;
 
 import com.onez.model.OrderModel;
 import com.onez.service.OrderService;
+import com.onez.util.RedirectionUtil;
 
-@WebServlet("/admin/orders")
+@WebServlet(asyncSupported = true, urlPatterns ={"/admin/orders"})
 public class OrderManagementController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -22,10 +23,10 @@ public class OrderManagementController extends HttpServlet {
         try (OrderService orderService = new OrderService()) {
             List<OrderModel> orders = orderService.getAllOrders();
             request.setAttribute("orders", orders);
-            request.getRequestDispatcher("/WEB-INF/page/admin/orderManagement.jsp").forward(request, response);
+            request.getRequestDispatcher(RedirectionUtil.orderManagementUrl).forward(request, response);
         } catch (SQLException e) {
             request.setAttribute("error", "Error fetching orders: " + e.getMessage());
-            request.getRequestDispatcher("/WEB-INF/page/admin/orderManagement.jsp").forward(request, response);
+            request.getRequestDispatcher(RedirectionUtil.orderManagementUrl).forward(request, response);
             e.printStackTrace();
         }
     }

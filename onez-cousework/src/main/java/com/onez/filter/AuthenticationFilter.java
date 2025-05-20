@@ -77,43 +77,45 @@ public class AuthenticationFilter implements Filter {
         }
  		
         boolean isLoggedIn = SessionUtil.getAttribute(req, "username") != null;
-        String userRole = CookieUtil.getCookie(req, "role") != null ? CookieUtil.getCookie(req, "role").getValue(): null;
         
+        String userRole;
         
-        
-        if ("admin".equals(userRole)) {
-			// Admin is logged in
-			if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
-				res.sendRedirect(req.getContextPath() + ADMIN_DASHBOARD);
-			} else if (uri.endsWith(ADMIN_DASHBOARD) || uri.endsWith(MODIFY_USERS) || uri.endsWith(PRODUCT)
-					|| uri.endsWith(ORDERS) || uri.endsWith(HOME) || uri.endsWith(ROOT)
-					|| uri.endsWith(CATEGORY) || uri.endsWith(DESCRIPTION) || uri.endsWith(SEARCH) 
-					|| uri.endsWith(ABOUTUS)|| uri.endsWith(CONTACT)|| uri.endsWith(PRIVACY)|| 
-					uri.endsWith(RETURN) || uri.endsWith(TERMS)|| uri.endsWith(WARRANTY)) {
-				chain.doFilter(request, response);
-			} else if (uri.endsWith(ORDER) || uri.endsWith(CART) || uri.endsWith(WISHLIST) || uri.endsWith(ORDER_HISTORY) || uri.endsWith(USER_DASHBOARD)) {
-				res.sendRedirect(req.getContextPath() + ADMIN_DASHBOARD);
-			} else {
-				res.sendRedirect(req.getContextPath() + ADMIN_DASHBOARD);
-			}
-		} else if ("customer".equals(userRole)) {
-			// User is logged in
-			if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
-				res.sendRedirect(req.getContextPath() + HOME);
-			} else if (uri.endsWith(HOME) || uri.endsWith(ROOT) || uri.endsWith(ORDER) || uri.endsWith(ADD_ORDER)|| uri.endsWith(PROCESS_ORDER)
-					|| uri.endsWith(CART) || uri.endsWith(CARTADD) || uri.endsWith(CARTREMOVE) || uri.endsWith(CARTUPDATE) | uri.endsWith(USER_DASHBOARD) 
-					|| uri.endsWith(ORDER_HISTORY) || uri.endsWith(WISHLIST)|| uri.endsWith(WISHLIST_ADD)|| uri.endsWith(WISHLIST_DELETE)||
-					uri.endsWith(CATEGORY) || uri.endsWith(DESCRIPTION) || uri.endsWith(SEARCH) || uri.endsWith(ORDER_DELETE)
-					|| uri.endsWith(ABOUTUS)|| uri.endsWith(CONTACT)|| uri.endsWith(PRIVACY)|| 
-					uri.endsWith(RETURN) || uri.endsWith(TERMS)|| uri.endsWith(WARRANTY)) {
-				chain.doFilter(request, response);
-			} else if (uri.endsWith(ADMIN_DASHBOARD) || uri.endsWith(MODIFY_USERS) || uri.endsWith(PRODUCT)
-					|| uri.endsWith(ORDERS)) {
-				res.sendRedirect(req.getContextPath() + HOME);
-			} else {
-				res.sendRedirect(req.getContextPath() + HOME);
-			}
-		} else{
+        if (isLoggedIn) {
+        	userRole = CookieUtil.getCookie(req, "role") != null ? CookieUtil.getCookie(req, "role").getValue(): null;
+	        if ("admin".equals(userRole)) {
+				// Admin is logged in
+				if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
+					res.sendRedirect(req.getContextPath() + ADMIN_DASHBOARD);
+				} else if (uri.endsWith(ADMIN_DASHBOARD) || uri.endsWith(MODIFY_USERS) || uri.endsWith(PRODUCT)
+						|| uri.endsWith(ORDERS) || uri.endsWith(HOME) || uri.endsWith(ROOT)
+						|| uri.endsWith(CATEGORY) || uri.endsWith(DESCRIPTION) || uri.endsWith(SEARCH) 
+						|| uri.endsWith(ABOUTUS)|| uri.endsWith(CONTACT)|| uri.endsWith(PRIVACY)|| 
+						uri.endsWith(RETURN) || uri.endsWith(TERMS)|| uri.endsWith(WARRANTY)) {
+					chain.doFilter(request, response);
+				} else if (uri.endsWith(ORDER) || uri.endsWith(CART) || uri.endsWith(WISHLIST) || uri.endsWith(ORDER_HISTORY) || uri.endsWith(USER_DASHBOARD)) {
+					res.sendRedirect(req.getContextPath() + ADMIN_DASHBOARD);
+				} else {
+					res.sendRedirect(req.getContextPath() + ADMIN_DASHBOARD);
+				}
+			} else if ("customer".equals(userRole)) {
+				// User is logged in
+				if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
+					res.sendRedirect(req.getContextPath() + HOME);
+				} else if (uri.endsWith(HOME) || uri.endsWith(ROOT) || uri.endsWith(ORDER) || uri.endsWith(ADD_ORDER)|| uri.endsWith(PROCESS_ORDER)
+						|| uri.endsWith(CART) || uri.endsWith(CARTADD) || uri.endsWith(CARTREMOVE) || uri.endsWith(CARTUPDATE) | uri.endsWith(USER_DASHBOARD) 
+						|| uri.endsWith(ORDER_HISTORY) || uri.endsWith(WISHLIST)|| uri.endsWith(WISHLIST_ADD)|| uri.endsWith(WISHLIST_DELETE)||
+						uri.endsWith(CATEGORY) || uri.endsWith(DESCRIPTION) || uri.endsWith(SEARCH) || uri.endsWith(ORDER_DELETE)
+						|| uri.endsWith(ABOUTUS)|| uri.endsWith(CONTACT)|| uri.endsWith(PRIVACY)|| 
+						uri.endsWith(RETURN) || uri.endsWith(TERMS)|| uri.endsWith(WARRANTY)) {
+					chain.doFilter(request, response);
+				} else if (uri.endsWith(ADMIN_DASHBOARD) || uri.endsWith(MODIFY_USERS) || uri.endsWith(PRODUCT)
+						|| uri.endsWith(ORDERS)) {
+					res.sendRedirect(req.getContextPath() + HOME);
+				} else {
+					res.sendRedirect(req.getContextPath() + HOME);
+				}
+			} 
+        }else{
 			// Not logged in
 			if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER) || uri.endsWith(HOME) || uri.endsWith(ROOT) || 
 					uri.endsWith(CATEGORY) || uri.endsWith(DESCRIPTION) || uri.endsWith(SEARCH)

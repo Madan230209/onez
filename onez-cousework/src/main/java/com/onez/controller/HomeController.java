@@ -19,22 +19,22 @@ import jakarta.servlet.http.HttpServletResponse;
 public class HomeController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // ✅ Declare and initialize ProductService
+    //Declare and initialize ProductService
     private ProductService productService = new ProductService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
-        // ✅ Get all products from service
+        //Get all products from service
         List<ProductModel> productList = productService.getAllProducts();
         if (productList == null) {
         	productList = new ArrayList<>();
         }
-        // ✅ Set in request scope for JSP
+        //Set in request scope for JSP
         request.setAttribute("products", productList);
 
-        // ✅ Forward to home.jsp
+        //Forward to home.jsp
         request.getRequestDispatcher(RedirectionUtil.homeUrl).forward(request, response);
     }
 }
