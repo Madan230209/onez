@@ -51,14 +51,14 @@ pageContext.setAttribute("currentUser", currentUser);
             </div>
           </div>
 
-          <div class="section2">
-            <div class="product">
-              <i class="fa-solid fa-money-bill-trend-up"></i>
-              <h2>${empty totalSales ? 0 : totalSales}</h2>
-              <p>Total Sales</p>
-            </div>
-          </div>
-
+		 <div class="section2">
+		        <div class="product">
+		            <i class="fa-solid fa-money-bill-trend-up"></i>
+		            <h2>Rs. ${empty totalsales ? "0.00" : totalsales}</h2>
+		            <p>Total Sales</p>
+		        </div>
+		    </div>
+		    
           <div class="section3">
             <div class="product">
               <i class="fa-solid fa-user-plus"></i>

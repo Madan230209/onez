@@ -237,5 +237,27 @@ public class AdminDashboardService {
 			return null;
 		}
 	}
+	
+	public String getTotalSales() {
+		if (isConnectionError) {
+			return null;
+		}
+
+		String query = "SELECT SUM(quantity * price_at_order) AS totalSales FROM order_items;";
+		try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
+			ResultSet result = stmt.executeQuery();
+			if (result.next()) {
+				double sales = result.getDouble("totalSales");
+				return String.format("%.2f", sales); // Example: 22300.00
+			} else {
+				return "0.00";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+
 
 }
