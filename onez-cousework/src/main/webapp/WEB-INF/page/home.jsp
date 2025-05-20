@@ -53,31 +53,28 @@
         	<a href="${contextPath}/viewCategory">
                 <div><i class="fa-solid fa-globe"></i></div>
             </a>
-            <a href="#">
+            <a href="${contextPath}/viewCategory?category=Consoles">
                 <div><i class="fa-solid fa-gamepad xl-large"></i></div>
             </a>
-            <a href="#">
+            <a href="${contextPath}/viewCategory?category=Keyboard">
                 <div><i class="fa-solid fa-keyboard"></i></div>
             </a>
-            <a href="#">
+            <a href="${contextPath}/viewCategory?category=Mouse">
                 <div><i class="fa-solid fa-computer-mouse"></i></div>
             </a>
-            <a href="#">
+            <a href="${contextPath}/viewCategory?category=Headset">
                 <div><i class="fa-solid fa-headphones-simple"></i></div>
             </a>
-            <a href="#">
+            <a href="${contextPath}/viewCategory?category=Monitor">
                 <div><i class="fa-solid fa-desktop"></i></div>
             </a>
-            <a href="#">
+            <a href="${contextPath}/viewCategory?category=CPU/GPU">
                 <div><i class="fa-solid fa-microchip"></i></div>
             </a>
-            <a href="#">
+            <a href="${contextPath}/viewCategory?category=Storage">
                 <div><i class="fa-solid fa-hard-drive"></i></div>
             </a>
-            <a href="#">
-                <div><i class="fa-solid fa-microphone"></i></div>
-            </a>
-            <a href="#">
+            <a href="${contextPath}/viewCategory?category=Accessories">
                 <div><i class="fa-solid fa-ellipsis"></i></div>
             </a>
         </div>

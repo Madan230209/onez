@@ -37,7 +37,7 @@
         <input type="text" name="search" placeholder="Search For Products">
         <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
-</div>
+	</div>
     <div>
         <ul>
             <li><a href="${contextPath}/contact"><i class="fa-solid fa-headset fa-xl"></i></a></li>
