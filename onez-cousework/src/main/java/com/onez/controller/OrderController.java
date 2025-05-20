@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -52,6 +54,14 @@ public class OrderController extends HttpServlet {
         if (userId == null) {
             response.sendRedirect(request.getContextPath() + RedirectionUtil.loginUrl);
             return;
+        }
+
+        // Check for and transfer success message from session to request
+        HttpSession session = request.getSession();
+        String orderSuccess = (String) session.getAttribute("orderSuccess");
+        if (orderSuccess != null) {
+            request.setAttribute("orderSuccess", orderSuccess);
+            session.removeAttribute("orderSuccess"); // Remove after displaying
         }
 
         try (OrderService orderService = new OrderService()) {
@@ -106,11 +116,12 @@ public class OrderController extends HttpServlet {
                 // Clear the cart from session after successful order
                 request.getSession().removeAttribute("cart");
                 
-                // Set success message with order details
-                request.getSession().setAttribute("orderSuccess", order);
+                // Set success message with order details (as a String)
+                String successMessage = "Your order #" + order.getOrderId() + " has been placed successfully!";
+                request.getSession().setAttribute("orderSuccess", successMessage);
                 
-                // Redirect to order confirmation
-                response.sendRedirect(request.getContextPath() + "/order-success");
+                // Redirect to order history
+                response.sendRedirect(request.getContextPath() + "/order-history");
             }
         } catch (SQLException e) {
             request.setAttribute("error", "Order processing failed: " + e.getMessage());

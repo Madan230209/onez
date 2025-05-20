@@ -30,6 +30,7 @@ public class RedirectionUtil {
 	public static final String feedbackUrl = baseUrl + "feedback.jsp";
 	public static final String orderUrl = baseUrl + "order.jsp";
 	public static final String orderHistoryUrl = baseUrl + "orderHistory.jsp";
+	public static final String searchUrl = baseUrl + "searchPage.jsp";
 	
 
 	public void setMsgAttribute(HttpServletRequest req, String msgType, String msg) {

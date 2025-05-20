@@ -81,7 +81,7 @@ pageContext.setAttribute("currentUser", currentUser);
                 </tr>
               </thead>
               <tbody>
-                <!-- Corrected JSTL forEach loop -->
+                <!-- Using JSTL forEach loop to display recent order data -->
                 <c:forEach var="order" items="${orderList}">
                   <tr>
                     <td>${order.user.firstName} ${order.user.lastName}</td>

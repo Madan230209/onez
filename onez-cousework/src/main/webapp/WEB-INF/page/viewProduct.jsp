@@ -167,7 +167,7 @@
 	            <div class="product-actions">
 	                <button type="submit" class="add-to-cart" > Add to Cart
     </button>
-	                <button type="submit" class="buy-now" formaction="${contextPath}/order">Buy Now</button>
+
 	            </div>
 	            
 	        </form>
@@ -193,7 +193,7 @@
                 grip forenhanced control and feel. Sensor: PixArt 3950 Optical Sensor
                 Polling Rate: Up to 8000 Hz (8K) for ultra-fast responsiveness
                 DPI: Up to 30,000 DPI for highly accurate tracking
-                Speed & Acceleration: 750 IPS tracking speed and 50G maximum acceleration
+                Speed &amp; Acceleration: 750 IPS tracking speed and 50G maximum acceleration
                 Switches: Omron Optical Switches to prevent double-clicking
                 Encoder: Custom Lamzu Encoder
                 Included Accessories: 8K Adapter and Mouse Grip

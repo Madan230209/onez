@@ -6,7 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.onez.config.DbConfig;
-import com.onez.model.*;
+import com.onez.model.OrderModel;
+import com.onez.model.OrderItemModel;
+import com.onez.model.CartModel;
+import com.onez.model.CartItemModel;
+import com.onez.model.ProductModel;
+import com.onez.model.UserModel;
+import com.onez.model.AddressModel;
 
 public class OrderService implements AutoCloseable {
     // Constants
@@ -79,8 +85,8 @@ public class OrderService implements AutoCloseable {
 
     // Cart-related methods
     public CartModel getCartForUser(int userId) throws SQLException {
-        String cartSql = "SELECT * FROM onez.cart WHERE user_id = ?";
-        String itemsSql = "SELECT ci.*, p.* FROM onez.cartitem ci JOIN onez.product p ON ci.product_id = p.product_id WHERE ci.cart_id = ?";
+        String cartSql = "SELECT * FROM cart WHERE user_id = ?";
+        String itemsSql = "SELECT ci.*, p.* FROM cartitem ci JOIN product p ON ci.product_id = p.product_id WHERE ci.cart_id = ?";
         
         try (PreparedStatement cartStmt = dbConn.prepareStatement(cartSql)) {
             cartStmt.setInt(1, userId);
@@ -113,8 +119,8 @@ public class OrderService implements AutoCloseable {
 
     // Order-related methods
     public List<OrderModel> getUserOrders(int userId) throws SQLException {
-        String orderSql = "SELECT * FROM onez.order_table WHERE user_id = ? ORDER BY order_date DESC";
-        String itemsSql = "SELECT oi.*, p.* FROM onez.order_items oi JOIN onez.product p ON oi.product_id = p.product_id WHERE oi.order_id = ?";
+        String orderSql = "SELECT * FROM order_table WHERE user_id = ? ORDER BY order_date DESC";
+        String itemsSql = "SELECT oi.*, p.* FROM order_items oi JOIN product p ON oi.product_id = p.product_id WHERE oi.order_id = ?";
         
         List<OrderModel> orders = new ArrayList<>();
         
@@ -149,7 +155,7 @@ public class OrderService implements AutoCloseable {
 
     // Database operations
     private OrderModel createOrderRecord(CartModel cart, String paymentMethod) throws SQLException {
-        String sql = "INSERT INTO onez.order_table (user_id, cart_id, order_date, order_status, paymentMethod) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO order_table (user_id, cart_id, order_date, order_status, paymentMethod) VALUES (?, ?, ?, ?, ?)";
         
         try (PreparedStatement stmt = dbConn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, cart.getUser().getId());
@@ -179,7 +185,7 @@ public class OrderService implements AutoCloseable {
     }
 
     private void saveOrderItems(int orderId, List<CartItemModel> cartItems) throws SQLException {
-        String sql = "INSERT INTO onez.order_items (order_id, product_id, quantity, price_at_order) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO order_items (order_id, product_id, quantity, price_at_order) VALUES (?, ?, ?, ?)";
         
         try (PreparedStatement stmt = dbConn.prepareStatement(sql)) {
             for (CartItemModel item : cartItems) {
@@ -198,7 +204,7 @@ public class OrderService implements AutoCloseable {
     }
 
     private boolean updateProductQuantities(CartModel cart) throws SQLException {
-        String sql = "UPDATE onez.product SET quantity = quantity - ? WHERE product_id = ? AND quantity >= ?";
+        String sql = "UPDATE product SET quantity = quantity - ? WHERE product_id = ? AND quantity >= ?";
         
         try (PreparedStatement stmt = dbConn.prepareStatement(sql)) {
             for (CartItemModel item : cart.getItems()) {
@@ -306,7 +312,7 @@ public class OrderService implements AutoCloseable {
     }
 
     private void deleteCartItems(int cartId) throws SQLException {
-        String sql = "DELETE FROM onez.cartitem WHERE cart_id = ?";
+        String sql = "DELETE FROM cartitem WHERE cart_id = ?";
         try (PreparedStatement stmt = dbConn.prepareStatement(sql)) {
             stmt.setInt(1, cartId);
             stmt.executeUpdate();
@@ -314,7 +320,7 @@ public class OrderService implements AutoCloseable {
     }
 
     private void resetCartTotals(int cartId) throws SQLException {
-        String sql = "UPDATE onez.cart SET total_items = 0, total_price = 0 WHERE cart_id = ?";
+        String sql = "UPDATE cart SET total_items = 0, total_price = 0 WHERE cart_id = ?";
         try (PreparedStatement stmt = dbConn.prepareStatement(sql)) {
             stmt.setInt(1, cartId);
             stmt.executeUpdate();
@@ -323,13 +329,13 @@ public class OrderService implements AutoCloseable {
     
     public List<OrderModel> getAllOrders() throws SQLException {
         String orderSql = "SELECT o.*, u.first_name, u.last_name, a.name as address " +
-                         "FROM onez.order_table o " +
-                         "JOIN onez.user u ON o.user_id = u.user_id " +
-                         "LEFT JOIN onez.address a ON u.address_id = a.address_id " +
+                         "FROM order_table o " +
+                         "JOIN user u ON o.user_id = u.user_id " +
+                         "LEFT JOIN address a ON u.address_id = a.address_id " +
                          "ORDER BY o.order_date DESC";
         
-        String itemsSql = "SELECT oi.*, p.* FROM onez.order_items oi " +
-                         "JOIN onez.product p ON oi.product_id = p.product_id " +
+        String itemsSql = "SELECT oi.*, p.* FROM order_items oi " +
+                         "JOIN product p ON oi.product_id = p.product_id " +
                          "WHERE oi.order_id = ?";
         
         List<OrderModel> orders = new ArrayList<>();
@@ -355,7 +361,7 @@ public class OrderService implements AutoCloseable {
     }
 
     public boolean updateOrderStatus(int orderId, String newStatus) throws SQLException {
-        String sql = "UPDATE onez.order_table SET order_status = ? WHERE order_id = ?";
+        String sql = "UPDATE order_table SET order_status = ? WHERE order_id = ?";
         
         try (PreparedStatement stmt = dbConn.prepareStatement(sql)) {
             stmt.setString(1, newStatus);
@@ -392,9 +398,9 @@ public class OrderService implements AutoCloseable {
 
         // SQL query to fetch recent orders with customer details and address
         String query = "SELECT o.order_id, o.order_status, u.first_name, u.last_name, u.address_id, a.name as name " +
-                       "FROM onez.order_table o " +
-                       "JOIN onez.user u ON o.user_id = u.user_id " +
-                       "LEFT JOIN onez.address a ON u.address_id = a.address_id " +
+                       "FROM order_table o " +
+                       "JOIN user u ON o.user_id = u.user_id " +
+                       "LEFT JOIN address a ON u.address_id = a.address_id " +
                        "ORDER BY o.order_date DESC LIMIT 3";
         
         try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
@@ -432,14 +438,14 @@ public class OrderService implements AutoCloseable {
     public boolean deleteOrder(int orderId) throws SQLException {
         try {
             // First delete order items
-            String deleteItemsSql = "DELETE FROM onez.order_items WHERE order_id = ?";
+            String deleteItemsSql = "DELETE FROM order_items WHERE order_id = ?";
             try (PreparedStatement itemsStmt = dbConn.prepareStatement(deleteItemsSql)) {
                 itemsStmt.setInt(1, orderId);
                 itemsStmt.executeUpdate();
             }
             
             // Then delete the order
-            String deleteOrderSql = "DELETE FROM onez.order_table WHERE order_id = ?";
+            String deleteOrderSql = "DELETE FROM order_table WHERE order_id = ?";
             try (PreparedStatement orderStmt = dbConn.prepareStatement(deleteOrderSql)) {
                 orderStmt.setInt(1, orderId);
                 int affectedRows = orderStmt.executeUpdate();

@@ -40,9 +40,9 @@ pageContext.setAttribute("currentUser", currentUser);
         </div></a>
         <div>
           <div><p><form action="${contextPath}/logout" method="post">
-					<input type="submit" class="nav-button" value="Logout" />
+					<input type="submit" class="nav-button" value="Logout" /></p>
 				</form>
-				</p></div>
+				</div>
           
         </div>
       </nav>

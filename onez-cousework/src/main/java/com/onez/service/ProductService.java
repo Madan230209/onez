@@ -178,4 +178,33 @@ public class ProductService {
         return products;
     }
     
+    public List<ProductModel> getProductsBySearch(String search) {
+        List<ProductModel> products = new ArrayList<>();
+        String sql = "SELECT * FROM product WHERE productName LIKE ? OR category LIKE ?";
+
+        try (PreparedStatement stmt = dbConn.prepareStatement(sql)) {
+            String pattern = "%" + search + "%";
+        	stmt.setString(1, pattern);
+            stmt.setString(2, pattern);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                ProductModel product = new ProductModel(
+                    rs.getInt("product_id"),
+                    rs.getString("productName"),
+                    rs.getString("description"),
+                    rs.getInt("price"),
+                    rs.getInt("quantity"),
+                    rs.getString("category"),
+                    rs.getString("productImage")
+                );
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error retrieving products by productName: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return products;
+    }
 }

@@ -71,11 +71,12 @@ pageContext.setAttribute("currentUser", currentUser);
 		                    <option value="">Select Category</option>
 		                    <option value="Keyboard" ${(not empty productToEdit && productToEdit.category == 'Keyboard') || category == 'Keyboard' ? 'selected' : ''}>Keyboard</option>
 		                    <option value="Mouse" ${(not empty productToEdit && productToEdit.category == 'Mouse') || category == 'Mouse' ? 'selected' : ''}>Mouse</option>
-		                    <option value="Headphone" ${(not empty productToEdit && productToEdit.category == 'Headphone') || category == 'Headphone' ? 'selected' : ''}>Headphone</option>
-		                    <option value="CPU" ${(not empty productToEdit && productToEdit.category == 'CPU') || category == 'CPU' ? 'selected' : ''}>CPU</option>
-		                    <option value="GPU" ${(not empty productToEdit && productToEdit.category == 'GPU') || category == 'GPU' ? 'selected' : ''}>GPU</option>
+		                    <option value="Headset" ${(not empty productToEdit && productToEdit.category == 'Headset') || category == 'Headset' ? 'selected' : ''}>Headset</option>
+		                    <option value="CPU/GPU" ${(not empty productToEdit && productToEdit.category == 'CPU/GPU') || category == 'CPU/GPU' ? 'selected' : ''}>CPU/GPU</option>
+		                    <option value="Consoles" ${(not empty productToEdit && productToEdit.category == 'Consoles') || category == 'Consoles' ? 'selected' : ''}>Consoles</option>
 		                	<option value="Monitor" ${(not empty productToEdit && productToEdit.category == 'Monitor') || category == 'Monitor' ? 'selected' : ''}>Monitor</option>
-		                    <option value="Mousepad" ${(not empty productToEdit && productToEdit.category == 'Mousepad') || category == 'Mousepad' ? 'selected' : ''}>Mousepad</option>
+		                    <option value="Accessories" ${(not empty productToEdit && productToEdit.category == 'Accessories') || category == 'Accessories' ? 'selected' : ''}>Accessories</option>
+		                    <option value="Storage" ${(not empty productToEdit && productToEdit.category == 'Storage') || category == 'Storage' ? 'selected' : ''}>Storage</option>		                    
 		                    <option value="Other" ${(not empty productToEdit && productToEdit.category == 'Other') || category == 'Other' ? 'selected' : ''}>Other</option>
 		                </select>
 		            </div>

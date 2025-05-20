@@ -32,12 +32,12 @@
   </form>
 </nav>
 
-
 <!-- Main Content -->
 <div class="main-content">
   <div class="content-wrapper">
     <div class="top-section">
       <h3>Manage My Account</h3>
+      <button id="editToggle" class="btn btn-edit">Edit Profile</button>
     </div>
 
     <c:if test="${not empty successMessage}">
@@ -48,7 +48,7 @@
     </c:if>
 
     <div class="account-details">
-      <form action="${pageContext.request.contextPath}/userDashboard" method="post">
+      <form id="profileForm" action="${pageContext.request.contextPath}/userDashboard" method="post" style="display: none;">
         <div class="form-group">
           <div class="profile-icon">
             <img src="${contextPath}/resources/user/${user.imageUrl}" width="100" height="100"
@@ -83,13 +83,63 @@
 
         <div class="form-actions">
           <button type="submit" class="btn btn-primary">Update Profile</button>
+          <button type="button" id="cancelEdit" class="btn btn-secondary">Cancel</button>
         </div>
       </form>
+
+      <div id="profileView">
+        <div class="profile-icon">
+          <img src="${contextPath}/resources/user/${user.imageUrl}" width="100" height="100"
+               onerror="this.src='${contextPath}/resources/logo/onez.svg'" />
+        </div>
+        
+        <div class="profile-info">
+          <div class="info-row">
+            <span class="info-label">First Name:</span>
+            <span class="info-value">${user.firstName}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Last Name:</span>
+            <span class="info-value">${user.lastName}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Date of Birth:</span>
+            <span class="info-value">${user.dob}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Email:</span>
+            <span class="info-value">${user.email}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Phone Number:</span>
+            <span class="info-value">${user.number}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const editToggle = document.getElementById('editToggle');
+    const cancelEdit = document.getElementById('cancelEdit');
+    const profileForm = document.getElementById('profileForm');
+    const profileView = document.getElementById('profileView');
 
+    editToggle.addEventListener('click', function() {
+        profileView.style.display = 'none';
+        profileForm.style.display = 'block';
+        editToggle.style.display = 'none';
+    });
+
+    cancelEdit.addEventListener('click', function() {
+        profileForm.style.display = 'none';
+        profileView.style.display = 'block';
+        editToggle.style.display = 'block';
+    });
+});
+</script>
 
 </body>
 </html>
