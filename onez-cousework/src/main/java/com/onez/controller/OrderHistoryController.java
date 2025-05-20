@@ -75,10 +75,34 @@ public class OrderHistoryController extends HttpServlet {
             try (OrderService orderService = new OrderService()) {
                 int orderId = Integer.parseInt(request.getParameter("orderId"));
                 
+                // First get the order to check its status
+                List<OrderModel> userOrders = orderService.getUserOrders(user.getId());
+                OrderModel targetOrder = userOrders.stream()
+                    .filter(order -> order.getOrderId() == orderId)
+                    .findFirst()
+                    .orElse(null);
+                
+                if (targetOrder == null) {
+                    session.setAttribute("error", "Order not found or doesn't belong to you.");
+                    response.sendRedirect(request.getContextPath() + "/orderHistory");
+                    return;
+                }
+                
+                // Check if order can be deleted (completed or canceled)
+                String status = targetOrder.getOrderStatus();
+                if (!"Completed".equalsIgnoreCase(status) && !"Cancelled".equalsIgnoreCase(status)) {
+                    session.setAttribute("error", "Order #" + orderId + " cannot be deleted because it's " + 
+                            status + ". Only completed or cancelled orders can be deleted.");
+                    response.sendRedirect(request.getContextPath() + "/orderHistory");
+                    return;
+                }
+                
+                // Attempt to delete
                 if (orderService.deleteOrder(orderId)) {
                     session.setAttribute("orderSuccess", "Order #" + orderId + " has been successfully deleted.");
                 } else {
-                    session.setAttribute("error", "Failed to delete order #" + orderId);
+                    session.setAttribute("error", "Failed to delete order #" + orderId + 
+                            ". It may have already been deleted or the system encountered an error.");
                 }
                 
                 response.sendRedirect(request.getContextPath() + "/orderHistory");
@@ -87,7 +111,7 @@ public class OrderHistoryController extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/orderHistory");
             } catch (SQLException e) {
                 System.err.println("Database error deleting order: " + e.getMessage());
-                session.setAttribute("error", "Failed to delete order due to a system error.");
+                session.setAttribute("error", "Failed to delete order due to a system error: " + e.getMessage());
                 response.sendRedirect(request.getContextPath() + "/orderHistory");
             }
         }

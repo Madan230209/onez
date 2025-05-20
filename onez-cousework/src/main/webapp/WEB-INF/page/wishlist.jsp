@@ -110,7 +110,7 @@ pageContext.setAttribute("currentUser", currentUser);
                         <i class="fas fa-heart empty-wishlist-icon"></i>
                         <h3>Your wishlist is empty</h3>
                         <p>You haven't added any items to your wishlist yet.</p>
-                        <a href="${contextPath}//viewCategory" class="browse-btn">
+                        <a href="${contextPath}/viewCategory" class="browse-btn">
                             <i class="fas fa-store"></i> Browse Products
                         </a>
                     </div>

@@ -441,6 +441,29 @@ public class OrderService implements AutoCloseable {
     
     public boolean deleteOrder(int orderId) throws SQLException {
         try {
+            // First check if the order is completed or canceled
+            String checkStatusSql = "SELECT order_status FROM order_table WHERE order_id = ?";
+            String orderStatus = null;
+            
+            try (PreparedStatement checkStmt = dbConn.prepareStatement(checkStatusSql)) {
+                checkStmt.setInt(1, orderId);
+                try (ResultSet rs = checkStmt.executeQuery()) {
+                    if (rs.next()) {
+                        orderStatus = rs.getString("order_status");
+                    } else {
+                        // Order doesn't exist
+                        return false;
+                    }
+                }
+            }
+            
+            // Only proceed if order is completed or canceled
+            if (orderStatus == null || 
+                (!orderStatus.equalsIgnoreCase("Completed") && 
+                 !orderStatus.equalsIgnoreCase("Cancelled"))) {
+                return false;
+            }
+            
             // First delete order items
             String deleteItemsSql = "DELETE FROM order_items WHERE order_id = ?";
             try (PreparedStatement itemsStmt = dbConn.prepareStatement(deleteItemsSql)) {
@@ -461,5 +484,4 @@ public class OrderService implements AutoCloseable {
             throw e;
         }
     }
-    
 }

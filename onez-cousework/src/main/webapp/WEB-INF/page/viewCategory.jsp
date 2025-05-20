@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewCategory.css">
     <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/91fb88d05c.js" crossorigin="anonymous"></script>
+    <script src="${pageContext.request.contextPath}/js/sorting.js"></script>
 </head>
 
 <body>
@@ -23,45 +24,6 @@
             <div class="category-title">
                 <h3>Category:</h3>
             </div>
-           <!--<ul class="category-list">
-                <li class="category-items">
-                    <input type="checkbox" id="all" name="category" checked>
-                    <label for="all">ALL</label>
-                </li>
-                <li class="category-items">
-                    <input type="checkbox" id="consoles" name="category">
-                    <label for="consoles">Consoles</label> <!--for="consoles" is used so when press on 
-                    text inside label it will activate checkbox with id="consoles"
-                </li>
-                <li class="category-items">
-                    <input type="checkbox" id="keyboards" name="category">
-                    <label for="keyboards">Keyboards</label>
-                </li>
-                <li class="category-items">
-                    <input type="checkbox" id="mouse" name="category">
-                    <label for="mouse">Mouse</label>
-                </li>
-                <li class="category-items">
-                    <input type="checkbox" id="headset" name="category">
-                    <label for="headset">Headset</label>
-                </li>
-                <li class="category-items">
-                    <input type="checkbox" id="monitor" name="category">
-                    <label for="monitor">Monitor</label>
-                </li>
-                <li class="category-items">
-                    <input type="checkbox" id="cpu-gpu" name="category">
-                    <label for="cpu-gpu">CPU/GPU</label>
-                </li>
-                <li class="category-items">
-                    <input type="checkbox" id="storage" name="category">
-                    <label for="storage"></label>Storage</label>
-                </li>
-                <li class="category-items">
-                    <input type="checkbox" id="accessories" name="category">
-                    <label for="accessories">Accessories</label>
-                </li>
-            </ul>  --> 
             <ul class="category-list">
 			    <li class="category-items">
 			        <a href="${contextPath}/viewCategory?category=All" class="${empty param.category || param.category == 'All' ? 'active' : ''}">

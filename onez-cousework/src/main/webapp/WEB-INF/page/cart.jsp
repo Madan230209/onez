@@ -69,7 +69,7 @@ pageContext.setAttribute("currentUser", currentUser);
                                         </div>
                                     </td>
                                     <td class="product-price">
-                                        <fmt:formatNumber value="${item.product.price}" type="currency" />
+                                        Rs.<fmt:formatNumber value="${item.product.price}"/>
                                     </td>
                                     <td class="product-quantity">
                                         <form action="${contextPath}/cart/update" method="post" class="quantity-form">
@@ -82,7 +82,7 @@ pageContext.setAttribute("currentUser", currentUser);
                                         </form>
                                     </td>
                                     <td class="product-subtotal">
-                                        <fmt:formatNumber value="${item.productQuantity * item.product.price}" type="currency" />
+                                        Rs.<fmt:formatNumber value="${item.productQuantity * item.product.price}" />
                                     </td>
                                     <td class="product-actions">
                                         <form action="${contextPath}/cart/remove" method="post">
@@ -107,7 +107,7 @@ pageContext.setAttribute("currentUser", currentUser);
                         </div>
                         <div class="summary-row total">
                             <span>Total Price:</span>
-                            <span><fmt:formatNumber value="${cart.totalPrice}" type="currency" /></span>
+                            <span>Rs.<fmt:formatNumber value="${cart.totalPrice}"/></span>
                         </div>
                         <form action="${contextPath}/order" method="get">
                             <button type="submit" class="checkout-btn">

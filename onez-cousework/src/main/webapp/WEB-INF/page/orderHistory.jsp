@@ -87,10 +87,10 @@ pageContext.setAttribute("formattedDate", date);
 						                            <h4>${item.product.productName}</h4>
 						                            <p>Quantity: ${item.quantity}</p>
 						                            <p class="item-price">
-						                                <fmt:formatNumber value="${item.priceAtOrder}" type="currency"/> each
+						                                Rs.<fmt:formatNumber value="${item.priceAtOrder}"/> each
 						                                <c:if test="${item.product.price != item.priceAtOrder}">
 						                                    <span class="price-note">(current price: 
-						                                        <fmt:formatNumber value="${item.product.price}" type="currency"/>)
+						                                        Rs.<fmt:formatNumber value="${item.product.price}"/>)
 						                                    </span>
 						                                </c:if>
 						                            </p>
@@ -107,8 +107,7 @@ pageContext.setAttribute("formattedDate", date);
 						                <div class="summary-row total">
 						                    <span>Total:</span>
 						                    <span>
-						                        <fmt:formatNumber value="${order.items.stream().map(item -> item.priceAtOrder * item.quantity).sum()}" 
-						                                         type="currency"/>
+						                        Rs.<fmt:formatNumber value="${order.items.stream().map(item -> item.priceAtOrder * item.quantity).sum()}" />
 						                    </span>
 						                </div>
 						                <div class="payment-method">

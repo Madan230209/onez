@@ -54,7 +54,7 @@
                                                 <div>
                                                     <h4>${item.product.productName}</h4>
                                                     <p>Quantity: ${item.productQuantity}</p>
-                                                    <p>Price: $<fmt:formatNumber value="${item.product.price}" 
+                                                    <p>Price: Rs.<fmt:formatNumber value="${item.product.price}" 
                                                                                minFractionDigits="2" maxFractionDigits="2"/></p>
                                                 </div>
                                             </div>
@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="order-total">
                                     <p>Total Items: ${cart.totalItems}</p>
-                                    <p>Total Price: $<fmt:formatNumber value="${cart.totalPrice}" 
+                                    <p>Total Price: Rs.<fmt:formatNumber value="${cart.totalPrice}" 
                                                                       minFractionDigits="2" maxFractionDigits="2"/></p>
                                 </div>
                             </div>
@@ -138,7 +138,7 @@
                             </div>
                             
                             <div class="order-total">
-                                <p>Subtotal: $<fmt:formatNumber value="${latestOrder.items.stream().map(item -> item.priceAtOrder * item.quantity).sum()}" 
+                                <p>Subtotal: Rs.<fmt:formatNumber value="${latestOrder.items.stream().map(item -> item.priceAtOrder * item.quantity).sum()}" 
                                                                  minFractionDigits="2" maxFractionDigits="2"/></p>
                             </div>
                         </c:if>
