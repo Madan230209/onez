@@ -14,6 +14,7 @@ pageContext.setAttribute("currentUser", currentUser);
 <html>
 <head>
     <title>Product Management</title>
+    <link rel="shortcut icon" type="x-icon" href="${pageContext.request.contextPath}/resources/logo/logo.png">
      <c:set var="contextPath" value="${pageContext.request.contextPath}" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminDashboard.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/products.css" />

@@ -20,6 +20,7 @@ pageContext.setAttribute("formattedDate", date);
 <html>
 <head>
     <title>Order History - Onez</title>
+    <link rel="shortcut icon" type="x-icon" href="${pageContext.request.contextPath}/resources/logo/logo.png">
     <c:set var="contextPath" value="${pageContext.request.contextPath}" />
     <link rel="stylesheet" href="${contextPath}/css/orderHistory.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">

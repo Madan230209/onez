@@ -6,6 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="x-icon" href="${pageContext.request.contextPath}/resources/logo/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us - OneZ Gaming</title>
      	<c:set var="contextPath" value="${pageContext.request.contextPath}" />

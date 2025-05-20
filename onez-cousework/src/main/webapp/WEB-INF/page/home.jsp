@@ -10,6 +10,7 @@
     <title>oneZ</title>
     <!-- Set contextPath variable -->
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+	<link rel="shortcut icon" type="x-icon" href="${pageContext.request.contextPath}/resources/logo/logo.png">
     <link rel="stylesheet" type="text/css"
 		href="${pageContext.request.contextPath}/css/home.css" />
     <script src="https://kit.fontawesome.com/91fb88d05c.js" crossorigin="anonymous"></script>

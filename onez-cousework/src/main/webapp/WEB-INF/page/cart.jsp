@@ -13,6 +13,7 @@ pageContext.setAttribute("currentUser", currentUser);
 <html>
 <head>
     <title>Your Cart - Onez</title>
+    <link rel="shortcut icon" type="x-icon" href="${pageContext.request.contextPath}/resources/logo/logo.png">
     <c:set var="contextPath" value="${pageContext.request.contextPath}" />
     <link rel="stylesheet" type="text/css" href="${contextPath}/css/cart.css">
     <script src="https://kit.fontawesome.com/91fb88d05c.js" crossorigin="anonymous"></script>

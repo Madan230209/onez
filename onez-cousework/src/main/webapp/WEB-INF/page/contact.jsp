@@ -4,6 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="x-icon" href="${pageContext.request.contextPath}/resources/logo/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/contact.css" />
     <title>Contact Us</title>
@@ -40,6 +41,27 @@
           Please contact us if you have any inconveniences and share your
           thoughts and suggestions to help us improve.
         </p>
+      </div>
+      <div class="contact-section1">
+        <h2 class="help">Fill up the form for inquiry</h2>
+        <form action="#" method="post" class="contact-form">
+          <label for="subject">Subject</label>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            placeholder="Subject"
+            required
+          />
+          <label for="message">Your Message</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Your Message"
+            required
+          ></textarea>
+          <button type="submit">Submit</button>
+        </form>
       </div>
     </div>
     </div>

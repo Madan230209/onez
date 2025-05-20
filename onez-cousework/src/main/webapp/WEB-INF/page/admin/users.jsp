@@ -16,6 +16,7 @@ pageContext.setAttribute("currentUser", currentUser);
 <head>
 <meta charset="UTF-8">
 <title>Admin Dashboard</title>
+<link rel="shortcut icon" type="x-icon" href="${pageContext.request.contextPath}/resources/logo/logo.png">
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/adminDashboard.css" />

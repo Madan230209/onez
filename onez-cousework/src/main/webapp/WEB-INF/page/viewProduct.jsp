@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>${product.productName}</title>
+    <link rel="shortcut icon" type="x-icon" href="${pageContext.request.contextPath}/resources/logo/logo.png">
     <!-- Set contextPath variable -->
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 	<link rel="stylesheet" type="text/css"

@@ -73,3 +73,65 @@ h1 {
 .contact-section p {
   margin-bottom: 10px;
 }
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contact-form button {
+  width: 100px;
+  padding: 10px;
+  background-color: #ababab;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.contact-section1 {
+  margin: auto;
+  padding: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(241, 240, 240);
+}
+
+.contact-section1 .help {
+  margin: 3 0px 0px;
+}
+
+.contact-section1 button {
+  width: 160px;
+  margin: auto;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#subject {
+  outline: none;
+}
+
+#message {
+  width: 480px;
+  height: 200px;
+  font-family: Arial, sans-serif;
+  outline: none;
+  resize: none;
+}
+
+.contact-form button:hover {
+  background-color: #929292;
+}
