@@ -11,12 +11,9 @@
   <body>
   <jsp:include page="header.jsp" />
   <div class="main">
-    <div>
-      <h1>Privacy Policy</h1>
-      <div class="sidebar">
-        <h3>PRIVACY POLICY OF ONEZ</h3>
-      </div>
-    </div>
+     <div class="sidebar">
+       <h3>PRIVACY POLICY OF ONEZ</h3>
+     </div>
     <div class="container">
       <div class="section">
         <h2>Information We Collect</h2>

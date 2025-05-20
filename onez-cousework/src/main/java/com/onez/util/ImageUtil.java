@@ -77,9 +77,9 @@ public class ImageUtil {
 	    saveToLocation(part, deployPath);
 	    
 	    // 2. Save to project directory (for easy access in Eclipse)
-	    String projectPath = "C:/Users/IP3/git/onez/onez-coursework/src/main/webapp/resources/" + saveFolder;
-	    saveToLocation(part, projectPath);
-	    
+
+	    String projectPath = "C:/Users/Acer/git/onez/onez-cousework/src/main/webapp/resources/" + saveFolder;   
+	    saveToLocation(part, projectPath); 
 	    return true;
 	}
 

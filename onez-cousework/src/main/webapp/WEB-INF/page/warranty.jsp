@@ -11,12 +11,9 @@
   <body>
   <jsp:include page="header.jsp" />
   <div class="main">
-    <div>
-      <h1>Warranty Policy</h1>
       <div class="warranty-sidebar">
         <h3>WARRANTY POLICY OF ONEZ</h3>
       </div>
-    </div>
     <div class="warranty-container">
       <div class="warranty-section">
         <h2>Coverage</h2>

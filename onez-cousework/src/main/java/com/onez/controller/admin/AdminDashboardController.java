@@ -58,6 +58,7 @@ public class AdminDashboardController extends HttpServlet {
 		// Retrieve all student information from the DashboardService
 		request.setAttribute("orderList", orderService.getRecentOrders());
 		request.setAttribute("totalProduct", dashboardService.getTotalProducts());
+		request.setAttribute("totalsales", dashboardService.getTotalSales());
 		request.setAttribute("total", dashboardService.getTotalUsers());
 
 		// Forward the request to the dashboard JSP for rendering
