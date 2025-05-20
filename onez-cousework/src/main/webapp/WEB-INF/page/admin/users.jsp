@@ -28,15 +28,7 @@ pageContext.setAttribute("currentUser", currentUser);
         <jsp:include page="sideBar.jsp"/>
          <!-- Main Content -->
         <main class="dashboard" >
-			<header>
-          <div class="add-product">
-            <div class="admin-header">
-              <img src="${contextPath}/resources/user/${user.imageUrl}" width="30" height="30" style="border-radius: 10px;"
-                    onerror="this.src='${contextPath}/resources/logo/onez.svg'">
-              <p>${username}</p>
-            </div>
-          </div>
-        </header>
+        <jsp:include page="adminHeader.jsp"/>
 			<div class="maindash">
 	          
 	          <div class="section2">
@@ -61,7 +53,7 @@ pageContext.setAttribute("currentUser", currentUser);
 	          </div>
         </div>
 
-			<div class="table-container">
+			
 				<!-- Display error message if available -->
 				<c:if test="${not empty error}">
 					<p class="error-message">${error}</p>
@@ -71,8 +63,11 @@ pageContext.setAttribute("currentUser", currentUser);
 				<c:if test="${not empty success}">
 					<p class="success-message">${success}</p>
 				</c:if>
-				<h3>User List</h3>
-				<table>
+				
+		<div class="recent-orders">
+		<h3 style="font-size: 30px; margin-bottom:5px; text-align:center;"> User List</h3>
+			<div class="table-container">
+				 <table class="table">
 					<thead>
 						<tr>
 							<th>ID</th>
@@ -96,6 +91,7 @@ pageContext.setAttribute("currentUser", currentUser);
 					</tbody>
 				</table>
 			</div>
+		</div>
 			</main>
 		</div>
 

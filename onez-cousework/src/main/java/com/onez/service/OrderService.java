@@ -283,8 +283,12 @@ public class OrderService implements AutoCloseable {
 
     private OrderModel mapOrder(ResultSet rs) throws SQLException {
         OrderModel order = new OrderModel();
-        order.setOrderId(rs.getInt("order_id"));
-        order.setOrderDate(rs.getDate("order_date").toLocalDate());
+        order.setOrderId(rs.getInt("order_id")); 
+        Date sqlDate = rs.getDate("order_date");
+        if (sqlDate != null) {
+        	order.setOrderDate(rs.getDate("order_date").toLocalDate());
+        }
+        
         order.setOrderStatus(rs.getString("order_status"));
         order.setPaymentMethod(rs.getString("paymentMethod"));
         return order;

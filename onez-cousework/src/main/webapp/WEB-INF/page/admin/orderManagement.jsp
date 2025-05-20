@@ -17,8 +17,7 @@ pageContext.setAttribute("currentUser", currentUser);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Order Management</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminDashboard.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ordermgmt.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/orderManagement.css" />
     
 </head>
 <body>
@@ -28,6 +27,7 @@ pageContext.setAttribute("currentUser", currentUser);
     
     <!-- Main Content -->
     <main class="dashboard">
+    <jsp:include page="adminHeader.jsp"/>
     
         <h1>Recent Orders</h1>
         
@@ -44,6 +44,7 @@ pageContext.setAttribute("currentUser", currentUser);
         <table>
             <thead>
                 <tr>
+                	<th>Customer Image </th>
                     <th>Customer Name</th>
                     <th>Order ID</th>
                     <th>Status</th>
@@ -54,8 +55,16 @@ pageContext.setAttribute("currentUser", currentUser);
                 </tr>
             </thead>
             <tbody>
+            	
                 <c:forEach var="order" items="${orders}">
                     <tr>
+                   		 <td style="table-layout: fixed; width: 100%;""><c:forEach var="item" items="${order.items}">
+			                    <div class="order-item">
+			                        <img src="${pageContext.request.contextPath}/resources/product/${item.product.productImage}"  width="60" height="60"
+			                             alt="${item.product.productName}" 
+			                             class="item-image">
+			                    </div>
+			                </c:forEach></td>
                         <td>${order.user.firstName} ${order.user.lastName}</td>
                         <td>${order.orderId}</td>
                         <td>
