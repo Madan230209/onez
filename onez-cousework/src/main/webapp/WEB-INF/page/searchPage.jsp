@@ -17,7 +17,7 @@
     <script src="https://kit.fontawesome.com/91fb88d05c.js" crossorigin="anonymous"></script>
     <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet" />
 </head>
-
+<!-- Main body -->
 <body>
     <jsp:include page="header.jsp" />
     
@@ -64,7 +64,7 @@
             </c:otherwise>
         </c:choose>
     </section>
-    
+     <!-- Footer -->
     <jsp:include page="footer.jsp" />
 </body>
 </html>
