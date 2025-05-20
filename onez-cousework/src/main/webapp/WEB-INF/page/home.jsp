@@ -85,7 +85,7 @@
         <div class="wrapper">
             <div>
                 <h3>Shop New Arrival</h3>
-                <a href="#"><button type="button">Shop</button></a>
+                <a href="${contextPath}/viewCategory?category=All"><button type="button">Shop</button></a>
             </div>
             <div><img src="${contextPath}/resources/product/iqunix 68 he.jpg" alt="Keybaords"></div>
         </div>

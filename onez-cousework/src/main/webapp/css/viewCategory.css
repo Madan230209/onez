@@ -36,6 +36,31 @@ body {
   list-style: none;
   padding: 1.5rem;
 }
+.category-items a {
+  color:black;
+  text-decoration:none;
+  transition: color .2s;
+  position: relative;
+}
+
+.category-items a::before {
+	content: ""; 
+  position: absolute;
+  bottom: -2px; 
+  left: 0;
+  width: 0%; 
+  height: 2px;
+  background-color: black; 
+  transition: width 0.3s ease; 
+}
+.category-items a:hover::before,
+.category-items a.active::before {
+	color:#1e90ff;
+  width: 100%; /* Full underline on hover/active */
+}
+
+
+/**
 .category-items label {
   display: block;
   padding-left: 10px;
@@ -48,6 +73,10 @@ body {
 .category-items input {
   width: 20px;
   height: 20px;
+}
+**/
+.active{
+	color:#1e90ff;
 }
 .category-items {
   display: flex;

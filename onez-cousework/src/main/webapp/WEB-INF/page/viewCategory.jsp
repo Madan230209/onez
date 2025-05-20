@@ -65,7 +65,7 @@
             <ul class="category-list">
 			    <li class="category-items">
 			        <a href="${contextPath}/viewCategory?category=All" class="${empty param.category || param.category == 'All' ? 'active' : ''}">
-			            ALL
+			          All
 			        </a>
 			    </li>
 			    <li class="category-items">
