@@ -11,50 +11,10 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
 }
+
 .slider {
   width: 100vw;
-  height: 22rem;
-  background-color: black;
-  position: relative;
-  overflow: hidden;
-}
-
-.slider .slide {
-  display: flex;
-  width: 400vw; 
-  height: 100%;
-  transition: transform 1s ease-in-out;
-}
-
-.slider .slide img {
-  width: 100vw;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.25;
-  flex-shrink: 0;
-}
-
-.slider > div:nth-child(2) {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.slider h2 {
-  font-size: 5rem;
-  font-weight: bolder;
-  margin: 0;
-}
-.slider {
-  width: 100vw;
-  height: 22rem;
+  height: 30rem;
   background-color: black;
   position: relative;
   overflow: hidden;
@@ -92,14 +52,13 @@ body {
 }
 
 .slider h2 {
-  font-size: 5rem;
+  font-size: 3.5rem;
   font-weight: bolder;
-  margin: 0;
 }
 
 .browse_by_category h3 {
   text-align: center;
-  font-size: 3rem;
+  font-size: 3.5rem;
   white-space: nowrap;
   padding-top: clamp(0.5rem, 1.5rem, 3rem);
   padding-bottom: clamp(0px, 1.5rem, 3rem);
@@ -174,6 +133,7 @@ body {
   width: 40%;
   height: 100%;
 }
+
 .new_arrival .wrapper div:nth-child(2) {
   height: 16rem;
   display: flex;
@@ -195,7 +155,7 @@ body {
   justify-content: center;
 }
 .new_arrival .wrapper div:nth-child(1) h3 {
-  font-size: clamp(1rem, 4vw, 4rem);
+  font-size: clamp(1rem, 3vw, 4rem);
   color: white;
   white-space: nowrap;
 }
@@ -211,7 +171,7 @@ body {
 }
 .trnd {
   text-align: center;
-  font-size: 3rem;
+  font-size: 2rem;
   padding-bottom: 2rem;
 }
 .product-container {

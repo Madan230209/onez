@@ -96,7 +96,7 @@
 				                <option value="Consoles" ${param.category == 'Consoles' ? 'selected' : ''}>Consoles</option>
 				                <option value="Keyboards" ${param.category == 'Keyboards' ? 'selected' : ''}>Keyboards</option>
 				                <option value="Mouse" ${param.category == 'Mouse' ? 'selected' : ''}>Mouse</option>
-				                <option value="Headset" ${param.category == 'Headset' ? 'selected' : ''}>Headset</option>
+				                <option value="Headset" ${param.category == 'Headphone' ? 'selected' : ''}>Headset</option>
 				                <option value="Monitor" ${param.category == 'Monitor' ? 'selected' : ''}>Monitor</option>
 				                <option value="CPU/GPU" ${param.category == 'CPU/GPU' ? 'selected' : ''}>CPU/GPU</option>
 				                <option value="Storage" ${param.category == 'Storage' ? 'selected' : ''}>Storage</option>
