@@ -74,7 +74,7 @@ pageContext.setAttribute("currentUser", currentUser);
     <main class="dashboard">
     <jsp:include page="adminHeader.jsp"/>
     
-        <h1>Recent Orders</h1>
+        <h1>Manage Orders</h1>
         
         <!-- Display messages -->
         <c:if test="${not empty message}">
