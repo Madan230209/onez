@@ -30,7 +30,7 @@ public class ViewProductController extends HttpServlet {
         
         List<ProductModel> recentProductList = productService.getRecentProducts();
 
-        // ✅ Set in request scope for JSP
+        //Set in request scope for JSP
         request.setAttribute("recentProducts", recentProductList);
         
         int productId = Integer.parseInt(request.getParameter("productId"));

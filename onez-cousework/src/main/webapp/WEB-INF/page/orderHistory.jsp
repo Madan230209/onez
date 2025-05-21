@@ -20,6 +20,7 @@ pageContext.setAttribute("formattedDate", date);
 <html>
 <head>
     <title>Order History - Onez</title>
+    <link rel="shortcut icon" type="x-icon" href="${pageContext.request.contextPath}/resources/logo/logo.png">
     <c:set var="contextPath" value="${pageContext.request.contextPath}" />
     <link rel="stylesheet" href="${contextPath}/css/orderHistory.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -42,7 +43,7 @@ pageContext.setAttribute("formattedDate", date);
                 <c:when test="${empty orders}">
                     <div class="empty-orders">
                         <i class="fas fa-box-open"></i>
-                        <p>You haven't placed any orders yet.</p>
+                        <p>You have not placed any orders yet.</p>
                         <a href="${contextPath}/home" class="btn-shop">Start Shopping</a>
                     </div>
                 </c:when>

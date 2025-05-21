@@ -13,11 +13,12 @@ body{
 }
 
 /* Sidebar styles */
+
 .sidebar {
   width: 240px;
   background-color: #313131;
   color: #ffffff;
-  height: 100vh;
+  height: auto;
   padding: 10px 0px ;
   display: flex;
   flex-direction: column;
@@ -72,8 +73,6 @@ body{
 .logout-btn:hover {
   background-color: black;
 }
-
-
 
 .dashboard{
 	width:100%;
@@ -183,5 +182,3 @@ th {
   font-weight: 600;
   color: #555;
 }
-
-

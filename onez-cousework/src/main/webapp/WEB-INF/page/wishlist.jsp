@@ -15,6 +15,7 @@ pageContext.setAttribute("currentUser", currentUser);
     <title>Your Wishlist - Onez</title>
     <c:set var="contextPath" value="${pageContext.request.contextPath}" />
     <link rel="stylesheet" type="text/css" href="${contextPath}/css/wishlist.css">
+    <link rel="shortcut icon" type="x-icon" href="${pageContext.request.contextPath}/resources/logo/logo.png">
     <script src="https://kit.fontawesome.com/91fb88d05c.js" crossorigin="anonymous"></script>
     <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -23,9 +23,6 @@ import com.onez.util.RedirectionUtil;
 })
 public class OrderController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    
-    // No longer holding service instances as fields
-    // They'll be created per request to ensure proper connection handling
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

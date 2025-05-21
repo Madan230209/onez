@@ -8,15 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Edit Profile</title>
 
-  <!-- Set contextPath variable -->
   <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
-  <!-- Link to external CSS -->
   <link rel="stylesheet" type="text/css" href="${contextPath}/css/userDashboard.css" />
 </head>
 <body>
 
-<!-- Sidebar Navigation -->
+<!-- Sidebar -->
 <nav class="sidebar">
   <div>
     <a href="${contextPath}/home"><div><img src="${contextPath}/resources/logo/logoWhite.png" alt="ONEZ Logo" class="logo"/></div></a>
@@ -25,8 +22,6 @@
   <a href="${contextPath}/orderHistory" class="no-style"><div><p>Orders</p></div></a>
   <a href="${contextPath}/wishlist" class="no-style"><div><p>Wishlist</p></div></a>
   <a href="${contextPath}/cart" class="no-style"><div><p>Cart</p></div></a>
-
-  <!-- Logout Button -->
   <form action="${contextPath}/logout" method="post" class="logout-form">
     <button type="submit" class="sidebar-button">Logout</button>
   </form>
@@ -48,12 +43,20 @@
     </c:if>
 
     <div class="account-details">
-      <form id="profileForm" action="${pageContext.request.contextPath}/userDashboard" method="post" style="display: none;">
+      <!-- ✅ Edit Profile Form -->
+      <form id="profileForm" action="${pageContext.request.contextPath}/userDashboard" method="post" enctype="multipart/form-data" style="display: none;">
+
+        <!-- ✅ Profile Image Upload Section -->
         <div class="form-group">
-          <div class="profile-icon">
-            <img src="${contextPath}/resources/user/${user.imageUrl}" width="100" height="100"
-                 onerror="this.src='${contextPath}/resources/logo/onez.svg'" />
-          </div>
+          <label for="profilePicture" class="profile-upload-label">
+            <div class="upload-box">
+              <img id="previewImage" src="${contextPath}/resources/user/${user.imageUrl}" 
+                   onerror="this.src='${contextPath}/resources/logo/onez.svg'" 
+                   alt="Profile Preview" />
+              <div class="upload-text">Click or Drag to Change Photo</div>
+            </div>
+          </label>
+          <input type="file" id="profilePicture" name="profilePicture" accept="image/*" hidden />
         </div>
 
         <div class="form-group">
@@ -86,7 +89,9 @@
           <button type="button" id="cancelEdit" class="btn btn-secondary">Cancel</button>
         </div>
       </form>
+      <!-- ✅ End Form -->
 
+      <!-- ✅ View Profile Section -->
       <div id="profileView">
         <div class="profile-icon">
           <img src="${contextPath}/resources/user/${user.imageUrl}" width="100" height="100"
@@ -120,6 +125,7 @@
   </div>
 </div>
 
+<!-- ✅ JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const editToggle = document.getElementById('editToggle');
@@ -137,6 +143,13 @@ document.addEventListener('DOMContentLoaded', function() {
         profileForm.style.display = 'none';
         profileView.style.display = 'block';
         editToggle.style.display = 'block';
+    });
+
+    document.getElementById('profilePicture')?.addEventListener('change', function (event) {
+        const [file] = event.target.files;
+        if (file) {
+            document.getElementById('previewImage').src = URL.createObjectURL(file);
+        }
     });
 });
 </script>

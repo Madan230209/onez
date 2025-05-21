@@ -16,20 +16,65 @@ pageContext.setAttribute("currentUser", currentUser);
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="x-icon" href="${pageContext.request.contextPath}/resources/logo/logo.png">
     <title>Order Management</title>
+    <c:set var="contextPath" value="${pageContext.request.contextPath}" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/orderManagement.css" />
+    <script src="https://kit.fontawesome.com/91fb88d05c.js" crossorigin="anonymous"></script>
     
 </head>
 <body>
 <div class="mainparent">
-    <!-- Sidebar jsp file connection -->
-    <jsp:include page="sideBar.jsp"/>
+      
+      <nav class="sidebar">
+      
+       <div class="side-bar-content">   
+   		 <div class="logo">    
+            <img src="${contextPath}/resources/logo/logoWhite.png" alt="ONEZ Logo" class="logo-img"/>    
+    	</div> 
+    	
+    	<a href="${contextPath}/adminDashboard" class="side-nav">
+        <div class="content">
+            <p>Dashboard</p>
+            <i class="fa-solid fa-table-columns"></i>
+        </div>
+    </a>
+    
+    <a href="${contextPath}/admin/orders" class="side-nav">
+        <div class="content">
+           <p>Orders</p>
+            <i class="fa-solid fa-boxes-stacked"></i>
+        </div>
+    </a>
+    
+    <a href="${contextPath}/modifyUsers" class="side-nav">
+        <div class="content">
+            <p>Customer Details</p>
+            <i class="fa-solid fa-gear"></i>
+        </div>
+    </a>
+    
+    <a href="${contextPath}/products" class="side-nav">
+       <div class="content">
+           	<p>Manage Products</p>
+            <i class="fa-solid fa-boxes-stacked"></i>
+        </div>
+    </a>
+    </div>  
+    
+    <div>
+ 		 <form action="${contextPath}/logout" method="post">
+                    <input type="submit" class="logout-btn" value="Logout" />
+                </form>
+ 	</div>
+</nav>
+    
     
     <!-- Main Content -->
     <main class="dashboard">
     <jsp:include page="adminHeader.jsp"/>
     
-        <h1>Recent Orders</h1>
+        <h1>Manage Orders</h1>
         
         <!-- Display messages -->
         <c:if test="${not empty message}">
@@ -58,7 +103,7 @@ pageContext.setAttribute("currentUser", currentUser);
             	
                 <c:forEach var="order" items="${orders}">
                     <tr>
-                   		 <td style="table-layout: fixed; width: 100%;""><c:forEach var="item" items="${order.items}">
+                   		 <td ><c:forEach var="item" items="${order.items}">
 			                    <div class="order-item">
 			                        <img src="${pageContext.request.contextPath}/resources/product/${item.product.productImage}"  width="60" height="60"
 			                             alt="${item.product.productName}" 
@@ -74,7 +119,6 @@ pageContext.setAttribute("currentUser", currentUser);
                                 <select name="status" class="status-dropdown" onchange="this.form.submit()">
                                     <option value="Pending" ${order.orderStatus eq 'Pending' ? 'selected' : ''}>Pending</option>
                                     <option value="Processing" ${order.orderStatus eq 'Processing' ? 'selected' : ''}>Processing</option>
-                                    <option value="Shipped" ${order.orderStatus eq 'Shipped' ? 'selected' : ''}>Shipped</option>
                                     <option value="Completed" ${order.orderStatus eq 'Completed' ? 'selected' : ''}>Completed</option>
                                     <option value="Cancelled" ${order.orderStatus eq 'Cancelled' ? 'selected' : ''}>Cancelled</option>
                                 </select>

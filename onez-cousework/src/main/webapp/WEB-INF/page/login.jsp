@@ -6,6 +6,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="x-icon" href="${pageContext.request.contextPath}/resources/logo/logo.png">
     <title>Login</title>
     <!-- Set contextPath variable for reuse -->
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
