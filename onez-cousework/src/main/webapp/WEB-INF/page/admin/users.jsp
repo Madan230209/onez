@@ -19,34 +19,81 @@ pageContext.setAttribute("currentUser", currentUser);
 <link rel="shortcut icon" type="x-icon" href="${pageContext.request.contextPath}/resources/logo/logo.png">
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/adminDashboard.css" />
+	href="${pageContext.request.contextPath}/css/user.css" />
+	<script src="https://kit.fontawesome.com/91fb88d05c.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-	<div class="container">
+	<div class="mainparent">
 		
 		<!-- Sidebar jsp file connection -->
-        <jsp:include page="sideBar.jsp"/>
+		
+        <nav class="sidebar">
+      
+       <div class="side-bar-content">   
+   		 <div class="logo">    
+            <img src="${contextPath}/resources/logo/logoWhite.png" alt="ONEZ Logo" class="logo-img"/>    
+    	</div> 
+    	
+    	<a href="${contextPath}/adminDashboard" class="side-nav">
+        <div class="content">
+            <p>Dashboard</p>
+            <i class="fa-solid fa-table-columns"></i>
+        </div>
+    </a>
+    
+    <a href="${contextPath}/admin/orders" class="side-nav">
+        <div class="content">
+           <p>Orders</p>
+            <i class="fa-solid fa-boxes-stacked"></i>
+        </div>
+    </a>
+    
+    <a href="${contextPath}/modifyUsers" class="side-nav">
+        <div class="content">
+            <p>Customer Details</p>
+            <i class="fa-solid fa-gear"></i>
+        </div>
+    </a>
+    
+    <a href="${contextPath}/products" class="side-nav">
+       <div class="content">
+           	<p>Manage Products</p>
+            <i class="fa-solid fa-boxes-stacked"></i>
+        </div>
+    </a>
+    </div>  
+    
+    <div>
+ 		 <form action="${contextPath}/logout" method="post">
+                    <input type="submit" class="logout-btn" value="Logout" />
+                </form>
+ 	</div>
+</nav>
+ 
+        
+        
+        
          <!-- Main Content -->
         <main class="dashboard" >
         <jsp:include page="adminHeader.jsp"/>
 			<div class="maindash">
 	          
-	          <div class="section2">
+	          <div class="section1">
 	            <div class="product">
 	              <h2>${empty Kathmandu ? 0 : Kathmandu}</h2>
 	              <p>Kathmandu</p>
 	            </div>
 	          </div>
 	
-	          <div class="section3">
+	          <div class="section2">
 	            <div class="product">
 	              <h2>${empty Lalitpur ? 0 : Lalitpur}</h2>
 	              <p>Lalitpur</p>
 	            </div>
 	          </div>
 	          
-	          <div class="section4">
+	          <div class="section3">
 	            <div class="product">
 	              <h2>${empty Bhaktapur ? 0 : Bhaktapur}</h2>
 	              <p>Bhaktapur</p>

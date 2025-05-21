@@ -1,85 +1,85 @@
 @charset "UTF-8";
-
-.search-container {
-  position: relative;
-  width: 50%;
-}
-
-.search-container input {
-  width: 100%;
-  padding: 0.5rem 1rem;
-  padding-right: 2.5rem;
-  border-radius: 20px;
-  border: 1px solid #ddd;
-}
-
-.search-container i {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  color: #777;
-}
-
-.header-icons {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.header-icons a {
-  color: #333;
-  font-size: 15px;
-}
-
-.admin-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  gap:80px 
-}
-
-.admin-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.admin-header i {
-  font-size: 25px;  
-  color: #000000;
-}
-
-.admin-header p {
+* {
   margin: 0;
-  
-  font-size: 25px;  
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
-.product2 {
+body{
+	overflow-x:hidden;
+}
+.mainparent{
+	display:flex;
+}
 
-  background-color: #202020;
+/* Sidebar styles */
+.sidebar {
+  width: 240px;
+  background-color: #313131;
+  color: #ffffff;
+  height: 100vh;
+  padding: 10px 0px ;
+  display: flex;
+  flex-direction: column;
+  justify-content :space-between;
+}
+
+.logo{
+	text-align:center;
+	
+}
+.logo-img{
+    max-width: 5rem;
+    mix-blend-mode: lighten;
+}
+.side-bar-content{
+	display:flex;
+	flex-direction:column;
+	gap:20px;
+}
+
+
+.side-nav {
+    text-decoration: none;
+    padding:10px 0px;
+    color: inherit;
+    transition: background-color 0.2s ease;
+  }
+
+.side-nav:hover {
+	background-color: #000000;
+  }
+
+.content{
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	margin:0px 10px;
+}
+
+.logout-btn {
+  background-color: #484848;
   color: white;
-  border-radius: 8px;
-  padding: 20px 20px;
+  border: none;
+  padding: 10px 39%;
+  margin-bottom:20px;
+  border-radius: 5px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-weight: bold;
+   transition: background-color 0.2s ease;
 }
 
-.product2 h2 {
-  color: white;
-  font-size: 15px;
-  font-weight: 20px;
-  margin: 0;
-  white-space: nowrap;
+.logout-btn:hover {
+  background-color: black;
 }
 
-.product2:hover {
-  background-color: #545453;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+
+.dashboard{
+	width:100%;
+	position:relative;
 }
 
-/* Dashboard content */
 .maindash {
   display: flex;
   gap: 20px;
@@ -89,8 +89,7 @@
 
 .section1,
 .section2,
-.section3,
-.section4 {
+.section3 {
   flex: 1;
   min-width: 300px;
   max-width: 350px;
@@ -106,9 +105,6 @@
 }
 .section3 {
   background-color:#2a4045;
-}
-.section4 {
-  background-color: #d1e1dc;
 }
 
 .product {
@@ -129,9 +125,6 @@
   top: 40px;
 }
 
-
-    
-
 .product h2 {
   font-size: 32px;
   margin: 10px;
@@ -144,8 +137,10 @@
   color: #ffffff;
 }
 
+
 h1 {
  margin-bottom:50px;
+ margin-left:25px;
 }
 
 /* Recent orders */
@@ -155,7 +150,7 @@ h1 {
   background-color: #dfdede;
   padding: 30px;
   border-radius: 10px;
-  margin-top: 2rem;
+  margin: 2rem auto;
 }
 
 .recent-orders h2 {
@@ -190,20 +185,3 @@ th {
 }
 
 
-
-
-
-	
-
-.action-btn {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.action-btn:hover {
-  background-color: #0056b3;
-}
