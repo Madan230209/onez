@@ -187,19 +187,7 @@
 <section class="descripton">
         <div class="descripton-wrapper">
             <h2>About this Product</h2>
-            <p>The Lamzu Maya X is a high-performance wireless gaming mouse designed for competitive gamers who value
-                precision, speed, and comfort. Its lightweight design supports all grip styles—palm, claw, and
-                fingertip—making it adaptable to various play preferences. With included customization software, users
-                can fine-tune settings to match their gameplay needs. The package also includes an 8K adapter and mouse
-                grip forenhanced control and feel. Sensor: PixArt 3950 Optical Sensor
-                Polling Rate: Up to 8000 Hz (8K) for ultra-fast responsiveness
-                DPI: Up to 30,000 DPI for highly accurate tracking
-                Speed &amp; Acceleration: 750 IPS tracking speed and 50G maximum acceleration
-                Switches: Omron Optical Switches to prevent double-clicking
-                Encoder: Custom Lamzu Encoder
-                Included Accessories: 8K Adapter and Mouse Grip
-                MCU: Nordic 52840 for consistent wireless performance
-                Connection Options: Wireless 2.4GHz and USB</p>
+            <p>${product.description}</p>
         </div>
     </section>
 

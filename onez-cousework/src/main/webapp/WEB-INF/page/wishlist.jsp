@@ -61,7 +61,7 @@ pageContext.setAttribute("currentUser", currentUser);
                                                          class="product-image"></a>
                                                     <div class="product-details">
                                                         <span class="product-title">${product.productName}</span>
-                                                        <p class="product-desc">${product.description}</p>
+                                                        
                                                     </div>
                                                 </div>
                                             
