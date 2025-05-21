@@ -16,7 +16,7 @@ import com.onez.model.ProductModel;
 
 public class CartService {
     private Connection dbConn;
-
+    // Constructor: Establishing the database connection
     public CartService() {
         try {
             this.dbConn = DbConfig.getDbConnection();
@@ -25,7 +25,11 @@ public class CartService {
             ex.printStackTrace();
         }
     }
-
+    /**
+     * Retrieves the cart and its items for a given user ID.
+     * @param userId The ID of the user whose cart is to be fetched.
+     * @return A CartModel containing cart details, items, and totals.
+     */
     public CartModel getCartByUserId(int userId) {
         String cartQuery = "SELECT * FROM onez.cart WHERE user_id = ?";
         String itemsQuery = "SELECT ci.*, p.* FROM onez.cartitem ci JOIN onez.product p ON ci.product_id = p.product_id WHERE ci.cart_id = ?";
@@ -82,7 +86,13 @@ public class CartService {
 
         return cart;
     }
-
+    /**
+     * Adds a product to the user's cart. If the product already exists,quantity is incremented.
+     * @param userId The user's ID.
+     * @param productId The product's ID to be added.
+     * @param quantity The quantity to add.
+     * @return Updated CartModel after the product is added.
+     */
     public CartModel addProductToCart(int userId, int productId, int quantity) {
         try {
             int cartId = getOrCreateCartId(userId);
@@ -102,7 +112,14 @@ public class CartService {
             return null;
         }
     }
-
+    /**
+     * Removes a specified quantity of a product from the cart.
+     * If the quantity becomes zero or less, removes the product entirely.
+     * @param userId to remove user's ID.
+     * @param productId to remove product's ID .
+     * @param quantity to remove  the  quantity.
+     * @return updated CartModel after the product is removed.
+     */
     public CartModel removeProductFromCart(int userId, int productId, int quantity) {
         try {
             int cartId = getCartId(userId);
@@ -127,7 +144,11 @@ public class CartService {
             return null;
         }
     }
-
+    /**
+     * Clears all items from the user's cart and resets total price and total items to zero.
+     * @param userId the ID of the user whose cart needs to be cleared.
+     * @return true if the cart was cleared successfully; false otherwise.
+     */
     public boolean clearCart(int userId) {
         try {
             int cartId = getCartId(userId);
@@ -154,6 +175,11 @@ public class CartService {
     }
 
     // Helper methods
+    /**
+     * Gets the existing cart ID for a user, or creates a new one if none exists.
+     * @param userId .
+     * @return  cart ID.
+     */
     private int getOrCreateCartId(int userId) throws SQLException {
         int cartId = getCartId(userId);
         if (cartId == 0) {
@@ -180,6 +206,12 @@ public class CartService {
             return rs.next() ? rs.getInt("cart_id") : 0;
         }
     }
+    /**
+     * Retrieves a specific cart item based on cart ID and product ID.
+     * @param cartId cart ID to retrieves cart items .
+     * @param productId retrieves products from cart.
+     * @return A CartItemModel object if found, otherwise null.
+     */
 
     private CartItemModel getCartItem(int cartId, int productId) throws SQLException {
         String query = "SELECT ci.*, p.* FROM onez.cartitem ci JOIN onez.product p ON ci.product_id = p.product_id " +
@@ -209,7 +241,13 @@ public class CartService {
         }
         return null;
     }
-
+    /**
+     * Inserts a new product into the cart.
+     * @param cartId cart ID in which  new product will be added.
+     * @param productId  ID of the product to insert into the cart.
+     * @param quantity the quantity of the product to insert in cart.
+     * @return true if the insert is successful, false otherwise.
+     */
     private boolean insertCartItem(int cartId, int productId, int quantity) throws SQLException {
         String query = "INSERT INTO onez.cartitem (cart_id, product_id, productQuantity) VALUES (?, ?, ?)";
         try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
@@ -219,7 +257,13 @@ public class CartService {
             return stmt.executeUpdate() > 0;
         }
     }
-
+    /**
+     * Updates the quantity of a product already present in the cart.
+     * @param cartId ID of the cart for updating the quantity.
+     * @param productId product ID in the cart.
+     * @param newQuantity  the new quantity to set in the cart.
+     * @return true if update is successful, false otherwise.
+     */
     private boolean updateCartItemQuantity(int cartId, int productId, int newQuantity) throws SQLException {
         String query = "UPDATE onez.cartitem SET productQuantity = ? WHERE cart_id = ? AND product_id = ?";
         try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
@@ -229,6 +273,12 @@ public class CartService {
             return stmt.executeUpdate() > 0;
         }
     }
+    /**
+     * Deletes a product from the cart entirely.
+     * @param cartId  cart ID to delete .
+     * @param productId  product ID to delete.
+     * @return true if delete is successful, false otherwise.
+     */
 
     private boolean deleteCartItem(int cartId, int productId) throws SQLException {
         String query = "DELETE FROM onez.cartitem WHERE cart_id = ? AND product_id = ?";
@@ -238,7 +288,12 @@ public class CartService {
             return stmt.executeUpdate() > 0;
         }
     }
-
+    /**
+     * Updates the total number of items and total price of the cart
+     * based on the current products and their quantities.
+     * 
+     * @param cartId ID of the cart to update.
+     */
     private void updateCartTotals(int cartId) throws SQLException {
         String query = "UPDATE onez.cart c SET " +
                       "total_items = (SELECT COALESCE(SUM(productQuantity), 0) FROM onez.cartitem WHERE cart_id = ?), " +

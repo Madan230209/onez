@@ -12,10 +12,15 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Service class to manage user wishlists.
+ */
 public class WishlistService {
     private final Connection connection;
-
+    /**
+     * Initializes  WishlistService by setting up  database connection.
+     * @throws SQLException if database connection fails.
+     */
     public WishlistService() throws SQLException {
         try {
             this.connection = DbConfig.getDbConnection();
@@ -23,7 +28,12 @@ public class WishlistService {
             throw new SQLException("Database driver not found", ex);
         }
     }
-
+    /**
+     * Gets the wishlist of a specific user and creates new wishlist if wishlist is not created
+     * @param user The user whose wishlist is to be fetched.
+     * @return WishlistModel object containing details of wishlist.
+     * @throws SQLException if there is  database error.
+     */
     public WishlistModel getWishlistByUser(UserModel user) throws SQLException {
         String sql = "SELECT w.* FROM wishlist w WHERE w.user_id = ?";
         WishlistModel wishlist = null;
@@ -46,7 +56,12 @@ public class WishlistService {
         }
         return wishlist;
     }
-
+    /**
+     * Gets the list of products in a wishlist.
+     * @param wishlistId It is the  ID of the wishlist.
+     * @return  the list of ProductModel objects in the wishlist.
+     * @throws SQLException if there is a database error.
+     */
     private List<ProductModel> getWishlistProducts(int wishlistId) throws SQLException {
         List<ProductModel> products = new ArrayList<>();
         String sql = "SELECT p.*, i.quantity as quantity FROM wishlist_product wp " +
@@ -71,7 +86,13 @@ public class WishlistService {
         }
         return products;
     }
-
+    /**
+     * Adds a product to the user's wishlist.
+     * @param user   User adding the product in wishlist.
+     * @param productId  It is the ID of the product to add.
+     * @return true if the product was added, false if an error occurred.
+     * @throws SQLException if there is a database error.
+     */
     public boolean addToWishlist(UserModel user, int productId) throws SQLException {
         WishlistModel wishlist = getWishlistByUser(user);
         if (wishlist == null) {
@@ -90,7 +111,13 @@ public class WishlistService {
             return stmt.executeUpdate() > 0;
         }
     }
-
+    /**
+     * Checks if a product exists in a wishlist
+     * @param wishlistId  It is the  ID of the wishlist to check whether product exist
+     * @param productId It is the  ID of the product to check
+     * @return true if product exists in wishlist, returns false otherwise
+     * @throws SQLException if database operations fail
+     */
     private boolean isProductInWishlist(int wishlistId, int productId) throws SQLException {
         String sql = "SELECT 1 FROM wishlist_product WHERE wishlist_id = ? AND product_id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -99,7 +126,12 @@ public class WishlistService {
             return stmt.executeQuery().next();
         }
     }
-
+    /**
+     * Creates a new wishlist for a user
+     * @param user 
+     * @return  recent created WishlistModel by  the user
+     * @throws SQLException if creation fails
+     */
     private WishlistModel createWishlist(UserModel user) throws SQLException {
         String sql = "INSERT INTO wishlist (user_id, wishlist_name, addedAt) VALUES (?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -123,7 +155,13 @@ public class WishlistService {
             throw new SQLException("Creating wishlist failed, no ID obtained.");
         }
     }
-
+    /**
+     * Removes a product from user's wishlist
+     * @param user It is the user whose wishlist  is to be  modified
+     * @param productId  It is the  ID of product to remove
+     * @return true if product is removed, false otherwise
+     * @throws SQLException if database operations fail
+     */
     public boolean removeFromWishlist(UserModel user, int productId) throws SQLException {
         WishlistModel wishlist = getWishlistByUser(user);
         if (wishlist == null) return false;

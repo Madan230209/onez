@@ -6,11 +6,17 @@ import java.util.List;
 
 import com.onez.config.DbConfig;
 import com.onez.model.ProductModel;
-
+/**
+ * Service class for handling product-related operations including:
+ * Product creation, update, and deletion, Product retrieval by various criteria and Inventory management
+ */
 public class ProductService {
-    
+	 // Database connection
     private Connection dbConn;
 
+    /**
+      establishes database connection
+     */
     public ProductService() {
         try {
             this.dbConn = DbConfig.getDbConnection();
@@ -19,7 +25,9 @@ public class ProductService {
             ex.printStackTrace();
         }
     }
-
+    /**
+     * Adds a new product to the database
+     */
     public boolean addProduct(ProductModel product) {
         String sql = "INSERT INTO product (productName, description, price, quantity, category, productImage) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -38,7 +46,11 @@ public class ProductService {
             return false;
         }
     }
-
+    /**
+     * Updates an existing product in the database
+     * @param product It is the  ProductModel that contains updated product details
+     * @return true if product was updated successfully, false otherwise
+     */
     public boolean updateProduct(ProductModel product) {
         String sql = "UPDATE product SET productName = ?, description = ?, price = ?, quantity = ?, category = ?, productImage = ? WHERE product_id = ?";
 
@@ -58,7 +70,11 @@ public class ProductService {
             return false;
         }
     }
-
+    /**
+     * Deletes a product from the database
+     * @param productId It is the  ID of the product to delete
+     * @return true if product was deleted successfully, false otherwise
+     */
     public boolean deleteProduct(int productId) {
         String sql = "DELETE FROM product WHERE product_id = ?";
 
@@ -71,7 +87,11 @@ public class ProductService {
             return false;
         }
     }
-
+    /**
+     * Retrieves a single product by its ID
+     * @param productId TIt is the ID of the product to retrieve
+     * @return ProductModel if found, null otherwise
+     */
     public ProductModel getProductById(int productId) {
         String sql = "SELECT * FROM product WHERE product_id = ?";
         try (PreparedStatement stmt = dbConn.prepareStatement(sql)) {
@@ -95,7 +115,10 @@ public class ProductService {
         }
         return null;
     }
-
+    /**
+     * Retrieves all products from the database
+     * @return list of all ProductModel objects
+     */
     public List<ProductModel> getAllProducts() {
         List<ProductModel> products = new ArrayList<>();
         String sql = "SELECT * FROM product";
@@ -122,7 +145,10 @@ public class ProductService {
 
         return products;
     }
-    
+    /**
+     * Retrieves the  recently added products
+     * @return list of recent ProductModel objects
+     */
     public List<ProductModel> getRecentProducts() {
         List<ProductModel> recentProducts = new ArrayList<>();
         String sql = "SELECT * FROM product ORDER BY product_id DESC LIMIT 3";
@@ -149,7 +175,11 @@ public class ProductService {
 
         return recentProducts;
     }
-    
+    /**
+     * Retrieves products belonging to a specific category
+     * @param category It is the  category used  to filter  the products
+     * @return list of ProductModel objects in the specified category
+     */
     public List<ProductModel> getProductsByCategory(String category) {
         List<ProductModel> products = new ArrayList<>();
         String sql = "SELECT * FROM product WHERE category = ?";
@@ -177,7 +207,11 @@ public class ProductService {
 
         return products;
     }
-    
+    /**
+     * Searches for products by name or category
+     * @param search It  search for in product names or categories
+     * @return list of ProductModel objects matching the search criteria
+     */
     public List<ProductModel> getProductsBySearch(String search) {
         List<ProductModel> products = new ArrayList<>();
         String sql = "SELECT * FROM product WHERE productName LIKE ? OR category LIKE ?";
