@@ -36,7 +36,7 @@ public class ViewCategoryController extends HttpServlet {
         if (category != null && !category.isEmpty() && !category.equals("All")) {
             productList = productService.getProductsByCategory(category);
         } else {
-            productList = productService.getAllProducts();
+            productList = productService.getSomeProducts();
         }
         
         request.setAttribute("products", productList);

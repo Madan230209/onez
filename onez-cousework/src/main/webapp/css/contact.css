@@ -105,6 +105,10 @@ h1 {
   align-items: center;
   flex-direction: column;
   background-color: rgb(241, 240, 240);
+  position: relative;
+  padding: 25px;
+  border-radius: 8px;
+  margin-top: 20px;
 }
 
 .contact-section1 .help {
@@ -134,4 +138,49 @@ h1 {
 
 .contact-form button:hover {
   background-color: #929292;
+}
+
+/* Notification styles - integrated with form */
+.notification {
+  position: absolute;
+  top: 0;
+  right: -300px;
+  padding: 15px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 100;
+  display: none;
+  animation: fadeIn 0.3s ease-out;
+  width: 260px;
+  font-size: 0.95em;
+  line-height: 1.4;
+  border-left: 3px solid #3d8b40;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateX(20px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0);
+  }
+}
+
+.close-btn {
+  margin-left: 12px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  transition: opacity 0.2s;
+}
+
+.close-btn:hover {
+  opacity: 0.8;
 }
