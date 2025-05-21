@@ -29,7 +29,7 @@ public class UserDashboardService {
 
     /**
      * Retrieves user information for the specified user ID.
-     * 
+     *
      * @param userId The ID of the user to retrieve
      * @return UserModel containing user information, or null if not found
      */
@@ -40,8 +40,8 @@ public class UserDashboardService {
         }
 
         String query = "SELECT user_id, first_name, last_name, email, number, dob, profilePic " +
-                      "FROM user WHERE user_id = ?";
-        
+                       "FROM user WHERE user_id = ?";
+
         try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
             stmt.setInt(1, userId);
             ResultSet result = stmt.executeQuery();
@@ -53,11 +53,12 @@ public class UserDashboardService {
                 user.setLastName(result.getString("last_name"));
                 user.setEmail(result.getString("email"));
                 user.setNumber(result.getString("number"));
-                
+
                 Date dob = result.getDate("dob");
                 if (dob != null) {
                     user.setDob(dob.toLocalDate());
                 }
+
                 user.setImageUrl(result.getString("profilePic"));
                 return user;
             }
@@ -69,33 +70,39 @@ public class UserDashboardService {
     }
 
     /**
-     * Updates user information in the database.
-     * 
+     * Updates user information in the database, including profile picture.
+     *
      * @param user The UserModel containing updated information
      * @return true if update was successful, false otherwise
      */
     public boolean updateUserInfo(UserModel user) {
-    	if (isConnectionError || dbConn == null) {
+        if (isConnectionError || dbConn == null) {
             System.err.println("Database connection error!");
             return false;
         }
 
-
         String updateQuery = "UPDATE user SET first_name = ?, last_name = ?, " +
-                            "email = ?, number = ?, dob = ? WHERE user_id = ?";
-        
+                             "email = ?, number = ?, dob = ?, profilePic = ? WHERE user_id = ?";
+
         try (PreparedStatement stmt = dbConn.prepareStatement(updateQuery)) {
             stmt.setString(1, user.getFirstName());
             stmt.setString(2, user.getLastName());
             stmt.setString(3, user.getEmail());
             stmt.setString(4, user.getNumber());
-            
+
             if (user.getDob() != null) {
                 stmt.setDate(5, Date.valueOf(user.getDob()));
             } else {
                 stmt.setNull(5, java.sql.Types.DATE);
             }
-            stmt.setInt(6, user.getId());
+
+            if (user.getImageUrl() != null && !user.getImageUrl().isEmpty()) {
+                stmt.setString(6, user.getImageUrl());
+            } else {
+                stmt.setNull(6, java.sql.Types.VARCHAR);
+            }
+
+            stmt.setInt(7, user.getId());
 
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;

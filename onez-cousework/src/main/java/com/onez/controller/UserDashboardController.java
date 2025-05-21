@@ -1,20 +1,30 @@
 package com.onez.controller;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
+
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import com.onez.model.UserModel;
 import com.onez.service.UserDashboardService;
 import com.onez.util.RedirectionUtil;
 
 @WebServlet(asyncSupported = true, urlPatterns = { "/userDashboard" })
+@MultipartConfig(
+    fileSizeThreshold = 1024 * 1024 * 1,  // 1 MB
+    maxFileSize = 1024 * 1024 * 10,       // 10 MB
+    maxRequestSize = 1024 * 1024 * 15     // 15 MB
+)
 public class UserDashboardController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    
+
     private UserDashboardService dashboardService;
 
     public UserDashboardController() {
@@ -25,8 +35,7 @@ public class UserDashboardController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Integer userId = (Integer) request.getSession().getAttribute("id");
-        
-        // If not logged in, redirect to login
+
         if (userId == null) {
             response.sendRedirect(request.getContextPath() + RedirectionUtil.loginUrl);
             return;
@@ -34,7 +43,6 @@ public class UserDashboardController extends HttpServlet {
 
         UserModel user = dashboardService.getUserInfo(userId);
         if (user != null) {
-            // Transfer session messages to request attributes
             transferSessionMessagesToRequest(request);
             request.setAttribute("user", user);
             request.getRequestDispatcher(RedirectionUtil.userDashboardUrl).forward(request, response);
@@ -48,7 +56,7 @@ public class UserDashboardController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Integer userId = (Integer) request.getSession().getAttribute("id");
-        
+
         if (userId == null) {
             response.sendRedirect(request.getContextPath() + RedirectionUtil.loginUrl);
             return;
@@ -61,15 +69,47 @@ public class UserDashboardController extends HttpServlet {
             String number = request.getParameter("number");
             String dob = request.getParameter("dob");
 
+            UserModel existingUser = dashboardService.getUserInfo(userId);
+            String currentImage = (existingUser != null) ? existingUser.getImageUrl() : null;
+
+            // Handle profile image upload
+            Part filePart = request.getPart("profilePicture");
+            String fileName = (filePart != null) ? Paths.get(filePart.getSubmittedFileName()).getFileName().toString() : null;
+
+            String newFileName = null;
+            if (filePart != null && fileName != null && !fileName.isEmpty()) {
+                newFileName = "user_" + userId + "_" + System.currentTimeMillis() + "_" + fileName;
+
+                // Upload path: /resources/user
+                String uploadPath = getServletContext().getRealPath("") + File.separator + "resources" + File.separator + "user";
+                File uploadDir = new File(uploadPath);
+                if (!uploadDir.exists()) {
+                    uploadDir.mkdirs(); // creates the directory if not already there
+                }
+
+                filePart.write(uploadPath + File.separator + newFileName);
+            }
+
+            // Set updated user info
             UserModel updatedUser = new UserModel();
             updatedUser.setId(userId);
             updatedUser.setFirstName(firstName);
             updatedUser.setLastName(lastName);
             updatedUser.setEmail(email);
             updatedUser.setNumber(number);
-            
+
             if (dob != null && !dob.isEmpty()) {
-                updatedUser.setDob(java.time.LocalDate.parse(dob));
+                try {
+                    updatedUser.setDob(java.time.LocalDate.parse(dob));
+                } catch (Exception e) {
+                    updatedUser.setDob(null);
+                }
+            }
+
+            if (newFileName != null) {
+                updatedUser.setImageUrl(newFileName);
+            } else {
+                updatedUser.setImageUrl(currentImage);
             }
 
             boolean success = dashboardService.updateUserInfo(updatedUser);
@@ -79,26 +119,22 @@ public class UserDashboardController extends HttpServlet {
             } else {
                 request.getSession().setAttribute("errorMessage", "Failed to update profile. Please try again.");
             }
-            
-            // Use proper redirect URL
-            String redirectUrl = request.getContextPath() + "/userDashboard";
-            response.sendRedirect(redirectUrl);
-            
+
         } catch (Exception e) {
-            request.getSession().setAttribute("errorMessage", "Invalid data format. Please check your inputs.");
-            response.sendRedirect(request.getContextPath() + "/userDashboard");
+            e.printStackTrace();
+            request.getSession().setAttribute("errorMessage", "Something went wrong. Please check your inputs.");
         }
+
+        response.sendRedirect(request.getContextPath() + "/userDashboard");
     }
 
     private void transferSessionMessagesToRequest(HttpServletRequest request) {
-        // Transfer success message
         String successMessage = (String) request.getSession().getAttribute("successMessage");
         if (successMessage != null) {
             request.setAttribute("successMessage", successMessage);
             request.getSession().removeAttribute("successMessage");
         }
-        
-        // Transfer error message
+
         String errorMessage = (String) request.getSession().getAttribute("errorMessage");
         if (errorMessage != null) {
             request.setAttribute("errorMessage", errorMessage);
@@ -106,3 +142,4 @@ public class UserDashboardController extends HttpServlet {
         }
     }
 }
+
