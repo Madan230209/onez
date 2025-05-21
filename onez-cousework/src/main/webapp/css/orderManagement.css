@@ -24,6 +24,7 @@ body{
   justify-content :space-between;
 }
 
+/* Admin sidebar logo*/
 .logo{
 	text-align:center;
 	
@@ -38,7 +39,7 @@ body{
 	gap:20px;
 }
 
-
+/* sidebar navigation*/
 .side-nav {
     text-decoration: none;
     padding:10px 0px;
@@ -72,8 +73,6 @@ body{
 .logout-btn:hover {
   background-color: black;
 }
-
-
 
 
 
