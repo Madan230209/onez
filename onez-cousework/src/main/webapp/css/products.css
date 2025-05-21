@@ -74,9 +74,12 @@ body{
 }
 
 .dashboard{
+	width:100%;
+	position:relative;
 	height: auto;
-min-height: 100vh;
+	min-height: 100vh;
 }
+
 
 .dashboard h1{
 	margin-left:2rem;
