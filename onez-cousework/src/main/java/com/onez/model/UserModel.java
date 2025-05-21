@@ -17,6 +17,7 @@ public class UserModel {
 	private String userRole;
 	private String imageUrl;
 
+	//constructors
 	public UserModel() {
 	}
 
@@ -79,6 +80,7 @@ public class UserModel {
 		this.number = number;
 	}
 
+	//getter and setter methods
 	public int getId() {
 		return id;
 	}

@@ -17,6 +17,15 @@ import com.onez.util.SessionUtil;
 public class LogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	
+	/**
+	 * Handles POST requests for user logout by deleting the cookies, invalidating the session and redirecting to login page.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CookieUtil.deleteCookie(response, "role");
 		SessionUtil.invalidateSession(request);

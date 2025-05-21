@@ -10,6 +10,7 @@ public class WishlistModel {
     private LocalDateTime addedAt;
     private List<ProductModel> products;
 
+    //constructors
     public WishlistModel() {}
 
     public WishlistModel(int wishlistId, UserModel user, String wishlistName, 
@@ -21,6 +22,7 @@ public class WishlistModel {
         this.products = products;
     }
 
+    //getter and setters
 	public int getWishlistId() {
 		return wishlistId;
 	}

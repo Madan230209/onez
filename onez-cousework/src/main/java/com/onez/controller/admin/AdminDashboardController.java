@@ -15,10 +15,9 @@ import com.onez.util.RedirectionUtil;
 /**
  * Servlet implementation for handling dashboard-related HTTP requests.
  * 
- * This servlet manages interactions with the DashboardService to fetch student
- * information, handle updates, and manage student data. It forwards requests to
- * appropriate JSP pages or handles POST actions based on the request
- * parameters.
+ * This servlet manages interactions with the AdminDashboardService to fetch users
+ * information. 
+ *
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/adminDashboard" })
 public class AdminDashboardController extends HttpServlet {
@@ -29,7 +28,7 @@ public class AdminDashboardController extends HttpServlet {
 	private OrderService orderService;
 	
 	/**
-	 * Default constructor initializes the DashboardService and orderService instance.
+	 * Default constructor initializes the dashboardService and orderService instance.
 	 */
 	public AdminDashboardController() {
 		
@@ -44,8 +43,8 @@ public class AdminDashboardController extends HttpServlet {
 	}
 
 	/**
-	 * Handles HTTP GET requests by retrieving student information and forwarding
-	 * the request to the dashboard JSP page.
+	 * Handles HTTP GET requests by retrieving orders information and forwarding
+	 * the request to the adminDashboard JSP page.
 	 * 
 	 * @param request  The HttpServletRequest object containing the request data.
 	 * @param response The HttpServletResponse object used to return the response.
@@ -55,7 +54,7 @@ public class AdminDashboardController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Retrieve all student information from the DashboardService
+		// Retrieve all student information from the AdminDashboardService
 		request.setAttribute("orderList", orderService.getRecentOrders());
 		request.setAttribute("totalProduct", dashboardService.getTotalProducts());
 		request.setAttribute("totalsales", dashboardService.getTotalSales());

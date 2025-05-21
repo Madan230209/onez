@@ -16,6 +16,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
+/**
+ * ProductController is responsible for handling products requests. It interacts with
+ * the ProductService to manage products.
+ */
 @WebServlet(asyncSupported = true, urlPatterns = { "/products" })
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
         maxFileSize = 1024 * 1024 * 10, // 10MB
@@ -26,6 +30,15 @@ public class ProductController extends HttpServlet {
     private final ImageUtil imageUtil = new ImageUtil();
     private final ProductService productService = new ProductService();
 
+    /**
+	 * Handles GET requests by retrieving products information and 
+	 * forwarding request to the products page.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
             throws ServletException, IOException {
@@ -65,6 +78,14 @@ public class ProductController extends HttpServlet {
         req.getRequestDispatcher(RedirectionUtil.productsUrl).forward(req, resp);
     }
 
+    /**
+	 * Handles POST requests for handling add and update actions.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
             throws ServletException, IOException {
@@ -108,6 +129,12 @@ public class ProductController extends HttpServlet {
         }
     }
 
+	/**
+	 * Validates product form by setting attributes.
+	 * page.
+	 *
+	 * @param req         HttpServletRequest object
+	 */    
     private String validateProductForm(HttpServletRequest req) {
         String productName = req.getParameter("productName");
         String description = req.getParameter("description");
@@ -151,6 +178,12 @@ public class ProductController extends HttpServlet {
         return null;
     }
     
+    /**
+	 * Extracts product model by setting attributes.
+	 * page.
+	 *
+	 * @param req         HttpServletRequest object
+	 */    
     private ProductModel extractProductModel(HttpServletRequest req) throws Exception {
         int productId = 0;
         if (req.getParameter("productId") != null && !req.getParameter("productId").isEmpty()) {
@@ -178,11 +211,19 @@ public class ProductController extends HttpServlet {
         return new ProductModel(productId, productName, description, price, quantity, category, imageUrl);
     }
 
+    /**
+	 * Upload image by root path.
+	 *
+	 * @param req         HttpServletRequest object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */ 
     private boolean uploadImage(HttpServletRequest req) throws IOException, ServletException {
 	    Part image = req.getPart("productImage");
 	    String rootPath = req.getServletContext().getRealPath("/");
 	    return imageUtil.uploadImage(image, rootPath, "product");
 	}
+    
     
     private void handleSuccess(HttpServletRequest req, HttpServletResponse resp, 
             String message, String redirectUrl) throws IOException {

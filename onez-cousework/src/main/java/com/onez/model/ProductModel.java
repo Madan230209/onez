@@ -10,6 +10,7 @@ public class ProductModel {
 	private String category;
 	private String productImage;
 
+	//constructors
 	public ProductModel() {
 	}
 
@@ -30,7 +31,7 @@ public class ProductModel {
 		this.productImage = productImage;
 	}
 
-
+	//getter and setters
 	public int getProductId() {
 		return productId;
 	}

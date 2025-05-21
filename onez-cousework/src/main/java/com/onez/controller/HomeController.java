@@ -15,6 +15,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * @author Madan Shrestha
+ * 
+ */
+
 @WebServlet(asyncSupported = true, urlPatterns = { "/home", "/" })
 public class HomeController extends HttpServlet {
     private static final long serialVersionUID = 1L;

@@ -5,6 +5,7 @@ public class CartItemModel {
     private int productQuantity;
     private ProductModel product;
 
+	//Constructors
     public CartItemModel() {
     }
 
@@ -14,6 +15,7 @@ public class CartItemModel {
         this.product = product;
     }
 
+  //Getter and Setter methods
     public int getCartItemId() {
         return cartItemId;
     }

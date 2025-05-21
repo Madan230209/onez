@@ -15,10 +15,23 @@ import com.onez.model.UserModel;
 import com.onez.service.OrderService;
 import com.onez.util.RedirectionUtil;
 
+/**
+ * OrderHistoryController is responsible for handling orderHistory requests. It interacts with
+ * the OrderService to retrieve order history details.
+ */
 @WebServlet(asyncSupported = true, urlPatterns = { "/orderHistory", "/orderHistory/delete" })
 public class OrderHistoryController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
+    /**
+	 * Handles GET requests to the orderHistory page 
+	 * with handling of unexpected errors too.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
@@ -58,6 +71,15 @@ public class OrderHistoryController extends HttpServlet {
         }
     }
     
+	/**
+	 * Handles POST requests for user orderHistory. Also takes requests for order deletion. 
+	 * Also takes requests for order deletion.
+	 * 
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
@@ -88,7 +110,7 @@ public class OrderHistoryController extends HttpServlet {
                     return;
                 }
                 
-                // Check if order can be deleted (completed or canceled)
+                // Check if order can be deleted (completed or cancelled)
                 String status = targetOrder.getOrderStatus();
                 if (!"Completed".equalsIgnoreCase(status) && !"Cancelled".equalsIgnoreCase(status)) {
                     session.setAttribute("error", "Order #" + orderId + " cannot be deleted because it's " + 

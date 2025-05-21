@@ -34,11 +34,27 @@ public class RegisterController extends HttpServlet {
 	private final ImageUtil imageUtil = new ImageUtil();
 	private final RegisterService registerService = new RegisterService();
 
+	/**
+	 * Handles GET requests to the register page.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher(RedirectionUtil.registerUrl).forward(req, resp);
 	}
 
+	/**
+	 * Handles POST requests for user registration.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
@@ -74,6 +90,12 @@ public class RegisterController extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Validates registration form by setting attributes.
+	 * page.
+	 *
+	 * @param req         HttpServletRequest object
+	 */ 
 	private String validateRegistrationForm(HttpServletRequest req) {
 		String firstName = req.getParameter("firstName");
 		String lastName = req.getParameter("lastName");
@@ -168,6 +190,12 @@ public class RegisterController extends HttpServlet {
 	    return null; // All validations passed
 	}
 
+	 /**
+		 * Extracts user model by setting attributes.
+		 * page.
+		 *
+		 * @param req         HttpServletRequest object
+		 */ 
 	private UserModel extractUserModel(HttpServletRequest req) throws Exception {
 		String firstName = req.getParameter("firstName");
 		String lastName = req.getParameter("lastName");
@@ -190,6 +218,13 @@ public class RegisterController extends HttpServlet {
 				imageUrl);
 	}
 
+	/**
+	 * Upload image by root path.
+	 *
+	 * @param req         HttpServletRequest object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
 	private boolean uploadImage(HttpServletRequest req) throws IOException, ServletException {
 	    Part image = req.getPart("image");
 	    String rootPath = req.getServletContext().getRealPath("/");

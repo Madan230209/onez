@@ -11,6 +11,7 @@ public class CartModel {
     private LocalDate createdAt;
     private List<CartItemModel> items;
 
+	//Constructors
     public CartModel() {
     }
 
@@ -24,6 +25,7 @@ public class CartModel {
         this.items = items;
     }
 
+  //Getter and Setter methods
     public int getCartId() {
         return cartId;
     }

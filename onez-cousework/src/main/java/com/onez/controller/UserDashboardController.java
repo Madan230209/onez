@@ -16,6 +16,10 @@ import com.onez.model.UserModel;
 import com.onez.service.UserDashboardService;
 import com.onez.util.RedirectionUtil;
 
+/**
+ * UserDashboardController is responsible for handling profile requests. It interacts with
+ * the UserDashboardService to manipulate the logged user details.
+ */
 @WebServlet(asyncSupported = true, urlPatterns = { "/userDashboard" })
 @MultipartConfig(
     fileSizeThreshold = 1024 * 1024 * 1,  // 1 MB
@@ -27,10 +31,21 @@ public class UserDashboardController extends HttpServlet {
 
     private UserDashboardService dashboardService;
 
+    /**
+	 * Constructor initializes the UserDashboardService.
+	 */
     public UserDashboardController() {
         this.dashboardService = new UserDashboardService();
     }
 
+    /**
+	 * Handles GET requests to the userDashboard page.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -52,6 +67,14 @@ public class UserDashboardController extends HttpServlet {
         }
     }
 
+    /**
+	 * Handles POST requests for user info update.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -128,6 +151,12 @@ public class UserDashboardController extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/userDashboard");
     }
 
+    /**
+	 * Transfers session messages to request by setting attributes and 
+	 * setting success and error messages.
+	 *
+	 * @param req         HttpServletRequest object
+	 */
     private void transferSessionMessagesToRequest(HttpServletRequest request) {
         String successMessage = (String) request.getSession().getAttribute("successMessage");
         if (successMessage != null) {

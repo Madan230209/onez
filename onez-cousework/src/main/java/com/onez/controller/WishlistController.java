@@ -13,11 +13,18 @@ import com.onez.model.UserModel;
 import com.onez.service.WishlistService;
 import com.onez.util.RedirectionUtil;
 
+/**
+ * WishlistController is responsible for handling wishlist, wishlist/add, wishlist/remove requests. It interacts with
+ * the WishlistService to manage products to and from wishlist.
+ */
 @WebServlet(asyncSupported = true, urlPatterns = { "/wishlist", "/wishlist/add", "/wishlist/remove" })
 public class WishlistController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private WishlistService wishlistService;
-       
+      
+    /**
+	 * Constructor initializes the WishlistService.
+	 */
     public WishlistController() {
         super();
         try {
@@ -28,6 +35,14 @@ public class WishlistController extends HttpServlet {
 		}
     }
 
+    /**
+	 * Handles GET requests to the wishlist page.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         UserModel user = (UserModel) session.getAttribute("user");
@@ -46,6 +61,15 @@ public class WishlistController extends HttpServlet {
         request.getRequestDispatcher(RedirectionUtil.wishlistUrl).forward(request, response);
     }
 
+    
+    /**
+	 * Handles POST requests for wishlist/add and wishlist/remove.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         UserModel user = (UserModel) session.getAttribute("user");

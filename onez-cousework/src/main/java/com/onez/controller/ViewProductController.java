@@ -14,13 +14,22 @@ import com.onez.service.ProductService;
 import com.onez.util.RedirectionUtil;
 
 /**
- * Servlet implementation class ViewProduct
+ * ViewProductController is responsible for handling viewProduct requests. It interacts with
+ * the ProdductService to authenticate users.
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/viewProduct" })
 public class ViewProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ProductService productService = new ProductService();
 
+    /**
+	 * Handles GET requests to the viewProduct page.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	

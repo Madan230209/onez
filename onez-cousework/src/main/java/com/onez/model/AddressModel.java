@@ -5,6 +5,7 @@ public class AddressModel {
 	private int addressId;
 	private String name;
 
+	//Constructors
 	public AddressModel() {
 	}
 
@@ -13,6 +14,7 @@ public class AddressModel {
 		this.name = name;
 	}
 
+	//Getter and Setter methods
 	public int getAddressId() {
 		return addressId;
 	}

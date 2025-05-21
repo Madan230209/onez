@@ -7,7 +7,7 @@ public class OrderItemModel {
     private double priceAtOrder;
     private ProductModel product;  // Will be populated when viewing orders
     
-    // Constructors
+	//Constructors
     public OrderItemModel() {}
     
     public OrderItemModel(int productId, int quantity, double priceAtOrder) {
@@ -16,6 +16,7 @@ public class OrderItemModel {
         this.priceAtOrder = priceAtOrder;
     }
 
+  //Getter and Setter methods
 	public int getOrderItemId() {
 		return orderItemId;
 	}

@@ -17,6 +17,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * CartController is responsible for handling cart adding/ removing/ updating requests. It interacts with
+ * the CartService and ProductService to manage products in cart.
+ */
 @WebServlet(asyncSupported = true, urlPatterns = { "/cart", "/cart/add", "/cart/remove", "/cart/update" })
 public class CartController extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -24,6 +28,14 @@ public class CartController extends HttpServlet {
     private final CartService cartService = new CartService();
     private final ProductService productService = new ProductService();
 
+    /**
+	 * Handles GET requests to the cart page.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
@@ -45,6 +57,14 @@ public class CartController extends HttpServlet {
         }
     }
 
+    /**
+	 * Handles POST requests for cart add, remove and update.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
@@ -77,6 +97,16 @@ public class CartController extends HttpServlet {
         }
     }
 
+    /**
+	 * Handles add to cart by setting attributes and forwarding to the cart
+	 * page.
+	 *
+	 * @param req         HttpServletRequest object
+	 * @param resp        HttpServletResponse object
+	 * @param userId Integer for passing users id for specific user cart
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     private void handleAddToCart(HttpServletRequest req, HttpServletResponse resp, int userId) 
             throws ServletException, IOException {
         String productIdStr = req.getParameter("productId");
@@ -112,6 +142,17 @@ public class CartController extends HttpServlet {
         req.getRequestDispatcher(RedirectionUtil.cartUrl).forward(req, resp);
     }
 
+    
+    /**
+	 * Handles remove from cart by setting attributes and forwarding to the cart
+	 * page.
+	 *
+	 * @param req         HttpServletRequest object
+	 * @param resp        HttpServletResponse object
+	 * @param userId Integer for passing users id for specific user cart
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     private void handleRemoveFromCart(HttpServletRequest req, HttpServletResponse resp, int userId) 
             throws ServletException, IOException {
         String productIdStr = req.getParameter("productId");
@@ -134,6 +175,17 @@ public class CartController extends HttpServlet {
         req.getRequestDispatcher(RedirectionUtil.cartUrl).forward(req, resp);
     }
 
+    
+    /**
+	 * Handles update cart by setting attributes and forwarding to the cart
+	 * page.
+	 *
+	 * @param req         HttpServletRequest object
+	 * @param resp        HttpServletResponse object
+	 * @param userId Integer for passing users id for specific user cart
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     private void handleUpdateCart(HttpServletRequest req, HttpServletResponse resp, int userId) 
             throws ServletException, IOException {
         String productIdStr = req.getParameter("productId");
@@ -192,6 +244,16 @@ public class CartController extends HttpServlet {
         req.getRequestDispatcher(RedirectionUtil.cartUrl).forward(req, resp);
     }
 
+    /**
+	 * Handles error messages by setting attributes and forwarding to the cart
+	 * page.
+	 *
+	 * @param req         HttpServletRequest object
+	 * @param resp        HttpServletResponse object
+	 * @param message String showing the error message
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     private void sendError(HttpServletRequest req, HttpServletResponse resp, String message) 
             throws ServletException, IOException {
         req.setAttribute("error", message);

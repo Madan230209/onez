@@ -13,10 +13,23 @@ import com.onez.model.OrderModel;
 import com.onez.service.OrderService;
 import com.onez.util.RedirectionUtil;
 
+/**
+ * OrderManagementController is responsible for handling admin/orders requests. It interacts with
+ * the OrderService to manage orders.
+ */
 @WebServlet(asyncSupported = true, urlPatterns ={"/admin/orders"})
 public class OrderManagementController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    /**
+	 * Handles GET requests by retrieving orders information and 
+	 * forward request to the orderManagement page.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
@@ -31,6 +44,15 @@ public class OrderManagementController extends HttpServlet {
         }
     }
 
+    /**
+	 * Handles POST requests by retrieving actions value and update 
+	 * status of order and forward response to /admin/orders .
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         

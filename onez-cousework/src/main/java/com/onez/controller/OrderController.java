@@ -16,6 +16,10 @@ import com.onez.model.OrderModel;
 import com.onez.service.OrderService;
 import com.onez.util.RedirectionUtil;
 
+/**
+ * OrderController is responsible for handling order requests. It interacts with
+ * the OrderService to manage order data according to users.
+ */
 @WebServlet(asyncSupported = true, urlPatterns = { 
     "/order-history",  // Shows past orders
     "/order",          // Shows checkout page
@@ -24,6 +28,14 @@ import com.onez.util.RedirectionUtil;
 public class OrderController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    /**
+	 * Handles GET requests to the order/ orderHistory page.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,6 +48,14 @@ public class OrderController extends HttpServlet {
         }
     }
 
+    /** 			
+	 * Handles POST requests for processing order.
+	 *
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -44,6 +64,15 @@ public class OrderController extends HttpServlet {
         }
     }
 
+    /**
+	 * Shows order history by setting attributes and forwarding to the orderHistory
+	 * page.
+	 *
+	 * @param req         HttpServletRequest object
+	 * @param resp        HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     private void showOrderHistory(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Integer userId = (Integer) request.getSession().getAttribute("id");
@@ -71,6 +100,15 @@ public class OrderController extends HttpServlet {
         }
     }
 
+    /**
+	 * Shows order details by setting attributes and forwarding to the checkout/ order
+	 * page.
+	 *
+	 * @param req         HttpServletRequest object
+	 * @param resp        HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     private void showCheckoutPage(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Integer userId = (Integer) request.getSession().getAttribute("id");
@@ -93,6 +131,15 @@ public class OrderController extends HttpServlet {
         }
     }
 
+    /**
+	 * Processes new orders by setting attributes and forwarding to the orderHistory 
+	 * page for success and showCheckoutPage method for error.
+	 *
+	 * @param req         HttpServletRequest object
+	 * @param resp        HttpServletResponse object
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException      if an I/O error occurs
+	 */
     private void processNewOrder(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Integer userId = (Integer) request.getSession().getAttribute("id");

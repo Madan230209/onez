@@ -25,7 +25,6 @@ public class OrderModel {
     }
     
     // Getters and Setters
-    
     public int getOrderId() {
         return orderId;
     }
