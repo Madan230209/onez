@@ -75,7 +75,6 @@ pageContext.setAttribute("currentUser", currentUser);
                                 <select name="status" class="status-dropdown" onchange="this.form.submit()">
                                     <option value="Pending" ${order.orderStatus eq 'Pending' ? 'selected' : ''}>Pending</option>
                                     <option value="Processing" ${order.orderStatus eq 'Processing' ? 'selected' : ''}>Processing</option>
-                                    <option value="Shipped" ${order.orderStatus eq 'Shipped' ? 'selected' : ''}>Shipped</option>
                                     <option value="Completed" ${order.orderStatus eq 'Completed' ? 'selected' : ''}>Completed</option>
                                     <option value="Cancelled" ${order.orderStatus eq 'Cancelled' ? 'selected' : ''}>Cancelled</option>
                                 </select>

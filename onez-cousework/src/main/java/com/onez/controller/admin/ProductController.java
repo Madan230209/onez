@@ -21,8 +21,8 @@ import jakarta.servlet.http.Part;
         maxFileSize = 1024 * 1024 * 10, // 10MB
         maxRequestSize = 1024 * 1024 * 50) // 50MB
 public class ProductController extends HttpServlet {
+	
     private static final long serialVersionUID = 1L;
-
     private final ImageUtil imageUtil = new ImageUtil();
     private final ProductService productService = new ProductService();
 
