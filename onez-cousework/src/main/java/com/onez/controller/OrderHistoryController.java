@@ -38,6 +38,20 @@ public class OrderHistoryController extends HttpServlet {
         HttpSession session = request.getSession();
         UserModel user = (UserModel) session.getAttribute("user");
         
+     // Transfer session error to request, then remove it
+        String error = (String) session.getAttribute("error");
+        if (error != null) {
+            request.setAttribute("error", error);
+            session.removeAttribute("error");
+        }
+
+        // Same for order success message
+        String success = (String) session.getAttribute("orderSuccess");
+        if (success != null) {
+            request.setAttribute("orderSuccess", success);
+            session.removeAttribute("orderSuccess");
+        }
+        
         // Check if user is logged in
         if (user == null) {
             response.sendRedirect(request.getContextPath() + RedirectionUtil.loginUrl);

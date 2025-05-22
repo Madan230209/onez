@@ -62,7 +62,7 @@ public class LoginService {
 	                user.setPassword(dbPassword);
 	                user.setUserRole(result.getString("userRole"));
 	                user.setId(result.getInt("user_id"));
-	                // ✅ Set the image URL
+	                //Set the image URL
 	                user.setImageUrl(result.getString("profilePic"));
 
 	                return user;
