@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 document.addEventListener('DOMContentLoaded', function() {
     const sortSelect = document.getElementById('sort-by');
     const productBox = document.querySelector('.product-box');
