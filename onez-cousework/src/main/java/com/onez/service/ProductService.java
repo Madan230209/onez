@@ -145,6 +145,69 @@ public class ProductService {
 
         return products;
     }
+    
+    /**
+     * Retrieves some products from the database
+     * @return list of all ProductModel objects
+     */
+    public List<ProductModel> getSomeProducts() {
+        List<ProductModel> products = new ArrayList<>();
+        String sql = "SELECT * FROM product ORDER BY product_id DESC LIMIT 12";
+
+        try (Statement stmt = dbConn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                ProductModel product = new ProductModel(
+                    rs.getInt("product_id"),
+                    rs.getString("productName"),
+                    rs.getString("description"),
+                    rs.getInt("price"),
+                    rs.getInt("quantity"),
+                    rs.getString("category"),
+                    rs.getString("productImage")
+                );
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error retrieving products: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return products;
+    }
+    
+    /**
+     * Retrieves few products from the database
+     * @return list of all ProductModel objects
+     */
+    public List<ProductModel> getFewProducts() {
+        List<ProductModel> products = new ArrayList<>();
+        String sql = "SELECT * FROM product ORDER BY product_id DESC LIMIT 8";
+
+        try (Statement stmt = dbConn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                ProductModel product = new ProductModel(
+                    rs.getInt("product_id"),
+                    rs.getString("productName"),
+                    rs.getString("description"),
+                    rs.getInt("price"),
+                    rs.getInt("quantity"),
+                    rs.getString("category"),
+                    rs.getString("productImage")
+                );
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error retrieving products: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return products;
+    }
+    
     /**
      * Retrieves the  recently added products
      * @return list of recent ProductModel objects

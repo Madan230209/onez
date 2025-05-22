@@ -8,4 +8,7 @@
     <url-pattern>/resources/*</url-pattern>
     <url-pattern>/js/*</url-pattern>
   </servlet-mapping>
+  <session-config>
+    <session-timeout>30</session-timeout> <!-- 120 minutes -->
+</session-config>
 </web-app>

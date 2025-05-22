@@ -32,7 +32,7 @@ public class HomeController extends HttpServlet {
         throws ServletException, IOException {
 
         //Get all products from service
-        List<ProductModel> productList = productService.getAllProducts();
+        List<ProductModel> productList = productService.getFewProducts();
         if (productList == null) {
         	productList = new ArrayList<>();
         }

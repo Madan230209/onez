@@ -34,7 +34,11 @@
         <h2>Support Hours</h2>
         <p>Sunday to Friday: 8 am - 5 pm</p>
       </div>
-
+	<!-- Notification element -->
+	  <div id="notification" class="notification">
+	    <span id="notification-message">Your message has been sent successfully!</span>
+	    <span class="close-btn" onclick="hideNotification()">&times;</span>
+	  </div>
       <div class="contact-section">
         <h2>Feedback</h2>
         <p>
@@ -44,7 +48,7 @@
       </div>
       <div class="contact-section1">
         <h2 class="help">Fill up the form for inquiry</h2>
-        <form action="#" method="post" class="contact-form">
+        <form action="#" method="post" class="contact-form" id="contactForm">
           <label for="subject">Subject</label>
           <input
             type="text"
@@ -66,5 +70,28 @@
     </div>
     </div>
     <jsp:include page="footer.jsp" />
+    <script>
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent actual form submission
+        
+        // Show notification
+        showNotification();
+        
+        // Reset form
+        this.reset();
+      });
+      
+      function showNotification() {
+        const notification = document.getElementById('notification');
+        notification.style.display = 'block';
+        
+        // Hide notification after 5 seconds
+        setTimeout(hideNotification, 5000);
+      }
+      
+      function hideNotification() {
+        document.getElementById('notification').style.display = 'none';
+      }
+    </script>
   </body>
 </html>

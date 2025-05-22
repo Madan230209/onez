@@ -112,7 +112,6 @@ pageContext.setAttribute("currentUser", currentUser);
 		                    <option value="CPU/GPU" ${(not empty productToEdit && productToEdit.category == 'CPU/GPU') || category == 'CPU/GPU' ? 'selected' : ''}>CPU/GPU</option>
 		                    <option value="Consoles" ${(not empty productToEdit && productToEdit.category == 'Consoles') || category == 'Consoles' ? 'selected' : ''}>Consoles</option>
 		                	<option value="Monitor" ${(not empty productToEdit && productToEdit.category == 'Monitor') || category == 'Monitor' ? 'selected' : ''}>Monitor</option>
-		                    <option value="Accessories" ${(not empty productToEdit && productToEdit.category == 'Accessories') || category == 'Accessories' ? 'selected' : ''}>Accessories</option>
 		                    <option value="Storage" ${(not empty productToEdit && productToEdit.category == 'Storage') || category == 'Storage' ? 'selected' : ''}>Storage</option>		                    
 		                    <option value="Other" ${(not empty productToEdit && productToEdit.category == 'Other') || category == 'Other' ? 'selected' : ''}>Other</option>
 		                </select>

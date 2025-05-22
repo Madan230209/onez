@@ -67,8 +67,8 @@
 			        </a>
 			    </li>
 			    <li class="category-items">
-			        <a href="${contextPath}/viewCategory?category=Accessories" class="${param.category == 'Accessories' ? 'active' : ''}">
-			            Accessories
+			        <a href="${contextPath}/viewCategory?category=Other" class="${param.category == 'Other' ? 'active' : ''}">
+			            Other
 			        </a>
 			    </li>
 			</ul>
@@ -101,7 +101,7 @@
 				                <option value="Monitor" ${param.category == 'Monitor' ? 'selected' : ''}>Monitor</option>
 				                <option value="CPU/GPU" ${param.category == 'CPU/GPU' ? 'selected' : ''}>CPU/GPU</option>
 				                <option value="Storage" ${param.category == 'Storage' ? 'selected' : ''}>Storage</option>
-				                <option value="Accessories" ${param.category == 'Accessories' ? 'selected' : ''}>Accessories</option>
+				                <option value="Other" ${param.category == 'Other' ? 'selected' : ''}>Other</option>
 				            </select>
 				        </form>
 				    </div>
